@@ -6,6 +6,8 @@ $(document).ready(function(){
     var cont_valoracion=0;
     var cont_calidad=0;
 
+    var consulta_ciu = [];
+
 
     var ciudad_clicks=2;
     var valoracion_clicks=2;
@@ -37,22 +39,34 @@ $(document).ready(function(){
             document.getElementById(ciudad).style.backgroundColor="#50C1F0";
 
             if(cont_ciudad==0){
+
+                consulta_ciu [cont] =""+ciudad;
                 consulta_ciudad=" AND Ciudad LIKE "+ciudad;
+
+
+
+
                 cont_ciudad++;
                 filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
             }else{
+
+                consulta_ciu [cont]=""+ciudad;
+
+
                 consulta_ciudad= consulta_ciudad+" OR Ciudad LIKE "+ciudad;
                 cont_ciudad++;
                 filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
             }
         }else{//Desmarcar
+
+            consulta_ciu[cont]="";
             document.getElementById(ciudad).style.backgroundColor="transparent";
             this.setAttribute('cont',0);
         }
 
 
         
-        
+        console.log(consulta_ciu);
 
 
         
