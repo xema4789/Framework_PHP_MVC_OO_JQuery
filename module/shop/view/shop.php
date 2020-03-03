@@ -1,0 +1,38 @@
+<div class="shop">
+
+	<div class="single-slider ptb-1500 bg-opacity">
+				<div class="container">
+						<div class="slider-text text-center">
+							<h1 class="cd-headline clip is-full-width">
+								<span>Lugares como </span>
+								<span class="cd-words-wrapper">
+									<b class="is-visible">Madrid</b>
+									<b>Valencia</b>
+									<b>Barcelona</b>
+									<b>Sevilla</b>
+									<b>Galicia</b>
+									<b>Castilla la Mancha</b>
+								</span>
+							</h1>
+						</div>					
+					</div>
+		</div>
+	<div id="articulo" class="tipos"></div>
+	<div class="filters_container"></div>
+	<div id="boton_map"></div>
+	
+		<div class="spiner"></div>
+
+		<div id="tipos"></div>
+		
+
+
+	<!-- Maps -->
+		<div id="map"></div>
+
+	<!-- Fin maps -->
+
+</div>
+<div id="map"></div>
+
+<!-- <div class="loader">Loading...</div> -->
