@@ -1,33 +1,33 @@
-PHP_OO_MVC_JQuery | Hoteles xema
+#PHP_OO_MVC_JQuery | Hoteles xema
 
-                            JOSE MARIA MAESTRE QUILES
+                            #JOSE MARIA MAESTRE QUILES
 
-INDEX
+#INDEX
 
--About this
--Built with
-
-
-ABOUT THIS
-En está pagina podrás ver todos nuestros hoteles, con sus diferentes categorias y ciudades
-Filtrar por valoracion, ciudad y categoria y la opcion de buscar tu comida favorita
-
-Los desarroladores podrán ver todas las habitaciones, crear nuevas habitaciones, modificarlas y borrarlas
-Los usuarios tendrán una lista comlpeta de todas ellas.
-
-BUILT WITH
+##-About this
+##-Built with
 
 
-FRONTEND:
--JQuery
--JavaScript
+#ABOUT THIS
+##En está pagina podrás ver todos nuestros hoteles, con sus diferentes categorias y ciudades
+##Filtrar por valoracion, ciudad y categoria y la opcion de buscar tu comida favorita
 
-BACKEND:
--PHP
--BootStrap
+##Los desarroladores podrán ver todas las habitaciones, crear nuevas habitaciones, modificarlas y borrarlas
+##Los usuarios tendrán una lista comlpeta de todas ellas.
 
-Run phpMyAdmin
-http://localhost/phpmyadmin
+#BUILT WITH
+
+
+#FRONTEND:
+##-JQuery
+##-JavaScript
+
+#BACKEND:
+##-PHP
+##-BootStrap
+
+#Run phpMyAdmin
+##http://localhost/phpmyadmin
 
 
 
