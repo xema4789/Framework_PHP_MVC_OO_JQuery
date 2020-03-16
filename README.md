@@ -31,7 +31,7 @@
 
 
 
-.
+
 ├── DB
 │   └── DB.sql
 ├── index.php
