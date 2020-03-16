@@ -10,7 +10,7 @@ $(document).ready(function(){
 //       }).done(function(data){
 //         console.log(data);
 //     }).fail(function(){
-//         console.log("atontao");
+//         console.log("FAIL");
 //     })
 // })
 

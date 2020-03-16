@@ -6,7 +6,7 @@
 	
     switch ($_GET['op']) {
 		case 'list':
-				include("module/order/view/list_order.php");
+				include("module/order/view/list_order.html");
 			break;
 			
 		case 'datatable':

@@ -6,18 +6,18 @@ session_start();
 switch($_GET['op']){
 
     case 'list':
-        include("module/shop/view/shop.php");
+        include("module/shop/view/shop.html");
     break;
 
     case 'list_habitaciones':
         try{
             $daoshop = new DAOShop();
             $rdo = $daoshop->list_habitaciones();
-            //pintar($rdo);   
+
         }catch (Exception $e){
             echo json_encode("error");
             exit;
-        }//end try
+        }
         if(!$rdo){
             echo json_encode("error");
             exit;
@@ -27,10 +27,6 @@ switch($_GET['op']){
 					array_push($dinfo, $row);
 				}
 				echo json_encode($dinfo);
-
-
-            //$habitacion ?
-            //echo json_encode($rdo);
             exit;
         }
     break;    
@@ -60,7 +56,7 @@ switch($_GET['op']){
     case 'list_tipos':
         try{
             $daoshop = new DAOShop();
-            // $rdo = $daoshop->list_tipos();
+
         }catch(Exception $e){
             echo json_encode("error");
             exit;
@@ -142,6 +138,28 @@ switch($_GET['op']){
         }
     break;
 
+    case 'list_ciudad_tipos':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_ciudad_tipos($_GET['cat'],$_GET['ciudad']);
+        }catch(Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+            $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+            echo json_encode($dinfo);
+
+        }
+    break;
+
+
     case 'filtrar':
         try{
             $daoshop = new DAOShop();
@@ -187,6 +205,188 @@ switch($_GET['op']){
 
     break;
 
+
+
+    case 'list_comida':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_comida($_GET['comida']);
+        }catch(Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+            $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+            echo json_encode($dinfo);
+
+        }
+
+    break;
+
+    case 'list_comida_ciudad':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_comida_ciudad($_GET['comida'],$_GET['ciudad']);
+        }catch(Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+            $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+            echo json_encode($dinfo);
+
+        }
+
+    break;
+
+    case 'list_comida_ciudad_categoria':
+
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_comida_ciudad_categoria($_GET['comida'],$_GET['ciudad'],$_GET['categoria']);
+        }catch(Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+            $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+            echo json_encode($dinfo);
+
+        }
+
+    break;
+
+    case 'list_comida_categoria':
+
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_comida_categoria($_GET['comida'],$_GET['categoria']);
+        }catch(Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+            $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+            echo json_encode($dinfo);
+
+        }
+
+    break;
+
+    case 'sumar_visita':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->sumar_visita($_GET['tipo']);
+        }catch(Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("rdo vacio");
+            exit;
+        }else{
+
+            echo json_encode("rdo lleno");
+
+        }
+
+    break;
+
+    case 'listar_scroll':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_mas_visitados($_GET['num']);
+  
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error");
+            exit;
+        }else{
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+
+            exit;
+        }
+
+    break;
+
+    case 'contar':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->contar();
+  
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error");
+            exit;
+        }else{
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+
+            exit;
+        }
+
+
+    break;
+
+    case 'list_paginacion':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->list_paginacion($_GET['posicion']);
+  
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error");
+            exit;
+        }else{
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+
+            exit;
+        }
+    break;
 
 }
 

@@ -5,6 +5,6 @@ include ($path . "/module/contact/model/DAOContact.php");
 switch($_GET['op']){
 
     case 'list':
-        include("module/contact/view/contactus.php");
+        include("module/contact/view/contactus.html");
     break;
 }

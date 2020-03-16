@@ -1,12 +1,40 @@
 $(document).ready(function(){
 
+    localStorage.setItem('posicion_home',0);
+
+    function ajaxForSearch(url,tipo){
+        $.ajax({
+            url:url,
+            type: 'GET',
+            async: false,
+            dataType: 'json',
+                
+          }).done(function(data){
+
+            switch(tipo){
+                case 1:
+                    pintar_carousel(data);
+                break;
+                case 2:
+                    pintar_categorias(data);
+                break;
+                case 3:
+                    pintar_ciudades(data);
+                break;
+                case 4:
+                    pintar_categorias_visitadas(data);
+                break;
+            }
+          }).fail(function(){
+            console.log("FAIL");
+          });
+    }
+
+
     // Pintar carousel
-    $.ajax({
-                url:"module/inicio/controller/controller_home.php?op=list_ciudades_valoracion",
-                type: 'GET',
-                dataType: 'json',
-                    
-        }).done(function(data){
+
+    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_ciudades_valoracion",1);
+    function pintar_carousel(data){
         for (row in data){
             if(row==0){
                  $('<div></div>').attr({'class':"item active",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (
@@ -21,73 +49,109 @@ $(document).ready(function(){
                     );
             }
         }
-    }).fail(function(){
-        console.log("atontao");
-    })
-
+    }
     //Fin pintar carousel
 
+
     // Pintar categorias
-    $.ajax({
-        url:"module/inicio/controller/controller_home.php?op=list_tipos",
-        type: 'GET',
-        dataType: 'json',
-                    
-        }).done(function(data){
-                
-        // console.log("oleee los caracoles");
-
-
+    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_tipos",2);
+    function pintar_categorias(data){
         for (row in data){
             $('<div></div>').attr({'class':"categoria",'id':data[row].Tipo}).appendTo('.ciudades').html (
                 '<img src="'+data[row].Imagen+'" href="#" alt="No se puede cargar la imagen">'
                  );
         }
-    }).fail(function(){
-                console.log("atontao");
-    })
-
+    }
     //Fin pintar categorias
 
+
+    
+
     //Pintar ciudades
-    $.ajax({
-        url:"module/inicio/controller/controller_home.php?op=list_ciudades",
-        type: 'GET',
-        dataType: 'json',
-                    
-        }).done(function(data){
-                
-        // console.log("oleee los caracoles");
-
-
+    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_ciudades",3);
+    function pintar_ciudades(data){
         for (row in data){
             $('<div></div>').attr({'class':"ciudad_home",'id':data[row].Ciudad}).appendTo('.ciudades_home').html (
                 '<img src="'+data[row].imagen+'" class="imagen_ciudad_home"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'
                  );
         }
-    }).fail(function(){
-                console.log("atontao");
-    })
-
-
-
+    }
     //Fin pintar ciudades
 
+    // Categorias mas visitadas
+    var num=localStorage.getItem('posicion_home');
+    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_visitas&num="+num,4);
+    function pintar_categorias_visitadas(data){
+        for(row in data){
+            $('<div></div>').attr({'class':"categoria_visitas",'id':data[row].Tipo_habitacion}).appendTo('.visitas_home').html (
+                '<img src="'+data[row].imagen+'" class="imagen_categoria_visitas"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'+
+                '<p class="texto_imagen">'+data[row].Tipo_habitacion+'</p>'
+                );
+        }
+    }
+
+// Categorias mas visitadas
+
+
+$(document).on("click","#mas",function(){
+    listar_scroll();
+});
+
+
+function listar_scroll(){  
+
+    num=localStorage.getItem('posicion_home');
+    console.log(num);
+    if(num==0){
+        localStorage.setItem('posicion_home',2);
+    }else{
+
+        sumar=num;
+        sumar++;
+        sumar++;
+        sumar++;
+        localStorage.setItem('posicion_home',sumar);
+    }
+    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_visitas&num="+num,4);
+}
 
 
 
 
 
-    //Cick en la foto y saltar a shop
+ 
+
+
+
+
+    //Cick en categoria y saltar a shop
 
     $(document).on("click", '.categoria',function(){
         var categoria = this.getAttribute('id');       
+        busca_categoria(categoria);
+    });
+
+    //Fin click en categoria y saltar a shop
+
+    //Click en categorias mas visitadas
+    $(document).on("click",'.categoria_visitas',function(){
+        var categoria = this.getAttribute('id');       
+        busca_categoria(categoria);
+    });
+
+    //Fin en click categorias mas visitadas
+
+
+
+
+
+    function busca_categoria(categoria){
+
+
         localStorage.setItem('categoria',categoria)
         $callback = 'index.php?page=controller_shop&op=list';
     	window.location.href=$callback; 
-    });
-
-    //Fin click y saltar a shop
+    }
 
     //Click en la foto de carousel y saltar a home
     $(document).on("click", '.item',function(){
@@ -113,20 +177,5 @@ $(document).ready(function(){
 
     //Fin click en ciudades
 
-
-
 });
 
-
-
-
-
-//     $('<div></div>').attr('class',"item active").appendTo('.carousel-inner').html (
-//         '<img src="view/img/slider1.jpg" alt="Los Angeles">'
-//     );
-//     $('<div></div>').attr('class',"item").appendTo('.carousel-inner').html (
-//        '<img src="view/img/slider2.jpg" alt="r">'
-//    );
-//    $('<div></div>').attr('class',"item").appendTo('.carousel-inner').html (
-//        '<img src="view/img/slider3.jpg" alt="t">'
-//    );

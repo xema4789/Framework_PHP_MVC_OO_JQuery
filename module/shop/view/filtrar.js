@@ -6,109 +6,38 @@ $(document).ready(function(){
     var cont_valoracion=0;
     var cont_calidad=0;
 
-    var consulta_ciu = [];
-
-
-    var ciudad_clicks=2;
-    var valoracion_clicks=2;
-    var calidad_clicks=2;
-
     let consulta_ciudad="";
     let consulta_valoracion="";
     let consulta_calidad="";
-
-    // checks = checks.replace("categoria = CAmisetablabla","");
-
-
-    //Botones id a los que hacer click: f_ciudad   f_stars     f_calidad
 
     //Ciudad
 
     $(document).on("click",'.f_ciudad',function () {
         var ciudad=this.getAttribute('id');
         var cont=this.getAttribute('cont');
-        // alert(cont);
-        cont++;
+        cont++;;
         
 
         this.setAttribute('cont',cont);
 
-       
-
-        if(cont%2==1){//Marcar
+        if(cont==1){//Marcar
             document.getElementById(ciudad).style.backgroundColor="#50C1F0";
-
             if(cont_ciudad==0){
-
-                consulta_ciu [cont] =""+ciudad;
-                consulta_ciudad=" AND Ciudad LIKE "+ciudad;
-
-
-
-
+                consulta_ciudad=" AND h.Ciudad LIKE "+ciudad;
                 cont_ciudad++;
                 filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
             }else{
-
-                consulta_ciu [cont]=""+ciudad;
-
-
-                consulta_ciudad= consulta_ciudad+" OR Ciudad LIKE "+ciudad;
+                consulta_ciudad= consulta_ciudad+" OR h.Ciudad LIKE "+ciudad;
                 cont_ciudad++;
                 filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
             }
         }else{//Desmarcar
+            cont=0
 
-            consulta_ciu[cont]="";
             document.getElementById(ciudad).style.backgroundColor="transparent";
             this.setAttribute('cont',0);
         }
-
-
-        
-        console.log(consulta_ciu);
-
-
-        
-
-        
-        
-        
     });
-
-//document.getElementById(ciudad).style.backgroundColor="#50C1F0";
-
-
-
-    // var ciudad=this.getAttribute('id');
-    //     ciudad_clicks++;
-
-
-
-    //     if((ciudad_clicks%2)==1){ //Si es impar añadir consulta
-    //         document.getElementById(ciudad).style.backgroundColor="#50C1F0";
-
-
-    //         if((count == 0) && (cont_ciudad==0)){                                                     // }else if(cont_ciudad==0){       
-    //             checks = " AND Ciudad LIKE "+ciudad;                                                  //    checks = checks + ' AND Ciudad LIKE '+ciudad;
-    //             count=count+1;                                                                        //      cont_ciudad=cont_ciudad+1;
-    //             cont_ciudad=cont_ciudad+1;                                                            //      filtrar(checks,checks2);
-    //             filtrar(checks,checks2);
-    //         }else{
-    //             cont_ciudad++;
-    //             checks = checks + " OR Ciudad LIKE "+ciudad;
-    //             filtrar(checks,checks2);
-    //         }
-    //     }else{//Si es par quitamos la consulta
-    //         document.getElementById(ciudad).style.backgroundColor="transparent";
-    //         // checks = checks.replace("WHERE Ciudad LIKE "+ciudad,"");
-    //         checks = checks.replace(" AND Ciudad LIKE "+ciudad,"");
-    //         checks = checks.replace(" OR Ciudad LIKE "+ciudad,"");
-
-    //         alert(checks);
-    //     }
-
-    //Fin ciudad
 
     //Valoracion
 
@@ -120,15 +49,15 @@ $(document).ready(function(){
 
 
         if((cont_valoracion==0) && (cont_calidad==0) ){
-            consulta_valoracion=" HAVING Valoracion "+valoracion;
+            consulta_valoracion=" HAVING h.Valoracion "+valoracion;
             cont_valoracion++;
             filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
         }else if(cont_valoracion==0){
-            consulta_valoracion=consulta_valoracion+" AND Valoracion "+valoracion;
+            consulta_valoracion=consulta_valoracion+" AND h.Valoracion "+valoracion;
             cont_valoracion++;
             filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
         }else{
-            consulta_valoracion=consulta_valoracion+" OR Valoracion "+valoracion;
+            consulta_valoracion=consulta_valoracion+" OR h.Valoracion "+valoracion;
             cont_valoracion++;
             filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
         }
@@ -147,15 +76,15 @@ $(document).ready(function(){
 
         if((cont_calidad==0)&&(cont_valoracion==0)){
             cont_calidad++;
-            consulta_calidad="HAVING Tipo_habitacion LIKE "+tipo;
+            consulta_calidad=" HAVING h.Tipo_habitacion LIKE "+tipo;
             filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
         }else if(cont_calidad==0){
             cont_calidad++;
-            consulta_calidad=consulta_calidad+"AND Tipo_habitacion LIKE "+tipo;
+            consulta_calidad=consulta_calidad+" AND h.Tipo_habitacion LIKE "+tipo;
             filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
         }else{
             cont_calidad++;
-            consulta_calidad=consulta_calidad+"OR Tipo_habitacion LIKE "+tipo;
+            consulta_calidad=consulta_calidad+" OR h.Tipo_habitacion LIKE "+tipo;
             filtrar(consulta_ciudad, consulta_valoracion, consulta_calidad);
         }
         
@@ -174,10 +103,9 @@ $(document).ready(function(){
             dataType: 'json',
                 
           }).done(function(data){
-              console.log(data);
               mostrar(data);
           }).fail(function(){
-            console.log("atontao");
+            console.log("FAIL");
         });
     }
 
@@ -211,23 +139,13 @@ $(document).ready(function(){
         borrar(elems);
 
 
-
-
-        
-
-        // document.getElementsByClassName(f_ciudad).style.backgroundColor="transparent";
-
         filtrar(consulta_ciudad,consulta_valoracion,consulta_calidad);
 
     });
-
     
     function borrar(elems){
         for (var x = 0; x < elems.length; x++) {
             document.getElementsByClassName(elems[x].style.backgroundColor="transparent");
           }
     }
-
-
-
 });

@@ -5,6 +5,7 @@
 
 
 	<header>
+
 		<div class="header-top-area black-bg hidden-xs">
 			<div class="container">
 				<div class="row">
@@ -33,6 +34,27 @@
 					</div>
 				</div>
 			</div>
+
+
+			<form class="search" autocomplete="on" method="post">
+				<select id="Ciudad">
+						<option value="%">Ciudad</option>
+				</select>
+							
+				<select id="Tipo">
+						<option value="%">Tipo de habitacion</option>
+				</select>
+
+
+
+				<div class="autocomplete"> 
+					<input id="autocom" placeholder="Comida" type="text" />
+					<div id="optionsauto"></div> 
+				</div>	
+					<div ><a class="btn" id="searchlist">BUSCAR</a></div>
+
+
+			</form>
 			
 	</header>
 

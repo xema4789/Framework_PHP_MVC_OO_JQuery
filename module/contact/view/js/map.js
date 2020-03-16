@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // alert ("ole los caracoles");
     if(document.getElementById("mapa") != null){
       var script = document.createElement('script');
       script.src = "https://maps.googleapis.com/maps/api/js?key="+"AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"+"&callback=initMap";
@@ -14,14 +13,6 @@ $(document).ready(function () {
   
   function initMap() {
       var ontinyent = {lat: 38.817522, lng: -0.6039023};   
-
-    
-
-
-
-
-
-
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,   
         center: ontinyent

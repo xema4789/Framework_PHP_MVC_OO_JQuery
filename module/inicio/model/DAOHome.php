@@ -49,4 +49,12 @@
         connect::close($connection);
         return $res;
     }
+
+    function list_visitas($num){
+        $sql = "SELECT h.*, t.visitas FROM Tipos t INNER JOIN Habitaciones h WHERE t.Tipo = h.Tipo_habitacion ORDER BY t.visitas DESC LIMIT 3 OFFSET $num";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
 }

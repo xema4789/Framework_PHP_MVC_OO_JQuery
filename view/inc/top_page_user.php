@@ -61,6 +61,7 @@
 		<script type="text/javascript" src="module/user/model/validate_user.js"></script>
 		<script type="text/javascript" src="module/user/view/controller_ls.js"></script>
 		<script type="text/javascript" src="module/user/model/controler_up.js"></script>
+		<script type="text/javascript" src="module/search/view/js/function_search.js"></script>
 		
     </head>
     <body>

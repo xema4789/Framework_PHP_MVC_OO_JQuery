@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+    localStorage.setItem('posicion',0);
     
 
     function ajaxForSearch(url,tipo){
@@ -14,7 +16,7 @@ $(document).ready(function(){
                 rellenar(data);
             }
           }).fail(function(){
-            console.log("Atontao");
+            console.log("FAIL");
           });
     }
     
@@ -23,39 +25,66 @@ $(document).ready(function(){
     var num_habitacion = localStorage.getItem('num_habitacion');
     var ciudad = localStorage.getItem('ciudad');
     var categoria = localStorage.getItem('categoria');
+    var comida=localStorage.getItem('comida');
     localStorage.removeItem('num_habitacion');
     localStorage.removeItem('ciudad');
     localStorage.removeItem('categoria');
+    localStorage.removeItem('comida');
+
     ////
 
     console.log(ciudad);
 
-    if((!ciudad) && (!categoria) && (!num_habitacion)){
+    if((!ciudad) && (!categoria) && (!num_habitacion) && (!comida)){
         //Vengo del menu, pintar todas las habitaciones
         console.log("pintar todo");
-        pintar_todo();
+        // listar_scroll();
+        pintar_paginacion();
         pintar_filtros();
         pintar_tipos();
-    }else if((ciudad) && (!categoria)){
+    }else if(((ciudad)&&(ciudad!="%")) && ((!categoria)||(categoria=="%")) && ((!comida)||(comida=="%"))){
         //Pintar ciudades 
-        alert("oleee los caracolees");
         ajaxForSearch("module/shop/controller/controller_shop.php?op=list_ciudades&ciudad=" + ciudad,"mostrar");
 
-    }else if((categoria) && (!ciudad)){
+    }else if(((categoria)&&(categoria!="%")) && ((!ciudad)||(ciudad=="%")) && ((!comida)||(comida=="%"))){
         ajaxForSearch("module/shop/controller/controller_shop.php?op=list_categorias&cat=" + categoria,"mostrar");
         categoria=null;
         //Pintar categorias
-    }else if((categoria) && (ciudad)){
+    }else if(((ciudad)&&(ciudad!="%")) && ((categoria)&&(categoria!="%")) && ((!comida)||(comida=="%"))){
         //Pintar por categoria y ciudad
+        ajaxForSearch("module/shop/controller/controller_shop.php?op=list_ciudad_tipos&cat=" + categoria+"&ciudad=" + ciudad,"mostrar");
+
     }else if(num_habitacion){
         ajaxForSearch("module/shop/controller/controller_shop.php?op=list_habitacion&hab=" + num_habitacion,"rellenar");
         num_habitacion=null;
+    }else if(((!categoria)||(categoria=="%")) && ((!ciudad)||(ciudad=="%")) && ((comida)&&(comida!="%"))){
+        //Pintar comida
+        ajaxForSearch("module/shop/controller/controller_shop.php?op=list_comida&comida=" + comida,"mostrar");
+    }else if(((!categoria)||(categoria=="%")) && ((ciudad)&&(ciudad!="%")) && ((comida)&&(comida!="%"))){
+        //Pintar comida y ciudad
+        ajaxForSearch("module/shop/controller/controller_shop.php?op=list_comida_ciudad&comida=" + comida+"&ciudad="+ciudad,"mostrar");
+    
+    }else if(((categoria)&&(categoria!="%")) && ((ciudad)&&(ciudad!="%")) && ((comida)&&(comida!="%"))){
+        //Pinta comida ciudad y categoria
+        ajaxForSearch("module/shop/controller/controller_shop.php?op=list_comida_ciudad_categoria&comida=" + comida+"&ciudad="+ciudad+"&categoria="+categoria,"mostrar");
+    
+    
+    }else if(((categoria)&&(categoria!="%")) && ((!ciudad)||(ciudad=="%")) && ((comida)&&(comida!="%"))){
+        //Pintar comida y categoria
+        ajaxForSearch("module/shop/controller/controller_shop.php?op=list_comida_categoria&comida=" + comida+"&categoria="+categoria,"mostrar");
+    
+    
+    
+    
     }else{
         alert("Error en los filtros");
-        pintar_todo();
+        pintar_paginacion();
+        // listar_scroll();
         pintar_tipos();
         pintar_filtros();
     }
+
+
 
 
 
@@ -88,7 +117,7 @@ $(document).ready(function(){
                     '<ul style="list-style:circle;">'+
                         '<li class="f_calidad" id="\'Lujo\'">Lujo</li>'+
                         '<li class="f_calidad" id="\'Standart\'">Standart</li>'+
-                        '<li class="f_calidad" id="\'Asiatica\'">Asiática</li>'+  //Problema con la id asiatica, error en la bd
+                        '<li class="f_calidad" id="\'Asiatica\'">Asiática</li>'+  
                     '</ul>'+
                 '</li>'+
             '</ul>'+
@@ -101,31 +130,137 @@ $(document).ready(function(){
 
     //Fin pintar los filtros
 
-    
+
+
+    function pintar_paginacion(){
+        // var productos="module/shop/controller/controller_shop.php?op=list_habitaciones";
+        var count="module/shop/controller/controller_shop.php?op=contar";
+        $.ajax({
+            url:count,
+            type: 'GET',
+            dataType: 'json',
+                
+          }).done(function(data){
+            let totalItems=0;
+            let totalPages=0;
+
+            let prevPage=false;
+            let nextPage=false;
+
+            let total=data[0].total;
+            
+            for(let i=0; i < total;i++){
+                if((i % 9)==0){
+                    totalPages = totalPages +1;
+                }
+            }
+
+            if(totalPages > 1){
+                prevPage = 'Prev';
+                nextPage = 'Next';
+            }
+
+            $('#articulo').bootpag({
+                total: totalPages,
+                page: 1,
+                maxVisible: totalPages,
+                prev: prevPage,
+                next: nextPage
+            }).on("page",function(event,num){
+      
+                console.log(num);
+
+                totalItems = 9 *(num-1);
+
+                // alert(totalItems);
+
+
+                pintar_shop(totalItems);
+                
+            });
+            pintar_shop(totalItems);
+
+
+          }).fail(function(){
+            console.log("FAIL PAGINACION");
+        });
+    }
 
 
 
-//Listar todas las habitaciones
-function pintar_todo(){
+
+    function pintar_shop(total_items){
+        $.ajax({
+            url:"module/shop/controller/controller_shop.php?op=list_paginacion&posicion="+total_items,
+            type: 'GET',
+            dataType: 'json',
+                
+          }).done(function(data){
+            console.log("hola");
+            console.log(data);
+            mostrar(data);
+           
+          }).fail(function(){
+            console.log("FAIL");
+          });
+
+
+    }
+
+
+
+
+//Distintas funciones
+
+
+
+$(document).on("click","#mas",function(){
+    listar_scroll();
+});
+
+
+function listar_scroll(){  
+
+    num=localStorage.getItem('posicion');
+    if(num==0){
+        localStorage.setItem('posicion',2);
+    }else{
+
+        sumar=num;
+        sumar++;
+        sumar++;
+        sumar++;
+        localStorage.setItem('posicion',sumar);
+    }
+
     $.ajax({
-        url:"module/shop/controller/controller_shop.php?op=list_habitaciones",
+        url:"module/shop/controller/controller_shop.php?op=listar_scroll&num="+num,
         type: 'GET',
         dataType: 'json',
             
       }).done(function(data){
           mostrar(data);
       }).fail(function(){
-        console.log("atontao");
+        console.log("FAIL");
     });
 }
-//Fin listar todas las habitaciones
+
+
+
+//     window.addEventListener("scroll", function(){
+//         if(($(window).scrollTop())==(($(document).height())-($(docuemnt).width()))){
+//         }
+// });
+
+
+
+
+
+
 
 //Click en la foto
     $(document).on("click", '.foto',function(){
         var id = this.getAttribute('id');
-        console.log(id);
-        
-
     $.ajax({
         url:"module/shop/controller/controller_shop.php?op=list_modal&hab=" + id,
         type: 'GET',
@@ -137,11 +272,37 @@ function pintar_todo(){
       
             //  modal();
       }).fail(function(){
-        console.log("atontao");
+        console.log("FAIL");
     });
 });
 
  //Fin click en la foto
+
+
+//Sumar visita
+ function sumar_visita(tipo){
+    $.ajax({
+        url:"module/shop/controller/controller_shop.php?op=sumar_visita&tipo="+tipo,
+        type: 'GET',
+        dataType: 'json',
+                    
+        }).done(function(data){
+            //done
+
+    }).fail(function(){
+                console.log("FAIL");
+    })
+    
+}
+//Fin sumar visita
+
+//Fin funciones
+
+
+
+
+
+//Pintando diferentes cosas
 
 function pintar_tipos(){
     $.ajax({
@@ -150,8 +311,6 @@ function pintar_tipos(){
         dataType: 'json',
                     
         }).done(function(data){
-                
-        // console.log("oleee los caracoles");
 
 
         for (row in data){
@@ -160,17 +319,17 @@ function pintar_tipos(){
                  );
         }
     }).fail(function(){
-                console.log("atontao");
+                console.log("FAIL");
     })
 }
 
  //Rellenar shop
 
 function rellenar(data){
+    
+    sumar_visita(data[0].Tipo_habitacion);
 
     $('.shop').empty();
-    console.log(data);
-    console.log(data[0].Numero_habitacion);
    
   $('<div></div>').attr('id','details').appendTo('.shop');
   $('<div></div>').attr('id','details_habitacion','type','hidden').appendTo('#details');
@@ -186,7 +345,7 @@ function rellenar(data){
         // '<br><span>'+row+' <span id="'+row+'">'+data[row].row+'</span></span></br>'+
             
             '<br><ul></<br'+
-            '<br><li><span class="lista">Numero de habitacion <span id="num_habitacion">'+data[row].Numero_habitacion+'</span></span></li></br>'+
+            '<br><li><span class="lista">Numero de habitacion: <span id="num_habitacion">'+data[row].Numero_habitacion+'</span></span></li></br>'+
             '<br><li><span class="lista">Tipo de habitacion: <span id="tipo_habitacion">'+data[row].Tipo_habitacion+'</span></span></li></br>'+
             '<br><li><span class="lista">Ciudad: <span id="tipo_habitacion">'+data[row].Ciudad+'</span></span></li></br>'+
             '<br><li><span class="lista">Tipo de comida: <span id="tipo_comida">'+data[row].Tipo_comida+'</span></span></li></br>'+
@@ -211,13 +370,16 @@ function rellenar(data){
 
 //Mostrar habitaciones
 function mostrar(data){
-
+    $('<div></div>').attr('id','contenedor').appendTo('#articulo');
+    $('#contenedor').empty();
 
 
     for (row in data){
-        $('<div></div>').attr({'class':"foto",'id':data[row].Numero_habitacion}).appendTo('.tipos').html (
+        $('<div></div>').attr({'class':"foto",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
             '<img src="'+data[row].imagen+'" class="foto_shop" href="#" alt="No se puede cargar la imagen">'+
-            '<p class="texto_imagen">'+data[row].Ciudad+'</p>'
+            '<p class="texto_imagen">'+data[row].Ciudad+'</p>'+
+            '<p class="texto_visitas">'+data[row].visitas+'</p>'+
+            '<p class="texto_ojo"></p>'
             );
 
             // $('<p>'+data[row].Ciudad+'</p>').attr('class',"texto_imagen").appendTo('.tipos').html ();
@@ -226,85 +388,5 @@ function mostrar(data){
             
     
 //Fin mostrar habitaciones
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function modal(){
-    //alert ("dentro del modal");
-    $("#details_habitacion").show();
-    $("#modalcontent").dialog({
-
-        width: 850, //ancho
-        height: 500, //alto
-        //show: "scale", //<!-- ----------- animación de la ventana al aparecer -->
-                    //hide: "scale", <!-- ----------- animación al cerrar la ventana -->
-        resizable: "false", //fija o redimensionable si ponemos este valor a "true"
-                    //position: "down",<!--  ------ posicion de la ventana en la pantalla (left, top, right...) -->
-        modal: "true", //si está en true bloquea la pagina entera hasta que lo cerremos, muy elegante dice  on("click",function(){
-        buttons:{
-            //Aqui poner botones de delete y de update en el futuro
-            Ok: function(){
-            $(this).dialog("close");
-            }
-        },
-        show: {
-            effect: "scale",
-            duration: 500
-        },
-        hide:{
-            effect: "scale",
-            duration: 500
-        }
-
-
-        // open: function() {
-        //     $(".ui-dialog-buttonset").prepend("<span class='ui-button ' >Numero de habitacion:<input type='number' name='quantity' id='quantity' class='quantity' min='1' max='20' step='1'value='1'></span>");
-        // },
-        // title:data,
-        // //width: 500, 
-        // height: 570, 
-        // resizable: "false",
-        // modal: "true", 
-        // buttons: {
-        //     Reservar: function(){ addToCart();$(this).dialog("close");},//$(this).dialog("close")
-        //     Ok: function () {
-        //         $(this).dialog("close");
-        //     }
-        // },
-        // show: {
-        //     effect: "fade",
-        //     duration: 1000
-        // },
-        // hide: {
-        //     effect: "fade",
-        //     duration: 1000
-        // }
-    });
-}
-
-
-
-
-
-
-
-
-
-
 
 });

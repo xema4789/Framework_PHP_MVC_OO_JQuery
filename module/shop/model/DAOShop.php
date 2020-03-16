@@ -27,7 +27,7 @@
     }
 
     function list_por_ciudad($ciudad){
-        $sql = "SELECT * FROM Habitaciones WHERE Ciudad LIKE \"$ciudad\"";
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Ciudad LIKE \"$ciudad\"";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);
@@ -36,7 +36,7 @@
 
 
     function select_categorias($cat){
-        $sql = "SELECT * FROM Habitaciones WHERE Tipo_habitacion LIKE  \"$cat\" ";
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Tipo_habitacion LIKE  \"$cat\" ";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);
@@ -45,7 +45,7 @@
     
 
     function filtrar($consulta){
-        $sql = "SELECT * FROM Habitaciones WHERE 1" . $consulta;
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE 1" . $consulta;
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);
@@ -56,6 +56,78 @@
 
     function maps(){
         $sql = "SELECT * FROM Ciudades";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+
+    function list_ciudad_tipos($tipo,$ciudad){ 
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Ciudad LIKE \"$ciudad\" AND h.Tipo_habitacion LIKE \"$tipo\" ";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function list_comida($comida){
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Tipo_comida LIKE '".$comida."%'";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function list_comida_ciudad($comida,$ciudad){
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Tipo_comida LIKE '".$comida."%' AND h.Ciudad LIKE \"$ciudad\" ";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function list_comida_ciudad_categoria($comida,$ciudad,$categoria){
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Tipo_comida LIKE '".$comida."%' AND h.Ciudad LIKE \"$ciudad\" AND h.Tipo_habitacion LIKE \"$categoria\" ";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function list_comida_categoria($comida,$categoria){
+        $sql = "SELECT h.*, t.visitas FROM Habitaciones h INNER JOIN Tipos t ON h.Tipo_habitacion = t.Tipo WHERE h.Tipo_comida LIKE '".$comida."%' AND h.Tipo_habitacion LIKE \"$categoria\" ";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function list_mas_visitados($num){
+        $sql = "SELECT h.*, t.visitas FROM Tipos t INNER JOIN Habitaciones h WHERE t.Tipo = h.Tipo_habitacion ORDER BY t.visitas DESC LIMIT 3 OFFSET $num";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function sumar_visita($tipo){
+        $sql = "UPDATE Tipos SET visitas=visitas+1 WHERE Tipo LIKE \"$tipo\" ";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+    function contar(){
+        $sql = "SELECT COUNT(*) AS total FROM Habitaciones";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function list_paginacion($offset){
+        $sql = "SELECT h.*, t.visitas FROM Tipos t INNER JOIN Habitaciones h WHERE t.Tipo = h.Tipo_habitacion ORDER BY t.visitas DESC LIMIT 9 OFFSET $offset";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);

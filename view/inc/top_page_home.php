@@ -80,7 +80,8 @@
         <script type="text/javascript" src="module/inicio/view/pintar.js"></script>
         <script type="text/javascript" src="module/lang/translate.js"></script> 
 
-
+        <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
+        
 
 
 </head> 

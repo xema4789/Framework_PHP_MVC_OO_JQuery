@@ -6,7 +6,7 @@ session_start();
 switch($_GET['op']){
 
     case 'list':
-        include("module/inicio/view/inicio.php");
+        include("module/inicio/view/inicio.html");
     break;
 
     case 'select_all_tipos':  
@@ -15,12 +15,11 @@ switch($_GET['op']){
     case 'list_imagenes':
         try{
             $daohome = new DAOHome();
-            $rdo = $daohome->list_imagenes();
-            //pintar($rdo);   
+            $rdo = $daohome->list_imagenes(); 
         }catch (Exception $e){
             echo json_encode("error");
             exit;
-        }//end try
+        }
         if(!$rdo){
             echo json_encode("error");
             exit;
@@ -30,10 +29,6 @@ switch($_GET['op']){
 					array_push($dinfo, $row);
 				}
 				echo json_encode($dinfo);
-
-
-            //$habitacion ?
-            //echo json_encode($rdo);
             exit;
         }
     break;    
@@ -62,7 +57,7 @@ switch($_GET['op']){
 
     case 'select_habitacion':
         try{
-            //echo ("dentro del try");
+
             $daohome = new DAOHome();
             $rdo = $daohome->select_habitacion($_GET['hab']);
         }catch (Exception $e){
@@ -126,6 +121,30 @@ switch($_GET['op']){
             echo json_encode($dinfo);
             exit;
         }
+    break;
+
+
+    case 'list_visitas':
+        try{
+            $daohome = new DAOHome();
+            $rdo = $daohome->list_visitas($_GET['num']);
+        }catch (Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }//end try
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+            $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+            echo json_encode($dinfo);
+            exit;
+        }
+
+
     break;
 
 }

@@ -1,8 +1,7 @@
 <?php
-//poner lo del path
-    $path = $_SERVER['DOCUMENT_ROOT'] . '/Programacion/Tema5_1.0/Tema5_1.0/8_MVC_CRUD/';  //no me esta pillando bien el path y en consecuencia el include de despues
+
+    $path = $_SERVER['DOCUMENT_ROOT'] . '/Programacion/Tema5_1.0/Tema5_1.0/8_MVC_CRUD/'; 
     include ($path . "/module/user/model/DAOUser.php");
-    //include ("module/user/model/DAOUser.php");
     session_start();
     
     switch($_GET['op']){
@@ -27,38 +26,24 @@
             break;
             
         case 'create';
-            //echo "dentro del create";
+  
             include("module/user/model/validate.php");
-            //echo "despues del include"; 
-            
-            //<script type="text/javascript" src="module/lang/translate.js"></script>
-
-            //$check2=validate1();
-            //echo "validate1();";
+          
             $check = true;
             
             if ($_POST){
-                
-                
-                //script="text/javascript" src="module/lang/translate.js";
-                //include ("validate_user.js");
-                //$check1=validate1();
-                //echo "dentro del post create";
+
                 $check=validate();
-                // print_r ("$check");
-                // echo "$check";
-                    
+       
                     if($check){
 
-                        //print_r ("$check");
                         $_SESSION['user']=$_POST;
                         try{
-                            // echo "intento de creacion";
+
                             $daouser = new DAOUser();
                             $rdo = $daouser->insert_user($_POST);
-                            //echo "insert hecho";
+  
                         }catch (Exception $e){
-                            //echo "fallo en el insert";
                             $callback = 'index.php?page=503';
                             die('<script>window.location.href="'.$callback .'";</script>');
                         }
@@ -86,7 +71,7 @@
             
             
             
-            if ($_POST){   //if (isset($_POST['update'])){
+            if ($_POST){  
                 $check=validate_up();
                 
                 if ($check){
@@ -109,8 +94,6 @@
             		}
                 }
             }
-
-            echo("FUERA");
             
             try{
                 $daouser = new DAOUser();
@@ -200,12 +183,12 @@
              }catch (Exception $e){
                  echo json_encode("error");
                  exit;
-             }//end try
+             }
              if(!$rdo){
                  echo json_encode("error");
                  exit;
              }else{
-                 //$habitacion ?
+                
                  echo json_encode($rdo);
                  exit;
              }

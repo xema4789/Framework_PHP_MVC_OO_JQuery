@@ -1,24 +1,15 @@
 function validate_num_habitacion(v_num_habitacion){
     if(v_num_habitacion){
-
         if(v_num_habitacion <10 && v_num_habitacion > 0){
             v_num_habitacion="00"+v_num_habitacion;
-            //alert (v_num_habitacion);
         }else if(v_num_habitacion>10 && v_num_habitacion <100){
             v_num_habitacion="0"+v_num_habitacion; 
-            //alert (v_num_habitacion);
         }else if(v_num_habitacion >999){
             return false;
         }
-
-        //alert ("comprobando el num, que es: ");
-        // $reg="/^[0-9]{3}*$/";
-        // return preg_match($reg,$texto);
-        //alert (v_num_habitacion);
         return v_num_habitacion;
         
     }
-    //alert ("no a comprobao na ");
     return false;
     
 }
@@ -32,8 +23,6 @@ function validate_tipo_habitacion($texto){
 }
 function validate_piscina($texto){
     if($texto){
-        console.log ("texto");
-        console.log ($texto);
         return true;
     }
     return false;
@@ -41,18 +30,13 @@ function validate_piscina($texto){
 }
 function validate_mayordomo($texto){
     if($texto==null){
-        console.log("mayordomo:")
-        console.log($texto);
         return $texto="No";
     }
     return $texto="Si";
 }
 
-
 function validate_password($texto){
     if ($texto){
-        // var reg = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
-        // return reg.test(texto);
         return true;
     }
     return false;
@@ -69,23 +53,10 @@ function validate_valoracion($texto){
         if($texto/2){
             return true;
         }
-        // alert(typeof($texto));
-        // if(typeof($texto)==='number'){
-            
-            
-        // }
     }
     return false;
 }
 
-// function validate_tipo_habitacion(texto){
-//     if (texto.length > 0){
-//         // var reg=/^[a-zA-Z]*$/;
-//         // return reg.test(texto);
-//         return true;
-//     }
-//     return false;
-// }
 
 function validate_tipo_comida($texto){
     if($texto){
@@ -117,8 +88,6 @@ function validate_f_fin($texto){
 
 function validate_tipo_comida($texto){
     if ($texto){
-        // var reg=/^[0-9]{1,2}$/;
-        // return reg.test(texto);
         return true;
     }
     return false;
@@ -135,7 +104,6 @@ function validate1(tipo){
     var check=true
     
     var v_num_habitacion=document.getElementById('num_habitacion').value;
-    //alert (v_num_habitacion);
     var v_password=document.getElementById('pass').value;
     var v_tipo_habitacion=document.getElementById('tipo_habitacion').value;
     var v_tipo_comida=document.getElementById('tipo_comida').value;
@@ -149,28 +117,7 @@ function validate1(tipo){
   
 
     var v_piscina2=document.getElementById("piscina2").value;
-    console.log("piscina2");
-    console.log(v_piscina2);
-    //alert ("element piscina:" + v_piscina);
-    //var v_piscina2=document.getElementById('piscina2').value;
-    console.log(v_mayordomo);
     var v_mayordomo=document.getElementById("mayordomo").value;
-    console.log("variable mayordomo:");
-    console.log(v_mayordomo);
-    console.log("despues de la variable mayordomo");
-    //echo "piscina: ";
-
-
-    
-
-    // $piscina=$_POST['piscina'];
-    // print_r("prueba");
-    // print_r ($piscina);
-    //$mayordomo=$_POST['mayordomo'];
-
-    // var v_idioma=document.getElementById('idioma[]');
-    // var v_observaciones=document.getElementById('observaciones').value;
-    // var v_aficion=document.getElementsByName('aficion[]');
     
     var r_num_habitacion=validate_num_habitacion(v_num_habitacion);
     var r_password=validate_password(v_password);
@@ -183,30 +130,14 @@ function validate1(tipo){
     var r_mayordomo=validate_mayordomo(v_mayordomo);
     var r_ciudad=validate_ciudad(v_ciudad);
     var r_valoracion=validate_valoracion(v_valoracion);
-    // var r_idioma=validate_idioma(v_idioma);
-    // var r_observaciones=validate_observaciones(v_observaciones);
-    // var r_aficion=validate_aficion(v_aficion);
-    
     
     if(!r_num_habitacion){
 
         document.getElementById('error_num_habitacion').innerHTML = " * El numero de habitacion no puede estar vacio ni ser mayor que 999";
         check=false;
-        
-        //alert ('r_num');
-        //alert (r_num_habitacion);
-        //alert ("num habitacion no valido");
-        
-        //document.alta_habitacion.num_habitacion.focus();
-        
-        //return 0;
     }else{
-
-        //document.getElementById('num_habitacion').innerHTML=r_num_habitacion;
-        //alert ("num habitacion valido");
         document.getElementById('error_num_habitacion').innerHTML = "";
     }
-
     if(!r_ciudad){
         document.getElementById('error_ciudad').innerHTML = " * js La ciudad no puede estar vacia";
         check=false;
@@ -219,9 +150,6 @@ function validate1(tipo){
     }else{
         document.getElementById('error_valoracion').innerHTML = "";
     }
-
-
-
     if(!r_password){
         document.getElementById('error_pass').innerHTML = " * js La contraseña introducida no es valida";
         check=false;
@@ -272,43 +200,19 @@ function validate1(tipo){
     }else{
         document.getElementById('error_mayordomo').innerHTML= "";
     }
-    // if(!r_idioma){
-    //     document.getElementById('error_idioma').innerHTML = " * No has seleccionado ningun idioma";
-    //     check=false;
-    // }else{
-    //     document.getElementById('error_idioma').innerHTML = "";
-    // }
-    // if(!r_observaciones){
-    //     document.getElementById('error_observaciones').innerHTML = " * El texto introducido no es valido";
-    //     check=false;
-    // }else{
-    //     document.getElementById('error_observaciones').innerHTML = "";
-    // }
-    // if(!r_aficion){
-    //     document.getElementById('error_aficion').innerHTML = " * No has seleccionado ninguna aficion";
-    //     check=false;
-    // }else{
-    //     document.getElementById('error_aficion').innerHTML = "";
-    // }
-    //alert ("fin de la validacion en js");
     
     if (check == true) {
         if(tipo===0){
             console.log("validate 0");
             document.alta_habitacion.submit();  
             document.alta_habitacion.action="index.php?page=controller_user&op=create";
-            // alert("despues del action create");
         }else if(tipo===1){
             console.log("validate 1");
             document.update_hab.submit();
             document.update_hab.action="index.php?page=controller_user&op=update";
         }
-        
-
     }else{
-        alert("mal");
+        alert("Error");
     }
-    
-    //document.alta_habitacion.action="validate.php";
     return check;
 }

@@ -2,7 +2,6 @@ $(document).ready(function () {
 
 
     $(document).on("click","#boton_map",function(){
-        alert("ole los caracoles");
         $('.shop').empty();
         mostar_map();
     });
@@ -10,8 +9,6 @@ $(document).ready(function () {
 
 
     function mostar_map(){
-
-    alert("dentro de mostar map");
 
         var map;
 
@@ -104,16 +101,7 @@ $(document).ready(function () {
                                 infowindow.open(marker.get('map'), marker);
                                 InforObj[0] = infowindow;
                             });
-                            // marker.addListener('mouseover', function () {
-                            //     closeOtherInfo();
-                            //     infowindow.open(marker.get('map'), marker);
-                            //     InforObj[0] = infowindow;
-                            // });
-                            // marker.addListener('mouseout', function () {
-                            //     closeOtherInfo();
-                            //     infowindow.close();
-                            //     InforObj[0] = infowindow;
-                            // });
+                   
                         }
                     }
             
@@ -136,11 +124,6 @@ $(document).ready(function () {
                         });
                         addMarker();
                     }
-
-
-
-
-
 
             }).fail(function(){
                 console.log("Fail");
