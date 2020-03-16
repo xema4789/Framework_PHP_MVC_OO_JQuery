@@ -473,7 +473,15 @@ h6 a {
   height: 600px;
   width: 1200px;
 }
+.libro{
+  float: center;
+}
+.libro:hover{
+  /* display: inline-block; */
+  background-color:rgba(1, 89, 161, 0.562);
+  box-shadow:5px 5px 40px 10px rgb(1, 89, 161);
 
+}
 
 
 .foto{

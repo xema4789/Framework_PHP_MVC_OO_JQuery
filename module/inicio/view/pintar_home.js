@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    cargar_api();
 
     localStorage.setItem('posicion_home',0);
 
@@ -176,6 +177,45 @@ function listar_scroll(){
 
 
     //Fin click en ciudades
+
+// Prueba de apis
+
+function cargar_api(){
+    $.ajax({
+        url:"https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",
+        type: 'GET',
+        dataType: 'json',
+            
+      }).done(function(data){
+        console.log(data.items[0].volumeInfo.title);
+        console.log(data.items[0].volumeInfo.imageLinks.thumbnail);
+
+
+        for(i=0;i<6;i++){
+            $('<div></div>').attr('class',"libro").appendTo('#libros').html (
+                '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
+                '<p>'+data.items[i].volumeInfo.title+'</p>'
+            );
+        }
+
+        
+        
+      }).fail(function(){
+        console.log("FAIL");
+      });
+}
+
+
+
+
+
+
+// Fin prueba de apis
+
+
+
+
+
 
 });
 
