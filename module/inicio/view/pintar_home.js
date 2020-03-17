@@ -181,28 +181,74 @@ function listar_scroll(){
 // Prueba de apis
 
 function cargar_api(){
-    $.ajax({
-        url:"https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",
-        type: 'GET',
-        dataType: 'json',
-            
-      }).done(function(data){
-        console.log(data.items[0].volumeInfo.title);
-        console.log(data.items[0].volumeInfo.imageLinks.thumbnail);
 
-
-        for(i=0;i<6;i++){
+    let data = new Promise((resolve,reject)=>{
+        
+            $.ajax({
+            url:"https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",
+            type: 'GET',
+            dataType: 'json',
+                
+          }).done(function(data){
+                
+                resolve(data);
+                
+              }).fail(function(){
+                console.log("FAIL");
+                reject("FAIL");
+              });
+    });
+    data.then(function(result) {
+         for(i = 0; i < 6; i++){
             $('<div></div>').attr('class',"libro").appendTo('#libros').html (
-                '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
-                '<p>'+data.items[i].volumeInfo.title+'</p>'
+            '<img src="'+result.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
+            '<p>'+result.items[i].volumeInfo.title+'</p>'
             );
-        }
+        }   
+      }, function(err) {
+          
+        console.log(err);
+      });
+    
+    // for(i=0;i<6;i++){
+    //         $('<div></div>').attr('class',"libro").appendTo('#libros').html (
+    //         '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
+    //         '<p>'+data.items[i].volumeInfo.title+'</p>'
+    //         );
+    // }
+
+    // Promise.all(data).then(values => {
+        
+    //     console.log(values);
+    // }, reason =>{
+    //     console.log(reason);
+    // });
+
+
+
+
+    // $.ajax({
+    //     url:"https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",
+    //     type: 'GET',
+    //     dataType: 'json',
+            
+    //   }).done(function(data){
+    //     console.log(data.items[0].volumeInfo.title);
+    //     console.log(data.items[0].volumeInfo.imageLinks.thumbnail);
+
+
+    //     for(i=0;i<6;i++){
+    //         $('<div></div>').attr('class',"libro").appendTo('#libros').html (
+    //             '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
+    //             '<p>'+data.items[i].volumeInfo.title+'</p>'
+    //         );
+    //     }
 
         
         
-      }).fail(function(){
-        console.log("FAIL");
-      });
+    //   }).fail(function(){
+    //     console.log("FAIL");
+    //   });
 }
 
 
