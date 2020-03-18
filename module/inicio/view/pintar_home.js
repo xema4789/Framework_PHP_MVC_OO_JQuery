@@ -1,3 +1,39 @@
+    //function ajax promise
+    function ajax_promise(urlP, typeP, dataTypeP){
+        return new Promise((resolve, reject)=>{
+            $.ajax({
+                url:urlP,
+                type:typeP,
+                dataType: dataTypeP,
+                    
+              }).done(function(data){
+                  console.log(data);
+                resolve(data);
+              }).fail(function(){
+                console.log("FAIL");
+                reject("FAIL");
+              });
+    
+    
+        }); 
+    
+        // data_promise.then(function(result){
+        //     console.log("result:");
+        //     console.log(result);
+        //     return result;
+        // },function(err){
+        //     console.log("Error: reject");
+        //     console.log(err);
+        // });
+    
+    }
+    
+        //Fin ajax promise
+
+
+
+
+
 $(document).ready(function(){
     cargar_api();
 
@@ -178,85 +214,22 @@ function listar_scroll(){
 
     //Fin click en ciudades
 
-// Prueba de apis
+
+
+//API con function promesa
 
 function cargar_api(){
-
-    let data = new Promise((resolve,reject)=>{
-        
-            $.ajax({
-            url:"https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",
-            type: 'GET',
-            dataType: 'json',
-                
-          }).done(function(data){
-                
-                resolve(data);
-                
-              }).fail(function(){
-                console.log("FAIL");
-                reject("FAIL");
-              });
-    });
-    data.then(function(result) {
-         for(i = 0; i < 6; i++){
+    ajax_promise("https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",'GET','json').then(function(data){
+        for(i = 0; i < 6; i++){
             $('<div></div>').attr('class',"libro").appendTo('#libros').html (
-            '<img src="'+result.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
-            '<p>'+result.items[i].volumeInfo.title+'</p>'
+            '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
+            '<p>'+data.items[i].volumeInfo.title+'</p>'
             );
-        }   
-      }, function(err) {
-          
-        console.log(err);
-      });
-    
-    // for(i=0;i<6;i++){
-    //         $('<div></div>').attr('class',"libro").appendTo('#libros').html (
-    //         '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
-    //         '<p>'+data.items[i].volumeInfo.title+'</p>'
-    //         );
-    // }
-
-    // Promise.all(data).then(values => {
-        
-    //     console.log(values);
-    // }, reason =>{
-    //     console.log(reason);
-    // });
-
-
-
-
-    // $.ajax({
-    //     url:"https:www.googleapis.com/books/v1/volumes?q=rocky%20balboa",
-    //     type: 'GET',
-    //     dataType: 'json',
-            
-    //   }).done(function(data){
-    //     console.log(data.items[0].volumeInfo.title);
-    //     console.log(data.items[0].volumeInfo.imageLinks.thumbnail);
-
-
-    //     for(i=0;i<6;i++){
-    //         $('<div></div>').attr('class',"libro").appendTo('#libros').html (
-    //             '<img src="'+data.items[i].volumeInfo.imageLinks.thumbnail+'" alt="No se puede cargar la imagen"></img >'+
-    //             '<p>'+data.items[i].volumeInfo.title+'</p>'
-    //         );
-    //     }
-
-        
-        
-    //   }).fail(function(){
-    //     console.log("FAIL");
-    //   });
+        }  
+    });
 }
 
-
-
-
-
-
-// Fin prueba de apis
+// Fin API
 
 
 
