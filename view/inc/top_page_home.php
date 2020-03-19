@@ -10,7 +10,7 @@
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
          <!-- Place favicon.ico in the root directory --> 
-		
+		 
 		<!-- all css here -->
         <link rel="stylesheet" href="view/smoth-corporate-html-template/smoth/css/bootstrap.min.css">
         <link rel="stylesheet" href="view/smoth-corporate-html-template/smoth/css/font-awesome.min.css">
@@ -75,12 +75,13 @@
 
 
 
-
+        <script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
         <script type="text/javascript" src="module/inicio/view/pintar_home.js"></script>
         <script type="text/javascript" src="module/inicio/view/pintar.js"></script>
         <script type="text/javascript" src="module/lang/translate.js"></script> 
 
         <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
+       
         
 
 

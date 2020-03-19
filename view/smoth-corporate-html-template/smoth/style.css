@@ -298,6 +298,12 @@ h6 a {
   background-image: url("view/img/plus.png");
 }
 
+#register:hover{
+  cursor: pointer;
+  background-color: lightblue;
+
+}
+
 #Ciudad{
   float: left;
 }
@@ -483,6 +489,9 @@ h6 a {
 
 }
 
+.login{
+  float:right;
+}
 
 .foto{
   z-index:11;
@@ -990,7 +999,9 @@ font-family: 'Open Sans', sans-serif;
 .logo {
   margin-top: 30px;
 }
-.main-menu{}
+.main-menu{
+  float: center;
+}
 .main-menu ul{}
 .main-menu ul li {
   display: inline-block;

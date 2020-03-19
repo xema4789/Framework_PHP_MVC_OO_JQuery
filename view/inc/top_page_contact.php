@@ -77,10 +77,10 @@
         <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script> 
         <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
 
-
+        <script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
         <script type="text/javascript" src="module/lang/translate.js"></script> 
         <script type="text/javascript" src="module/contact/view/js/map.js"></script> 
-
+        
 
 
 
