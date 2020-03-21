@@ -73,8 +73,10 @@
         <script src="view/smoth-corporate-html-template/smoth/js/plugins.js"></script>
         <script src="view/smoth-corporate-html-template/smoth/js/main.js"></script>
 
-
+        <script type="text/javascript" src="module/login/model/controller_register.js"></script> 
         <script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
+        
+        
         <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
         <script type="text/javascript" src="module/lang/translate.js"></script> 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"></script>

@@ -298,12 +298,22 @@ h6 a {
   background-image: url("view/img/plus.png");
 }
 
-#register:hover{
+#lo_register:hover{
   cursor: pointer;
   background-color: lightblue;
 
 }
-
+/* #re_register:hover{
+  cursor: pointer;
+  background-color: lightblue;
+} */
+.error{
+  font-style: italic;
+  /* text-decoration: red; */
+  text-decoration-color: red;
+  /* color: red; */
+  
+}
 #Ciudad{
   float: left;
 }

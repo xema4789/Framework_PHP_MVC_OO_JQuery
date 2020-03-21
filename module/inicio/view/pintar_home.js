@@ -13,19 +13,7 @@
                 console.log("FAIL");
                 reject("FAIL");
               });
-    
-    
         }); 
-    
-        // data_promise.then(function(result){
-        //     console.log("result:");
-        //     console.log(result);
-        //     return result;
-        // },function(err){
-        //     console.log("Error: reject");
-        //     console.log(err);
-        // });
-    
     }
     
         //Fin ajax promise
