@@ -21,42 +21,62 @@ function ajax_promise(urlP, typeP, dataTypeP){
 $(document).ready(function(){
 
      $(document).on('click', '#re_register', function(){
-         console.log("click detectado");
-        let validate=validate_user();
-        console.log("despues del validate");
-        if(validate){
-            console.log("dentro del if validate");
-            
+         
+            alert("antes del sumbit");
+            // $("#alta_login").submit(function (event) {
             document.getElementById('alta_login').submit(function(event){
+                alert("dentro del submit");
                 event.preventDefault();
+                
                 if(validate_user()){
-                    console.log("dentro del if validate");
+                    alert("dentro del if validate");
                     var data = $('#alta_login').serialize();
+                    // var post_url = $(this).attr("action");
+                    var request_method = $(this).attr("method");
+
+                    alert(data);
 
                     $.ajax({
                     url:"module/login/controller/controller_login.php?&op=register",
-                    type:'POST',
+                    type:request_method,
+                    dataType: 'json',
                     data:data,
-                    beforeSend: function(){
+
+                    // beforeSend: function(){
+                    //     console.log(data);
+
+                    }).done(function(data){
+                        alert("donde");
                         console.log(data);
 
-                    },
-                    success: function(response){
-                            if(response=="ok"){
-                                ////local storage set item user, tyoe , email
-                                console.log("ok");
-                                setTimeout(' window.location.href = "index.php?page=controller_home&op=list"; ',1000);
-                            }else if(response=="okay"){
-                                alert("Debes realizar el login primero");
-                                setTimeout(' window.location.href = window.location.href; ',1000);
-                            }else{
-                                alert("Error");
-                            }
-                        }
+                    }).fail(function(){
+                        alert("fail");
+                        console.log("FAIL");
                     });
+                    // success: function(response){
+                    //     // $("#server-results").html(response);
+                    //         if(response=="ok"){
+                    //             ////local storage set item user, tyoe , email
+                    //             console.log("ok");
+                    //             setTimeout(' window.location.href = "index.php?page=controller_home&op=list"; ',1000);
+                    //         }else if(response=="okay"){
+                    //             alert("Debes realizar el login primero");
+                    //             setTimeout(' window.location.href = window.location.href; ',1000);
+                    //         }else{
+                    //             alert("Error");
+                    //         }
+                    //     }
+                    // });
+
+
+
+
+                    }else{
+                        alert("fuera del validate");
                     }
                         
                 });
+                alert("despues del sumbit");
 
 
 
@@ -102,7 +122,7 @@ $(document).ready(function(){
                     // ajax_promise("index.php?page=controller_login&op=register",'POST','json').then(function(data){
                     //     console.log(data);
                     // })
-                }
+                // }
                 //Ajax_promesas
                 
                 
