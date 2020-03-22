@@ -6,9 +6,11 @@ function ajax_promise(urlP, typeP, dataTypeP){
             dataType: dataTypeP,
                 
           }).done(function(data){
+              alert("donde");
               console.log(data);
             resolve(data);
           }).fail(function(){
+              alert("fail");
             console.log("FAIL");
             reject("FAIL");
           });
@@ -19,14 +21,84 @@ function ajax_promise(urlP, typeP, dataTypeP){
 $(document).ready(function(){
 
      $(document).on('click', '#re_register', function(){
-        
-        // if(validate){
+         console.log("click detectado");
+        let validate=validate_user();
+        console.log("despues del validate");
+        if(validate){
+            console.log("dentro del if validate");
             
-            $('#alta_login').submit(function(event){
-                console.log("OLE LOS CARACOLES");
-                let validate=validate_user();
-                console.log(validate);
-                if(validate){
+            document.getElementById('alta_login').submit(function(event){
+                event.preventDefault();
+                if(validate_user()){
+                    console.log("dentro del if validate");
+                    var data = $('#alta_login').serialize();
+
+                    $.ajax({
+                    url:"module/login/controller/controller_login.php?&op=register",
+                    type:'POST',
+                    data:data,
+                    beforeSend: function(){
+                        console.log(data);
+
+                    },
+                    success: function(response){
+                            if(response=="ok"){
+                                ////local storage set item user, tyoe , email
+                                console.log("ok");
+                                setTimeout(' window.location.href = "index.php?page=controller_home&op=list"; ',1000);
+                            }else if(response=="okay"){
+                                alert("Debes realizar el login primero");
+                                setTimeout(' window.location.href = window.location.href; ',1000);
+                            }else{
+                                alert("Error");
+                            }
+                        }
+                    });
+                    }
+                        
+                });
+
+
+
+
+
+
+
+
+
+
+            // alert("despues del submit");
+                // console.log(event);
+            // alert("Antes del ajax");
+            // $.ajax({
+            //     url:"module/login/controller/controller_login.php?op=register",
+                
+            //     type:'POST',
+            //     dataType:'json',
+                    
+            //   }).done(function(data){
+            //       alert("donde");
+            //       console.log(data);
+            //     resolve(data);
+            //   }).fail(function(){
+            //       alert("fail");
+            //     console.log("FAIL");
+            //     reject("FAIL");
+            //   });
+
+            //     ajax_promise("module/login/controller/controller_login.php?op=register",'POST','json').then(function(data){
+            //             alert("dentro del ajax");
+            //             console.log(data);
+            //     });
+                
+
+            // alert("despues del ajax");
+
+            // $('#alta_login').submit(function(event){//No entra en la funcion, Te has quedado por aqui, averiguar porque no entra
+            //     console.log("OLE LOS CARACOLES");
+            //     let validate=validate_user();
+                // console.log(validate);
+                // if(validate){
                     // ajax_promise("index.php?page=controller_login&op=register",'POST','json').then(function(data){
                     //     console.log(data);
                     // })
@@ -35,7 +107,7 @@ $(document).ready(function(){
                 
                 
 
-            });
+            // });
             // document.alta_login.submit();  
             // document.alta_login.action="index.php?page=controller_login&op=register";
         // }

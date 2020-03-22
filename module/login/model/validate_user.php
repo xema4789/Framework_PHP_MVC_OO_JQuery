@@ -1,5 +1,7 @@
 <?php
     function validate_user_register(){
+        // print_r("hola");
+        // die;
         try{
             $daologin = new DAOLogin();
             $rdo= $daologin->select_user($_POST['re_user']);

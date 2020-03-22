@@ -1,5 +1,5 @@
 <?php
- $path = $_SERVER['DOCUMENT_ROOT'] . '/Programacion/Tema5_1.0/Tema5_1.0/8_MVC_CRUD/'; //no me esta pillando bien el path y en consecuencia el include de despues
+ $path = $_SERVER['DOCUMENT_ROOT'] . '/Programacion/Tema5_1.0/Tema5_1.0/8_MVC_CRUD/'; 
  include($path . "model/connect.php");
  
     class DAOLogin{
@@ -11,10 +11,7 @@
             return $res;
         }
 
-        function insert_user($datos){
-            $user=$datos['re_user'];
-            $passwd=$datos['re_password'];
-            $email=$datos['re_email'];
+        function insert_user($user,$passwd,$email){
             
             $sql = "INSERT INTO Users (user, password, email,type) VALUES ($user,$passwd,$email,'user')";
             $connection = connect::con();
