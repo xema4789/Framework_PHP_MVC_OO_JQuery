@@ -4,7 +4,7 @@
  
     class DAOLogin{
         function select_user($nombre){
-            $sql = "SELECT u.user FROM Users u WHERE u.user LIKE $nombre";
+            $sql = "SELECT * FROM Users  WHERE user LIKE '$nombre'";
             $connection = connect::con();
             $res = mysqli_query($connection, $sql);
             connect::close($connection);
@@ -13,9 +13,12 @@
 
         function insert_user($user,$passwd,$email){
             
-            $sql = "INSERT INTO Users (user, password, email,type) VALUES ($user,$passwd,$email,'user')";
+            $sql = "INSERT INTO Users (user, password, email,type) VALUES ('$user','$passwd','$email','user')";
             $connection = connect::con();
             $res = mysqli_query($connection, $sql);
+            if(!$res){
+                echo (mysqli_error($connection));
+            }
             connect::close($connection);
             return $res;
         }

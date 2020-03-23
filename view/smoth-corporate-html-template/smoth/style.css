@@ -303,6 +303,10 @@ h6 a {
   background-color: lightblue;
 
 }
+#re_user{
+  border-width: 5px;
+  
+}
 /* #re_register:hover{
   cursor: pointer;
   background-color: lightblue;

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    // alert("oleee los caracoles");
 
 
 
@@ -40,7 +39,6 @@ $(document).ready(function(){
                     '<td><label>Email:</label></td>'+
                     '<td><input type="email" id="re_email" name="re_email"><br><br></td>'+
                     '<td><a id="error_re_email" class="error"></a><br></td>'+
-                    // '<td><a class="btn" id="re_register" type="submit">Registrarse</a><br></td>'+
                     '<input type="submit" value="Registrarse" class="btn" id="re_register"></input>'+
                 '</tr>'+
                 '</fieldset>'

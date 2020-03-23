@@ -20,120 +20,38 @@ function ajax_promise(urlP, typeP, dataTypeP){
 
 $(document).ready(function(){
 
-     $(document).on('click', '#re_register', function(){
-         
-            alert("antes del sumbit");
-            // $("#alta_login").submit(function (event) {
-            document.getElementById('alta_login').submit(function(event){
-                alert("dentro del submit");
-                event.preventDefault();
-                
-                if(validate_user()){
-                    alert("dentro del if validate");
-                    var data = $('#alta_login').serialize();
-                    // var post_url = $(this).attr("action");
-                    var request_method = $(this).attr("method");
-
-                    alert(data);
-
-                    $.ajax({
-                    url:"module/login/controller/controller_login.php?&op=register",
-                    type:request_method,
-                    dataType: 'json',
-                    data:data,
-
-                    // beforeSend: function(){
-                    //     console.log(data);
-
-                    }).done(function(data){
-                        alert("donde");
-                        console.log(data);
-
-                    }).fail(function(){
-                        alert("fail");
-                        console.log("FAIL");
-                    });
-                    // success: function(response){
-                    //     // $("#server-results").html(response);
-                    //         if(response=="ok"){
-                    //             ////local storage set item user, tyoe , email
-                    //             console.log("ok");
-                    //             setTimeout(' window.location.href = "index.php?page=controller_home&op=list"; ',1000);
-                    //         }else if(response=="okay"){
-                    //             alert("Debes realizar el login primero");
-                    //             setTimeout(' window.location.href = window.location.href; ',1000);
-                    //         }else{
-                    //             alert("Error");
-                    //         }
-                    //     }
-                    // });
 
 
 
 
-                    }else{
-                        alert("fuera del validate");
+    function form_register_submit(){
+        $("#alta_login").submit(function(e){
+            e.preventDefault();
+            var register_serialized = $("#alta_login").serialize();
+            if(validate_user()){
+                $.ajax({
+                    type : 'GET',
+                    url  : 'module/login/controller/controller_login.php?&op=register&' + register_serialized,
+                    success: function(data){	
+                        if(data){	
+                            alert("Registro realizado correctamente");
+                            setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
+                        }else{					
+                            alert("Usuario en uso");
+                            document.getElementById('re_user').style.borderColor = "red";
+                        }
                     }
-                        
                 });
-                alert("despues del sumbit");
+            }
+        });
+    }
 
 
 
-
-
-
-
-
-
-
-            // alert("despues del submit");
-                // console.log(event);
-            // alert("Antes del ajax");
-            // $.ajax({
-            //     url:"module/login/controller/controller_login.php?op=register",
-                
-            //     type:'POST',
-            //     dataType:'json',
-                    
-            //   }).done(function(data){
-            //       alert("donde");
-            //       console.log(data);
-            //     resolve(data);
-            //   }).fail(function(){
-            //       alert("fail");
-            //     console.log("FAIL");
-            //     reject("FAIL");
-            //   });
-
-            //     ajax_promise("module/login/controller/controller_login.php?op=register",'POST','json').then(function(data){
-            //             alert("dentro del ajax");
-            //             console.log(data);
-            //     });
-                
-
-            // alert("despues del ajax");
-
-            // $('#alta_login').submit(function(event){//No entra en la funcion, Te has quedado por aqui, averiguar porque no entra
-            //     console.log("OLE LOS CARACOLES");
-            //     let validate=validate_user();
-                // console.log(validate);
-                // if(validate){
-                    // ajax_promise("index.php?page=controller_login&op=register",'POST','json').then(function(data){
-                    //     console.log(data);
-                    // })
-                // }
-                //Ajax_promesas
-                
-                
-
-            // });
-            // document.alta_login.submit();  
-            // document.alta_login.action="index.php?page=controller_login&op=register";
-        // }
-        
-
+     $(document).on('click', '#re_register', function(){
+        form_register_submit();
      });
+
 
      function validate_user(){
 
@@ -145,16 +63,7 @@ $(document).ready(function(){
 
         function validate_user_php(user){
             if(user){
-                //Comprobar que el usuario está en uso
-                // var comprobar=validate_user_register(user);
-                // if(comprobar){
-                    //Usuario en uso
-                    return true;
-                // }else{
-                    //Usuario disponible
-                    // return true;
-                // }
-                
+                return true;
             }else{
                 return false;
             }
