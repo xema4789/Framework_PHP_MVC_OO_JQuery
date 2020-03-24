@@ -7,7 +7,6 @@
                 dataType: dataTypeP,
                     
               }).done(function(data){
-                  console.log(data);
                 resolve(data);
               }).fail(function(){
                 console.log("FAIL");
@@ -126,7 +125,6 @@ $(document).on("click","#mas",function(){
 function listar_scroll(){  
 
     num=localStorage.getItem('posicion_home');
-    console.log(num);
     if(num==0){
         localStorage.setItem('posicion_home',2);
     }else{
@@ -181,7 +179,6 @@ function listar_scroll(){
     //Click en la foto de carousel y saltar a home
     $(document).on("click", '.item',function(){
         var num = this.getAttribute('id');
-        console.log(num);
         localStorage.setItem('num_habitacion',num)
         $callback = 'index.php?page=controller_shop&op=list';
     	window.location.href=$callback; 
@@ -193,7 +190,6 @@ function listar_scroll(){
     //Click en ciudad y saltar a shop
     $(document).on("click", '.ciudad_home',function(){
         var ciu = this.getAttribute('id');
-        console.log(ciu);
         localStorage.setItem('ciudad',ciu)
         $callback = 'index.php?page=controller_shop&op=list';
     	window.location.href=$callback; 

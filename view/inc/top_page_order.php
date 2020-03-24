@@ -64,7 +64,8 @@
     <script type="text/javascript" src="view/js/jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="view/js/jqwidgets/scripts/demos.js"></script>
     <!-- <script type="text/javascript" src="module/cart/model/cart.js"></script> -->
-	<script type="text/javascript" src="module/login/model/controller_register.js"></script>	
+	<script type="text/javascript" src="module/login/model/controller_register.js"></script>
+	<script type="text/javascript" src="module/login/model/controller_login.js"></script> 	
 	<script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
 	
 	<script type="text/javascript" src="module/lang/translate.js"></script>

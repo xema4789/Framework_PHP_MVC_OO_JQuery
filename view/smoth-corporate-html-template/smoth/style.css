@@ -303,7 +303,7 @@ h6 a {
   background-color: lightblue;
 
 }
-#re_user{
+#re_user,#lo_user,#lo_password,#re_password,#re_email{
   border-width: 5px;
   
 }
