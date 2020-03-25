@@ -48,11 +48,11 @@ $(document).ready(function(){
             case 'login':
                 $('.login').empty();
                 $('<div></div>').attr('class',"op_login").appendTo('.login').html (
-                    '<input type="submit" value="Acceder" class="btn" id="lo_login"></input>'+
+                    '<input type="submit" value="Acceder" name="lo_login" class="btn" id="lo_login"></input>'+
                         '<div class="autocomplete"> '+
-                        '<input id="lo_user" placeholder="Nombre" type="text" />'+
+                        '<input id="lo_user" name="lo_user" placeholder="Nombre" type="text" />'+
                         '<a id="error_lo_user" class="error"></a><br>'+
-                        '<input id="lo_password" placeholder="Contraseña" type="password" />'+ 
+                        '<input name="lo_password" id="lo_password" placeholder="Contraseña" type="password" />'+ 
                         '<a id="error_lo_password" class="error"></a><br>'+
                     '</div>'+
                     '<a id="lo_register">Registrate</a>'

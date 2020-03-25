@@ -40,26 +40,21 @@
         }
 
         function login_user($user,$passwd){
-            // $passwd_encript=DAOLogin::encriptar($passwd);
-            // $passwd_encript=DAOLogin::encriptar($passwd_encript);
-
-            
 
             $sql = "SELECT * FROM Users WHERE user LIKE '$user'";
             $connection = connect::con();
-            $res = mysqli_query($connection, $sql)-> fetch_object();
-            // if(!$res){
-            //     echo (mysqli_error($connection));
-            // }else{
-            //     echo (mysqli_($connection));
-            // }
-
-
-            // if(!$res){
-            //     echo (mysqli_error($connection));
-            // }
+            $res = mysqli_query($connection, $sql);
             connect::close($connection);
 
+            $pass_hash=$res['password'];
+
+            if(DAOLogin::verify_passwd($passwd,$pass_hash)){
+                return $res;
+            }else{
+                return $res;
+            }
+
+            // return $res;
             // $user_passwd= $res['password'];
             // $hash_passwd= array_column($res[0], 'password'); //Tengo el error aqui
 
@@ -76,7 +71,7 @@
 
 
 
-            return $res;
+            
 
             
         }

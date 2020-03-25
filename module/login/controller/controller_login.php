@@ -15,40 +15,47 @@
 
       if($check){
         try{
+          
           $daologin = new DAOLogin();
           $rdo = $daologin -> login_user($_GET['lo_user'],$_GET['lo_password']);
           
           
 
         }catch(Exception $e){
-          $callback = 'index.php?page=503';
-          die('<script>window.location.href="'.$callback .'";</script>');
+          echo json_encode("error exception");
+          // $callback = 'index.php?page=503';
+          // die('<script>window.location.href="'.$callback .'";</script>');
         }
       }else{
-        echo json_encode("error else del check");//return true me daba el error
+        echo json_encode("error else del check");//return false me daba el error
         exit;
       }
 
       if(!$rdo){
-        echo json_encode("error !rdo");
+        
+        echo json_encode("error !rdo vacio");
         exit;
       }else{
 
-        $value=get_object_vars($rdo);
-        // $dinfo = array();
-        //     foreach ($rdo as $row) {
-        //         array_push($dinfo, $row);
-        //     }
-        //     echo json_encode($dinfo);
+        // $value=get_object_vars($rdo);
+
+        //Guardar datos (user y password) en $_SESSION
+        $dinfo = array();
+            foreach ($rdo as $row) {
+                array_push($dinfo, $row);
+            }
+        // echo json_encode(mysqli_fetch_assoc($rdo));
+
+        $_SESSION['type'] = $dinfo['type'];
+				$_SESSION['user'] = $dinfo['user'];
+					// $_SESSION['tiempo'] = time();
 
 
-        // $dinfo = array();
-        // foreach ($rdo as $row) {
-        //     array_push($dinfo, $row);
-        // }
-        // echo json_encode($dinfo);
-        // echo json_encode("Todo bien");
-        // exit;
+
+
+        echo json_encode($dinfo);
+
+        
 
 
       }

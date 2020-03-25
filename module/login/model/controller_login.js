@@ -35,6 +35,8 @@ $(document).ready(function(){
             e.preventDefault();
             var login_serialized = $("#alta_login").serialize();
             if(validate_login()){
+                console.log("serialize:");
+                console.log(login_serialized);
                 
 
                 //Error aqui
@@ -44,6 +46,8 @@ $(document).ready(function(){
                         alert("Login realizado correctamente");
                         console.log("data:");
                         console.log(data);
+
+                        
                         // setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
                     }else{					
                         alert("Usuario o contraseña incorrectos");
