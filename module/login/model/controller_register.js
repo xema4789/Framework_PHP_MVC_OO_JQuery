@@ -47,6 +47,7 @@ $(document).ready(function(){
                 ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=register&',register_serialized).then(function(data){
                     if(data){	
                         alert("Registro realizado correctamente");
+                        // console.log(data);
                         setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
                     }else{					
                         alert("Usuario en uso");

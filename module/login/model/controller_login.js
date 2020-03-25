@@ -1,13 +1,14 @@
-function ajax_succes_promise(type, url,type){
+function ajax_succes_promise(typeP, urlP,serializeP){
     return new Promise((resolve,reject)=>{
         $.ajax({
-            type : type,
-            url  : url,
-            dataType: type,
+            type : typeP,
+            url  : urlP + serializeP,
+            dataType: 'json',
             success: function(data){	
                 resolve(data);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                //Aqui me salta el error
                 alert("Status: " + textStatus); alert("Error: " + errorThrown); 
                 reject ("Error");
             }       
@@ -29,16 +30,16 @@ $(document).ready(function(){
     });
 
     function form_login_submit(){
-        console.log("dentro function sumbit");
+        
         $("#alta_login").submit(function(e){
             e.preventDefault();
             var login_serialized = $("#alta_login").serialize();
             if(validate_login()){
-                console.log("Validate js ok");
+                
 
-                //No entra aqui dentro
-                ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=login&' + login_serialized,'json').then(function(data){
-                    console.log("hola");
+                //Error aqui
+                ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=login&', login_serialized,'json').then(function(data){
+                    
                     if(data){	
                         alert("Login realizado correctamente");
                         console.log("data:");
@@ -50,7 +51,7 @@ $(document).ready(function(){
                     }
                 });
 
-                console.log("despues del ajax");
+                
 
 
 

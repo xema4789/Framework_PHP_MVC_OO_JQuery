@@ -18,10 +18,11 @@
     }
 
     function validate_user_login($user){
+        
         try{
             $daologin= new DAOLogin();
             $rdo = $daologin -> select_user($user);
-            print_r($rdo);
+            // print_r($rdo);
 
         }catch(Exception $e){
             $callback = 'index.php?page=503';
@@ -32,7 +33,7 @@
             return true;
         }else{
             //No hay ningun usuario con ese nombre
-            return false;
+            return true;
         }
     }
 ?>

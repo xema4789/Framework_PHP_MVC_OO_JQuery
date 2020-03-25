@@ -43,23 +43,42 @@
             // $passwd_encript=DAOLogin::encriptar($passwd);
             // $passwd_encript=DAOLogin::encriptar($passwd_encript);
 
+            
+
             $sql = "SELECT * FROM Users WHERE user LIKE '$user'";
             $connection = connect::con();
-            $res = mysqli_query($connection, $sql);
+            $res = mysqli_query($connection, $sql)-> fetch_object();
             // if(!$res){
             //     echo (mysqli_error($connection));
             // }else{
             //     echo (mysqli_($connection));
             // }
+
+
+            // if(!$res){
+            //     echo (mysqli_error($connection));
+            // }
             connect::close($connection);
-            return $res;
 
             // $user_passwd= $res['password'];
-            // if(DAOLogin::verify_passwd($passwd, $user_passwd)){
+            // $hash_passwd= array_column($res[0], 'password'); //Tengo el error aqui
+
+            // if(DAOLogin::verify_passwd($passwd, $hash_passwd)){
             //     return $res;
             // }else{
             //     return false;
             // }
+
+
+
+
+
+
+
+
+            return $res;
+
+            
         }
     }
 
