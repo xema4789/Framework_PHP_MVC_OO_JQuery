@@ -9,7 +9,7 @@
             return password_hash($password, PASSWORD_DEFAULT, ['cost' => 15]);
         }
         function verify_passwd($password, $hash) {
-            return password_verify($password, $hash);
+            return password_verify($password,$hash);
         }
 
 
@@ -46,13 +46,17 @@
             $res = mysqli_query($connection, $sql);
             connect::close($connection);
 
-            $pass_hash=$res['password'];
+            // $pass_hash=$res['password'];
+            // $pass_hash=$res->password;
+            // print_r ($pass_hash);
 
-            if(DAOLogin::verify_passwd($passwd,$pass_hash)){
-                return $res;
-            }else{
-                return $res;
-            }
+
+
+            // if(DAOLogin::verify_passwd($passwd,$pass_hash)){
+            //     return $res;
+            // }else{
+            //     return $res;
+            // }
 
             // return $res;
             // $user_passwd= $res['password'];
@@ -66,7 +70,7 @@
 
 
 
-
+            return $res;
 
 
 

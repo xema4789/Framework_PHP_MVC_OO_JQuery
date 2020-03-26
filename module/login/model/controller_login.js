@@ -22,6 +22,7 @@ function ajax_succes_promise(typeP, urlP,serializeP){
 
 $(document).ready(function(){
 // alert("ole los caracoles");
+alert("controler_login");
 
 
 
@@ -41,16 +42,17 @@ $(document).ready(function(){
 
                 //Error aqui
                 ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=login&', login_serialized,'json').then(function(data){
-                    
+
                     if(data){	
                         alert("Login realizado correctamente");
                         console.log("data:");
                         console.log(data);
 
                         
-                        // setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
+                        setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
                     }else{					
                         alert("Usuario o contraseña incorrectos");
+                        console.log(data);
                         // document.getElementById('re_user').style.borderColor = "red";
                     }
                 });

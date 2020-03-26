@@ -12,6 +12,8 @@ $path = $_SERVER['DOCUMENT_ROOT'] . '/Programacion/Tema5_1.0/Tema5_1.0/8_MVC_CRU
 		include("view/inc/top_page_contact.php");
 	}else if((isset($_GET['page'])) && ($_GET['page']==="controller_shop") ){
 		include("view/inc/top_page_shop.php");
+	}else if((isset($_GET['page'])) && ($_GET['page']==="controller_login") ){
+		include("view/inc/top_page_login.php");
 	}else{
 		include("view/inc/top_page.php");
 	}
