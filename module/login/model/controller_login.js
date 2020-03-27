@@ -77,6 +77,12 @@ alert("controler_login");
 
 
 
+    // $(document).on("click","#desconectar",function(){
+    //     alert("desconectar");
+    // });
+
+
+
     function validate_login(){
         var check=true;
   

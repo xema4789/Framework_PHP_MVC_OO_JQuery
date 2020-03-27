@@ -40,7 +40,7 @@
 
 
 $(document).ready(function(){
-    alert("vista login");
+    
 
     // ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=ver_usuario','json').then(function(data){
     //     alert("dentro de la promesa");
@@ -213,7 +213,7 @@ $(document).ready(function(){
                                         // '<li><a href="index.php?page=controller_login&op=log_out">'+nombre+'</a></li>'+
                                         '<li class="active"><a>'+nombre+'<i class="fa fa-angle-down"></i></a>'+
                                         '<ul class="submenu">'+
-                                            '<li><a href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+
+                                            '<li><a id="desconectar" href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+
                                         '</ul>'+
 									'</ul>'+
 								'</nav>'
@@ -244,7 +244,7 @@ $(document).ready(function(){
 										'<li><a href="index.php?page=controller_contact&op=list">Contacto</a></li>'+
 										'<li class="active"><a>'+nombre+'<i class="fa fa-angle-down"></i></a>'+
                                         '<ul class="submenu">'+
-                                            '<li><a href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+
+                                        '<li><a id="desconectar" href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+
                                         '</ul>'+
 									'</ul>'+
 								'</nav>'

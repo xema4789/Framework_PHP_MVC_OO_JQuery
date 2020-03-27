@@ -78,6 +78,7 @@
         <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
         <script type="text/javascript" src="module/login/model/controller_register.js"></script>
         <!-- <script type="text/javascript" src="module/login/model/controller_login.js"></script>  -->
+        <script type="text/javascript" src="module/login/model/activity.js"></script>
         <script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
         
         <script type="text/javascript" src="module/lang/translate.js"></script> 

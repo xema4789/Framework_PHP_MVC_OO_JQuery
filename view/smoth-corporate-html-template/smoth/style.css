@@ -471,6 +471,10 @@ h6 a {
   padding-left: 1%;
 }
 
+#desconectar:hover{
+  cursor: pointer;
+}
+
 
 .carousel-item{
   height: 600px;

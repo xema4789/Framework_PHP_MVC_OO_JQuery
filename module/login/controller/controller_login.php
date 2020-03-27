@@ -2,6 +2,7 @@
  $path = $_SERVER['DOCUMENT_ROOT'] . '/Programacion/Tema5_1.0/Tema5_1.0/8_MVC_CRUD/'; 
  include ($path . "/module/login/model/DAOLogin.php");
  include ($path . "module/login/model/validate_user.php");
+ include ($path . "module/login/model/regenerate_sesion.php");
  session_start();
 
  switch($_GET['op']){
@@ -43,9 +44,10 @@
 
         $_SESSION['type'] = $hola['type'];
         $_SESSION['user'] = $hola['user'];
-					// $_SESSION['tiempo'] = time();
+				$_SESSION['tiempo'] = time();
 
         echo json_encode($dinfo);
+        // echo json_encode(time());
 
       }
 
@@ -102,6 +104,48 @@
          die('<script>window.location.href="'.$callback .'";</script>');
       }
 
+
+    break;
+
+
+    case 'actividad':
+      if (!isset($_SESSION['tiempo'])) {  
+        echo "hola";
+        echo ($_SESSION['tiempo']);
+        echo ("hola2");
+      } else {  
+        if((time() - $_SESSION['tiempo']) >= 100) {  //15 min?
+            echo "inactivo"; 
+            exit();
+        }else{
+          echo "activo2";
+          exit();
+        }
+  }
+
+    break;
+
+    case 'control_user':
+      if (!isset ($_SESSION['type'])||($_SESSION['type'])!='admin'){
+				if(isset ($_SESSION['type'])&&($_SESSION['type'])!='admin'){
+					echo 'okay';
+					exit();
+				}
+				echo 'no';
+				exit();
+			}
+
+
+    break;
+
+
+    case 'regenerate':
+      try{
+        regenerateSession_1();
+      }catch(Exception $e){
+        echo json_encode("exception");
+      }
+      echo json_encode("oko");
 
     break;
 
