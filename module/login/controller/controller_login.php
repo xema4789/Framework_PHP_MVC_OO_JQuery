@@ -96,25 +96,29 @@
     
     case 'log_out':
       // session_unset($_SESSION['type']);
-			if(session_destroy()) {
-				$callback = 'index.php?page=controller_home&op=list';
-			    die('<script>window.location.href="'.$callback .'";</script>');
-			}else{
-         $callback = 'index.php?page=503';
-         die('<script>window.location.href="'.$callback .'";</script>');
-      }
+			// if(session_destroy()) {
+			// 	$callback = 'index.php?page=controller_home&op=list';
+			//     die('<script>window.location.href="'.$callback .'";</script>');
+			// }else{
+      //    $callback = 'index.php?page=503';
+      //    die('<script>window.location.href="'.$callback .'";</script>');
+      // }
+       session_destroy();
+     	 $callback = 'index.php?page=controller_home&op=list';
+	     die('<script>window.location.href="'.$callback .'";</script>');
+
 
 
     break;
 
 
     case 'actividad':
-      if (!isset($_SESSION['tiempo'])) {  
-        echo "hola";
+      if (!$_SESSION['tiempo']) {  
+        // echo "hola";
         echo ($_SESSION['tiempo']);
-        echo ("hola2");
+        // echo ("hola2");
       } else {  
-        if((time() - $_SESSION['tiempo']) >= 100) {  //15 min?
+        if((time() - $_SESSION['tiempo']) >= 10) { //a los 10 segundos se cierra si no recargas          //15 min despues
             echo "inactivo"; 
             exit();
         }else{

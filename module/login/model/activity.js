@@ -52,39 +52,39 @@ $(document).ready(function(){
 				if(response=="inactivo"){
                     
 
-                    $.ajax({
-                        url:'module/login/controller/controller_login.php?&op=log_out',
-                        type: 'GET',
-                        dataType: 'json',
+                    // $.ajax({
+                    //     url:'module/login/controller/controller_login.php?&op=log_out',
+                    //     type: 'GET',
+                    //     dataType: 'json',
                             
-                      }).done(function(data){
-                        if(data=="ok"){
-                            alert("Se ha cerrado la cuenta por inactividad");
-                            console.log("log out correcto");
-                        }else{
-                            //Error
-                            console.log("fail en el log out");
-                        }
+                    //   }).done(function(data){
+                    //     if(data=="ok"){
+                    //         alert("Se ha cerrado la cuenta por inactividad");
+                    //         console.log("log out correcto");
+                    //     }else{
+                    //         //Error
+                    //         console.log("fail en el log out");
+                    //     }
                         
-                      }).fail(function(){
-                        console.log("FAIL");
-                      });
+                    //   }).fail(function(){
+                    //     console.log("FAIL");
+                    //   });
 
 
 
 
 
 
+                    alert("se ha cerrado la cuenta por inactividad");
 
-
-                    logoutauto();
-					//setTimeout('window.location.href = "index.php?page=controller_login&op=logout";',1000);
+                    // logoutauto();
+					setTimeout('window.location.href = "index.php?page=controller_login&op=log_out";',10000);
 					
 				}else{
                     console.log("activojs");
                 }
 			}
 		});
-	}, 1000);
+	}, 10000);//Cada 100 segundos pregunta si está activo o no
 	protecturl();
 });
