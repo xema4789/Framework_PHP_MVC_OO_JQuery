@@ -114,11 +114,12 @@
 
     case 'actividad':
       if (!$_SESSION['tiempo']) {  
-        // echo "hola";
+       
         echo ($_SESSION['tiempo']);
-        // echo ("hola2");
+        
       } else {  
-        if((time() - $_SESSION['tiempo']) >= 10) { //a los 10 segundos se cierra si no recargas          //15 min despues
+        // echo ($_SESSION['tiempo']);
+        if((time() - $_SESSION['tiempo']) >= 10000 ) { //a los 10 segundos se cierra si no recargas          //15 min despues
             echo "inactivo"; 
             exit();
         }else{

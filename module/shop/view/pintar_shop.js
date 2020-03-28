@@ -1,24 +1,45 @@
+
+
+function ajaxForSearch(url,tipo){
+    $.ajax({
+        url:url,
+        type: 'GET',
+        dataType: 'json',
+            
+      }).done(function(data){
+        if(tipo==="mostrar"){
+            mostrar(data);
+        }else if(tipo==="rellenar"){
+            rellenar(data);
+        }
+      }).fail(function(){
+        console.log("FAIL");
+      });
+}
+
+
+function ajax_promise(urlP, typeP, dataTypeP){
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            url:urlP,
+            type:typeP,
+            dataType: dataTypeP,
+                
+          }).done(function(data){
+            resolve(data);
+          }).fail(function(){
+            console.log("FAIL");
+            reject("FAIL");
+          });
+    }); 
+}
+
 $(document).ready(function(){
 
     localStorage.setItem('posicion',0);
     
 
-    function ajaxForSearch(url,tipo){
-        $.ajax({
-            url:url,
-            type: 'GET',
-            dataType: 'json',
-                
-          }).done(function(data){
-            if(tipo==="mostrar"){
-                mostrar(data);
-            }else if(tipo==="rellenar"){
-                rellenar(data);
-            }
-          }).fail(function(){
-            console.log("FAIL");
-          });
-    }
+    
     
  
     //Recibiendo informacion de localstorage
@@ -368,6 +389,66 @@ function rellenar(data){
        
 //Fin rellenar shop
 
+//Click en like
+$(document).on("click",".foto_like",function(){
+    // alert("Click en like");
+    // console.log("click");
+    // console.log(this.id);
+    var id=this.getAttribute('id');
+    console.log("id principio:"+id);
+    // id=null;
+
+
+    //Llamar al dao y que busque si está, si no lo está hace un insert, y si lo está hace un delete (posible promesa)
+
+    $.ajax({
+        url:"module/shop/controller/controller_shop.php?op=busca_like&id="+id,
+        type: 'GET',
+        dataType: 'json',
+            
+      }).done(function(data){
+          console.log("data :"+data);
+         if(data=="vacio"){
+            console.log("insertar en la bd");
+            //Insert porque no tiene like
+            //ajax promise
+
+        }else if(data=="lleno"){
+            console.log("Borrar de la bd");
+            //Delete porque ya tiene like
+            //ajax_promise
+        }else{
+            alert("Error");
+        }
+      }).fail(function(){
+        console.log("FAIL");
+      });
+
+
+    // ajax_promise("module/shop/controller/controller_shop.php?op=busca_like&id="+id,'GET','json').then(function(data){
+    //     console.log("data: " +data);
+
+    //     if(data=="lleno"){
+    //         console.log("Borrar de la bd");
+    //         //Delete porque ya tiene like
+    //         //ajax_promise
+    //     }else{
+    //         console.log("insertar en la bd");
+    //         //Insert porque no tiene like
+    //         //ajax promise
+
+    //     }
+
+    // });
+
+
+});
+
+//Fin click en like
+
+
+
+
 //Mostrar habitaciones
 function mostrar(data){
     $('<div></div>').attr('id','contenedor').appendTo('#articulo');
@@ -381,6 +462,71 @@ function mostrar(data){
             '<p class="texto_visitas">'+data[row].visitas+'</p>'+
             '<p class="texto_ojo"></p>'
             );
+            
+
+            $('<div></div>').attr({'class':"foto_like",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
+                '<p class="like_foto" id="'+data[row].Numero_habitacion+'"></p>'
+                );
+
+
+
+
+        //     $('<div></div>').attr({'class':"like",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
+        //     '<div id="corazon" class="'+data[row].Numero_habitacion+'">'+
+        //     '<div id="main-content">'+
+        //       '<div>'+
+        //         '<input type="checkbox" id="checkbox" />'+
+        //         '<label for="checkbox">'+
+        //           '<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">'+
+        //             '<g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">'+
+        //               '<path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>'+
+        //               '<circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>'+
+            
+        //               '<g id="grp7" opacity="0" transform="translate(7 6)">'+
+        //                 '<circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>'+
+        //                 '<circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>'+
+        //               '</g>'+
+            
+        //               '<g id="grp6" opacity="0" transform="translate(0 28)">'+
+        //                 '<circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>'+
+        //                 '<circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>'+
+        //               '</g>'+
+            
+        //               '<g id="grp3" opacity="0" transform="translate(52 28)">'+
+        //                 '<circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>'+
+        //                 '<circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>'+
+        //               '</g>'+
+            
+        //               '<g id="grp2" opacity="0" transform="translate(44 6)">'+
+        //                 '<circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>'+
+        //                 '<circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>'+
+        //               '</g>'+
+            
+        //               '<g id="grp5" opacity="0" transform="translate(14 50)">'+
+        //                 '<circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>'+
+        //                 '<circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>'+
+        //               '</g>'+
+            
+        //               '<g id="grp4" opacity="0" transform="translate(35 50)">'+
+        //                 '<circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>'+
+        //                 '<circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>'+
+        //               '</g>'+
+            
+        //               '<g id="grp1" opacity="0" transform="translate(24)">'+
+        //                 '<circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>'+
+        //                 '<circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>'+
+        //               '</g>'+
+        //             '</g>'+
+        //           '</svg>'+
+        //         '</label>'+
+            
+              
+        //       '</div>'+
+        //     '</div>'+
+        //   '</div>');
+
+
+            
 
             // $('<p>'+data[row].Ciudad+'</p>').attr('class',"texto_imagen").appendTo('.tipos').html ();
     }

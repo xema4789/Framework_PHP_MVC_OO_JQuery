@@ -387,6 +387,41 @@ switch($_GET['op']){
             exit;
         }
     break;
+    
+
+
+    case 'busca_like':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->busca_like($_GET['id'],$_SESSION['user']);
+            // echo json_encode($_GET);
+    
+        }catch (Exception $e){
+            echo json_encode("error exception");
+            exit;
+        }
+        
+        if(!$rdo){
+            echo json_encode("vacio");
+            exit;
+        }else{
+            $hola=mysqli_fetch_assoc($rdo);
+            // if(mysqli_num_rows($rdo)>0){
+                // $dinfo = array();
+				// foreach ($rdo as $row) {
+				// 	array_push($dinfo, $row);
+				// }
+            // 	echo json_encode($dinfo);
+            // }else{
+            //     echo json_encode("vacio2");
+            // }
+            
+            echo json_encode($hola);
+    
+            exit;
+        }
+
+    break;
 
 }
 

@@ -133,5 +133,14 @@
         connect::close($connection);
         return $res;
     }
+    function busca_like($id,$user){
+        $sql = "SELECT * FROM Likes WHERE id_user LIKE '$user' AND id_habitacion = $id";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+
+
+    }
   
 }

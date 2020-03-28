@@ -8,7 +8,7 @@ function protecturl() {
 		setTimeout(' window.location.href = "index.php?page=controller_home&op=list"; ',1000);
 	  }else if (data=="no"){
 		alert("Debes realizar login");
-		setTimeout(' window.location.href = window.location.href; ',1000);
+		// setTimeout(' window.location.href = window.location.href; ',10000);
 	  }
 	})
 	.fail( function(response){console.log(response)	});
@@ -78,7 +78,7 @@ $(document).ready(function(){
                     alert("se ha cerrado la cuenta por inactividad");
 
                     // logoutauto();
-					setTimeout('window.location.href = "index.php?page=controller_login&op=log_out";',10000);
+					setTimeout('window.location.href = "index.php?page=controller_login&op=log_out";',100000);
 					
 				}else{
                     console.log("activojs");
