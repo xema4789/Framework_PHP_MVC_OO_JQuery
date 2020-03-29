@@ -54,12 +54,8 @@ $(document).ready(function(){
 
     ////
 
-    console.log(ciudad);
-
     if((!ciudad) && (!categoria) && (!num_habitacion) && (!comida)){
         //Vengo del menu, pintar todas las habitaciones
-        console.log("pintar todo");
-        // listar_scroll();
         pintar_paginacion();
         pintar_filtros();
         pintar_tipos();
@@ -188,16 +184,8 @@ $(document).ready(function(){
                 prev: prevPage,
                 next: nextPage
             }).on("page",function(event,num){
-      
-                console.log(num);
-
                 totalItems = 9 *(num-1);
-
-                // alert(totalItems);
-
-
-                pintar_shop(totalItems);
-                
+                pintar_shop(totalItems)
             });
             pintar_shop(totalItems);
 
@@ -217,8 +205,6 @@ $(document).ready(function(){
             dataType: 'json',
                 
           }).done(function(data){
-            console.log("hola");
-            console.log(data);
             mostrar(data);
            
           }).fail(function(){
@@ -280,22 +266,58 @@ function listar_scroll(){
 
 
 //Click en la foto
-    $(document).on("click", '.foto',function(){
+
+
+
+
+
+
+
+
+
+
+
+$('#articulo').on("click",'.foto_shop',function(event){
+    if($(event.target).is('.foto_shop')){
+        alert("click en foto");
+
         var id = this.getAttribute('id');
-    $.ajax({
-        url:"module/shop/controller/controller_shop.php?op=list_modal&hab=" + id,
-        type: 'GET',
-        dataType: 'json',
+        $.ajax({
+            url:"module/shop/controller/controller_shop.php?op=list_modal&hab=" + id,
+            type: 'GET',
+            dataType: 'json',
+                
+          }).done(function(data){
             
-      }).done(function(data){
-        
-       rellenar(data);
-      
-            //  modal();
-      }).fail(function(){
-        console.log("FAIL");
-    });
+           rellenar(data);
+          
+                //  modal();
+          }).fail(function(){
+            console.log("FAIL");
+        });
+       
+    }
+    // alert("click en foto");
+   
+
 });
+
+//     $('#articulo').on("click", '.foto',function(){
+//         var id = this.getAttribute('id');
+//     $.ajax({
+//         url:"module/shop/controller/controller_shop.php?op=list_modal&hab=" + id,
+//         type: 'GET',
+//         dataType: 'json',
+            
+//       }).done(function(data){
+        
+//        rellenar(data);
+      
+//             //  modal();
+//       }).fail(function(){
+//         console.log("FAIL");
+//     });
+// });
 
  //Fin click en la foto
 
@@ -390,39 +412,39 @@ function rellenar(data){
 //Fin rellenar shop
 
 //Click en like
-$(document).on("click",".foto_like",function(){
-    // alert("Click en like");
-    // console.log("click");
-    // console.log(this.id);
-    var id=this.getAttribute('id');
-    console.log("id principio:"+id);
-    // id=null;
+// $(document).on("click",".foto_like",function(){
+//     alert("Click en like");
+//     console.log("click");
+//     console.log(this.id);
+//     var id=this.getAttribute('id');
+//     console.log("id principio:"+id);
+//     id=null;
 
 
-    //Llamar al dao y que busque si está, si no lo está hace un insert, y si lo está hace un delete (posible promesa)
+//     Llamar al dao y que busque si está, si no lo está hace un insert, y si lo está hace un delete (posible promesa)
 
-    $.ajax({
-        url:"module/shop/controller/controller_shop.php?op=busca_like&id="+id,
-        type: 'GET',
-        dataType: 'json',
+//     $.ajax({
+//         url:"module/shop/controller/controller_shop.php?op=busca_like&id="+id,
+//         type: 'GET',
+//         dataType: 'json',
             
-      }).done(function(data){
-          console.log("data :"+data);
-         if(data=="vacio"){
-            console.log("insertar en la bd");
-            //Insert porque no tiene like
-            //ajax promise
+//       }).done(function(data){
+//           console.log("data :"+data);
+//          if(data=="vacio"){
+//             console.log("insertar en la bd");
+//             Insert porque no tiene like
+//             ajax promise
 
-        }else if(data=="lleno"){
-            console.log("Borrar de la bd");
-            //Delete porque ya tiene like
-            //ajax_promise
-        }else{
-            alert("Error");
-        }
-      }).fail(function(){
-        console.log("FAIL");
-      });
+//         }else if(data=="lleno"){
+//             console.log("Borrar de la bd");
+//             Delete porque ya tiene like
+//             ajax_promise
+//         }else{
+//             alert("Error");
+//         }
+//       }).fail(function(){
+//         console.log("FAIL");
+//       });
 
 
     // ajax_promise("module/shop/controller/controller_shop.php?op=busca_like&id="+id,'GET','json').then(function(data){
@@ -442,9 +464,184 @@ $(document).on("click",".foto_like",function(){
     // });
 
 
-});
+// });
 
 //Fin click en like
+
+
+$('#articulo').on("click",'.like_item',function(event){//EVENT es quien sabe a que le hemos dado like
+    
+    
+    if($(event.target).is('.like_item')){
+        alert("click en like");
+        favs_control($(this));
+    }
+});
+
+function favs_control(element){
+    //Primero ver quien es el usuario para saber a quien ponerle o quitarle el like
+
+    ajax_promise('module/login/controller/controller_login.php?&op=ver_usuario','GET','json').then(function(data){
+        var user=data['user'];
+        
+
+        const boton=element;
+        var id_habitacion=element.closest('.like_item').attr('id');
+        console.log("el id es: "+id_habitacion);
+        // var prueba=element.closest('.like_item').attr('');
+        prueba="no";
+
+        ajax_promise('module/shop/controller/controller_shop.php?op=ver_habitacion_like&id='+id_habitacion,'GET','json').then(function(data){
+            console.log("Promesa ver si tiene like o no:");
+            console.log(data);
+            console.log(data.id_user);
+            console.log("tiene like");
+
+
+
+            if(data.lenght!=0){
+                console.log("tiene like");
+                //like_dislike("dislike",id_habitacion,user);
+                
+            }else{
+                console.log("no tiene like");
+                // like_dislike("insert_like",id_habitacion,user);
+            }
+        }).catch(function(data){
+            console.log("no tiene like");
+
+        });
+
+
+      
+        // if(prueba=="si"){//Tiene like, quitarselo
+            // // function ajax_promise(urlP, typeP, dataTypeP){
+            //     alert("DISLIKE");
+            //     like_dislike("dislike",id_habitacion,user);
+
+                // ajax_promise('module/shop/controller/controller_shop.php?op=dislike&id_hab='+id_habitacion+'&user='+user,'GET','json').then(function(data){
+                //     alert("DISLIKE");
+                //     pintar_likes();
+                // });
+
+        // }else{//No tiene like, ponerselo
+            // alert("LIKE")
+            // like_dislike("insert_like",id_habitacion,user);
+
+            // ajax_promise('module/shop/controller/controller_shop.php?op=insert_like&id_hab='+id_habitacion+'&user='+user,'GET','json').then(function(data){
+            //     alert("Like puesto");
+            //     console.log(data);
+            //     document.getElementByClass(id_habitacion).style.backgroundColor = "red";
+            //     pintar_likes();
+                
+            // });
+
+        // }
+
+
+        
+
+
+
+
+
+
+    });
+
+
+    
+
+    
+
+
+
+}
+
+function like_dislike(opcion,id_habitacion,user){
+    ajax_promise('module/shop/controller/controller_shop.php?op='+opcion+'&id_hab='+id_habitacion+'&user='+user,'GET','json').then(function(data){
+        
+        pintar_likes();
+    });
+}
+
+
+
+//pintar_likes
+
+
+function pintar_likes(){
+    ajax_promise('module/shop/controller/controller_shop.php?op=ver_likes','GET','json').then(function(data){
+        console.log("likes:");
+        console.log(data);
+        console.log(data[0]['id_habitacion']);
+        console.log(data[0].id_habitacion);
+
+    //    data.forEach(element => {
+    //         id=$("#"+element.idproduct+'.itemlist').find("#like").addClass("liked");
+    //         id_id=$("#"+element.idproduct+'.itemlist').attr("id");
+    //    });
+
+    // document.getElementById('re_user').style.borderColor = "red";
+
+        for(row in data){
+            $('#'+data[row]['id_habitacion']).find('.like_item').addClass('active-fav');
+        }
+
+
+
+
+
+
+
+
+    //     $('liked')
+
+    //    var elems = document.querySelectorAll('liked');
+    //    console.log(elems);
+    //    console.log(data[0]['id_habitacion']);
+
+    //    for (var x = 0; x < elems.length; x++) {
+    //     for (var i = 0; i < data.length; i++) {
+    //         if(elems[x].attr('id')==data[i]['id_habitacion']){
+    //             console.log("tiene like");
+
+    //         }else{
+    //             console.log("no tiene like");
+    //         }
+
+    //     }
+
+
+        
+        // elems[x].set
+    //    }
+
+
+    //    for (var x = 0; x < elems.length; x++) {
+    //     elems[x].innerHTML = data.hasOwnProperty(lang)
+    //       ? data[lang][elems[x].dataset.tr]
+    //       : elems[x].dataset.tr;
+    //   }
+
+
+
+
+    }).catch(function (e){
+        console.log("Fail promesa");
+    })
+
+
+
+
+
+
+   
+}
+
+
+
+
+  
 
 
 
@@ -457,17 +654,18 @@ function mostrar(data){
 
     for (row in data){
         $('<div></div>').attr({'class':"foto",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
-            '<img src="'+data[row].imagen+'" class="foto_shop" href="#" alt="No se puede cargar la imagen">'+
+            '<img src="'+data[row].imagen+'" id="'+data[row].Numero_habitacion+'" class="foto_shop" href="#" alt="No se puede cargar la imagen">'+
             '<p class="texto_imagen">'+data[row].Ciudad+'</p>'+
             '<p class="texto_visitas">'+data[row].visitas+'</p>'+
-            '<p class="texto_ojo"></p>'
+            '<p class="texto_ojo"></p>'+
+            '<p class="like_item" id="'+data[row].Numero_habitacion+'"></p>'
+            
             );
             
 
-            $('<div></div>').attr({'class':"foto_like",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
-                '<p class="like_foto" id="'+data[row].Numero_habitacion+'"></p>'
-                );
-
+            // $('<div></div>').attr({'class':"like_container",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
+            //     '<p class="like_item" id="'+data[row].Numero_habitacion+'"></p>'
+            //     );
 
 
 
@@ -530,6 +728,7 @@ function mostrar(data){
 
             // $('<p>'+data[row].Ciudad+'</p>').attr('class',"texto_imagen").appendTo('.tipos').html ();
     }
+    pintar_likes();
 }
             
     

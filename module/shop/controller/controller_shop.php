@@ -423,6 +423,90 @@ switch($_GET['op']){
 
     break;
 
+
+    case 'dislike':
+        //Delete item
+        try{
+            $daoshop = new DAOShop();
+            $rdo=$daoshop -> dislike($_GET['id_hab'],$_GET['user']);
+            print_r($rdo);//Esto es para que detecte que se ha hecho correctamente
+            return true;
+          }catch(Exception $e){
+            $callback = 'index.php?page=503';
+            die('<script>window.location.href="'.$callback .'";</script>');
+          }
+
+
+    break;
+
+
+    case 'insert_like':
+        //Insertar item
+        
+
+        try{
+            $daoshop = new DAOShop();
+            $rdo=$daoshop -> insert_like($_GET['id_hab'],$_GET['user']);
+            print_r($rdo);//Esto es para que detecte que se ha hecho correctamente
+            return true;
+          }catch(Exception $e){
+            $callback = 'index.php?page=503';
+            die('<script>window.location.href="'.$callback .'";</script>');
+          }
+
+
+
+    break;
+
+    case 'ver_likes':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->ver_likes();
+  
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error");
+            exit;
+        }else{
+            
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+
+            exit;
+        }
+
+    break;
+
+    case 'ver_habitacion_like':
+        try{
+            $daoshop = new DAOShop();
+            $rdo = $daoshop->ver_habitacion_like($_GET['id']);
+  
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo "vacio";
+            exit;
+        }else{
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+
+            exit;
+        }
+
+    break;
+
 }
 
 

@@ -46,7 +46,7 @@ $(document).ready(function(){
 
         var url="module/search/controller/controller_search.php?op=list_ciudades&ciudad=" + ciudad;
         data=ajaxForSearch(url);
-        console.log(data);
+       
 
     });
 
@@ -75,7 +75,7 @@ $(document).ready(function(){
             
 
             for(row in data){
-                console.log("hola");
+              
                 $('<div></div>').attr({'class':'autoelement',"id":data[row].Tipo_comida}).appendTo('#optionsauto').html(
                     '<a  class="element" data="'+row['Ciudad']+'" id="'+row['Tipo_comida']+'">'+data[row].Ciudad+', '+data[row].Tipo_comida+' </a>',
                 );
@@ -94,14 +94,9 @@ $(document).ready(function(){
             ///si selecciono valor
             $('.autoelement').on('click', function(){
                 var id = $(this).attr('id');
-                console.log(id);
-
                 var id2=$(this).attr('id');
-                console.log(id2);
-
 
                 $('#autocom').val(id);
-                //$('#autocom').val($('#'+id).attr('data'));
                 $('#optionsauto').fadeOut(1000);
             });
             ///si click fuera se borra value y se cierra
@@ -166,18 +161,11 @@ $(document).ready(function(){
             dataType: 'json',
                 
         }).done(function(data){//Pintar ciudades
-            // console.log(data);
-            console.log(data);
-
-
             for(row in data){
                 $('<option></option>').attr('value',data[row].Ciudad).appendTo('#Ciudad').html (
                     '<option value="'+data[row].Ciudad+'">'+data[row].Ciudad+'</option>'
                 );
             }
-
-
-
         }).fail(function(){
             console.log("FAIIL");
         });
@@ -193,18 +181,11 @@ $(document).ready(function(){
                 dataType: 'json',
                     
             }).done(function(data){//Pintar ciudades
-                // console.log(data);
-                console.log(data);
-    
-    
                 for(row in data){
                     $('<option></option>').attr('value',data[row].Tipo_habitacion).appendTo('#Tipo').html (
                         '<option value="'+data[row].Tipo_habitacion+'">'+data[row].Tipo_habitacion+'</option>'
                     );
                 }
-    
-    
-    
             }).fail(function(){
                 console.log("FAIIL");
             });   

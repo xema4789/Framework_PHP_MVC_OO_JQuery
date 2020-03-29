@@ -2013,10 +2013,11 @@ form#search button {
   width: 100px;
 }
 
-.like_foto{
+
+.like_item{
   z-index: 10;
-  height: 20px;
-  width: 70px;
+  height: 10px;
+  width: 40px;
   background-color: rgb(0, 179, 255);
 
   z-index:6;
@@ -2025,7 +2026,7 @@ form#search button {
   position: relative;
   /* background-color:transparent; */
   margin-top: 0;
-  margin-left: 280px;
+  margin-left: 310px;
   margin-bottom: 500px;
   
 
@@ -2037,11 +2038,13 @@ form#search button {
   padding-left: 1%;
   padding-top: 140px;
 }
-.like_foto:hover{
+.like_item:hover{
   /* background-color:rgba(1, 89, 161, 0.562); */
   box-shadow:5px 5px 40px 10px rgb(1, 89, 161);
 }
-
+.active-fav{
+  background-color:red;
+}
 
 
 

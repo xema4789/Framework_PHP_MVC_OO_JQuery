@@ -95,15 +95,18 @@
     break;
     
     case 'log_out':
-      // session_unset($_SESSION['type']);
-			// if(session_destroy()) {
+      session_unset($_SESSION['type']);
+      session_unset($_SESSION['user']);
+      session_unset($_SESSION['tiempo']);
+      
+      // if(session_destroy()) {
 			// 	$callback = 'index.php?page=controller_home&op=list';
 			//     die('<script>window.location.href="'.$callback .'";</script>');
 			// }else{
       //    $callback = 'index.php?page=503';
       //    die('<script>window.location.href="'.$callback .'";</script>');
       // }
-       session_destroy();
+      //  session_destroy();
      	 $callback = 'index.php?page=controller_home&op=list';
 	     die('<script>window.location.href="'.$callback .'";</script>');
 

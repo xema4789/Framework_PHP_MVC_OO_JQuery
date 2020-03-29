@@ -142,5 +142,41 @@
 
 
     }
+
+    function insert_like($id_hab,$user){
+        $sql = "INSERT INTO Likes (id_user, id_habitacion, fecha) VALUES ('$user',$id_hab,NOW())";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function dislike($id_hab,$user){
+        
+        $sql = "DELETE FROM Likes WHERE id_user LIKE '$user' AND id_habitacion = $id_hab";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+
+    }
+
+    function ver_likes(){
+        $sql = "SELECT * FROM Likes";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function ver_habitacion_like($id){
+        
+        $sql = "SELECT * FROM Likes WHERE id_habitacion = '$id'";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+
+    }
   
 }
