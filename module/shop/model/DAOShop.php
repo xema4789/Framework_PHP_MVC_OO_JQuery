@@ -169,9 +169,9 @@
         return $res;
     }
 
-    function ver_habitacion_like($id){
+    function ver_habitacion_like($id,$user){
         
-        $sql = "SELECT * FROM Likes WHERE id_habitacion = '$id'";
+        $sql = "SELECT * FROM Likes WHERE id_habitacion = $id AND id_user LIKE '$user'";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);

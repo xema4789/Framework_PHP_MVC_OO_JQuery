@@ -473,7 +473,7 @@ $('#articulo').on("click",'.like_item',function(event){//EVENT es quien sabe a q
     
     
     if($(event.target).is('.like_item')){
-        alert("click en like");
+        // alert("click en like");
         favs_control($(this));
     }
 });
@@ -485,76 +485,25 @@ function favs_control(element){
         var user=data['user'];
         
 
-        const boton=element;
         var id_habitacion=element.closest('.like_item').attr('id');
         console.log("el id es: "+id_habitacion);
-        // var prueba=element.closest('.like_item').attr('');
+        
         prueba="no";
 
-        ajax_promise('module/shop/controller/controller_shop.php?op=ver_habitacion_like&id='+id_habitacion,'GET','json').then(function(data){
-            console.log("Promesa ver si tiene like o no:");
-            console.log(data);
-            console.log(data.id_user);
-            console.log("tiene like");
+        ajax_promise('module/shop/controller/controller_shop.php?op=ver_habitacion_like&id='+id_habitacion+'&user='+user,'GET','json').then(function(data){
+            console.log(data.id_user);//Si borro esto me lo cargo todo no se porque
+            like_dislike("dislike",id_habitacion,user);
+        
+            $('#'+id_habitacion).find('.like_item').removeClass('active-fav');
+            pintar_likes();
 
 
-
-            if(data.lenght!=0){
-                console.log("tiene like");
-                //like_dislike("dislike",id_habitacion,user);
-                
-            }else{
-                console.log("no tiene like");
-                // like_dislike("insert_like",id_habitacion,user);
-            }
         }).catch(function(data){
-            console.log("no tiene like");
+            console.log("catch no tiene like");
+            like_dislike("insert_like",id_habitacion,user);
 
         });
-
-
-      
-        // if(prueba=="si"){//Tiene like, quitarselo
-            // // function ajax_promise(urlP, typeP, dataTypeP){
-            //     alert("DISLIKE");
-            //     like_dislike("dislike",id_habitacion,user);
-
-                // ajax_promise('module/shop/controller/controller_shop.php?op=dislike&id_hab='+id_habitacion+'&user='+user,'GET','json').then(function(data){
-                //     alert("DISLIKE");
-                //     pintar_likes();
-                // });
-
-        // }else{//No tiene like, ponerselo
-            // alert("LIKE")
-            // like_dislike("insert_like",id_habitacion,user);
-
-            // ajax_promise('module/shop/controller/controller_shop.php?op=insert_like&id_hab='+id_habitacion+'&user='+user,'GET','json').then(function(data){
-            //     alert("Like puesto");
-            //     console.log(data);
-            //     document.getElementByClass(id_habitacion).style.backgroundColor = "red";
-            //     pintar_likes();
-                
-            // });
-
-        // }
-
-
-        
-
-
-
-
-
-
     });
-
-
-    
-
-    
-
-
-
 }
 
 function like_dislike(opcion,id_habitacion,user){
@@ -571,71 +520,17 @@ function like_dislike(opcion,id_habitacion,user){
 
 function pintar_likes(){
     ajax_promise('module/shop/controller/controller_shop.php?op=ver_likes','GET','json').then(function(data){
-        console.log("likes:");
-        console.log(data);
-        console.log(data[0]['id_habitacion']);
-        console.log(data[0].id_habitacion);
-
-    //    data.forEach(element => {
-    //         id=$("#"+element.idproduct+'.itemlist').find("#like").addClass("liked");
-    //         id_id=$("#"+element.idproduct+'.itemlist').attr("id");
-    //    });
-
-    // document.getElementById('re_user').style.borderColor = "red";
-
         for(row in data){
             $('#'+data[row]['id_habitacion']).find('.like_item').addClass('active-fav');
+            
+            
+            // $('#'+data[row]['id_habitacion']).find('.like_item:before').addClass('active-fav');
+            // $('#'+data[row]['id_habitacion']).find('..like_item:after').addClass('active-fav');
+
         }
-
-
-
-
-
-
-
-
-    //     $('liked')
-
-    //    var elems = document.querySelectorAll('liked');
-    //    console.log(elems);
-    //    console.log(data[0]['id_habitacion']);
-
-    //    for (var x = 0; x < elems.length; x++) {
-    //     for (var i = 0; i < data.length; i++) {
-    //         if(elems[x].attr('id')==data[i]['id_habitacion']){
-    //             console.log("tiene like");
-
-    //         }else{
-    //             console.log("no tiene like");
-    //         }
-
-    //     }
-
-
-        
-        // elems[x].set
-    //    }
-
-
-    //    for (var x = 0; x < elems.length; x++) {
-    //     elems[x].innerHTML = data.hasOwnProperty(lang)
-    //       ? data[lang][elems[x].dataset.tr]
-    //       : elems[x].dataset.tr;
-    //   }
-
-
-
-
     }).catch(function (e){
         console.log("Fail promesa");
     })
-
-
-
-
-
-
-   
 }
 
 
@@ -659,6 +554,9 @@ function mostrar(data){
             '<p class="texto_visitas">'+data[row].visitas+'</p>'+
             '<p class="texto_ojo"></p>'+
             '<p class="like_item" id="'+data[row].Numero_habitacion+'"></p>'
+            // '<svg class="icon icon-heart"><use xlink:href="#icon-heart"></use></svg>'
+            // '<input id="toggle-heart" type="checkbox"/>'+
+            // '<label for="toggle-heart">❤</label>'
             
             );
             
@@ -667,9 +565,69 @@ function mostrar(data){
             //     '<p class="like_item" id="'+data[row].Numero_habitacion+'"></p>'
             //     );
 
+            // $('<div></div>').attr('class',"corazon_css").appendTo('.like_item').html (
+            //     '<div id="corazon" class="'+data[row].Numero_habitacion+'">'+
+            //     '<div id="main-content">'+
+            //     '<div>'+
+            //         '<input type="checkbox" id="checkbox" />'+
+            //         '<label for="checkbox">'+
+            //         '<svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">'+
+            //             '<g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">'+
+            //             '<path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>'+
+            //             '<circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>'+
+                
+            //             '<g id="grp7" opacity="0" transform="translate(7 6)">'+
+            //                 '<circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>'+
+            //                 '<circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>'+
+            //             '</g>'+
+                
+            //             '<g id="grp6" opacity="0" transform="translate(0 28)">'+
+            //                 '<circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>'+
+            //                 '<circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>'+
+            //             '</g>'+
+                
+            //             '<g id="grp3" opacity="0" transform="translate(52 28)">'+
+            //                 '<circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>'+
+            //                 '<circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>'+
+            //             '</g>'+
+                
+            //             '<g id="grp2" opacity="0" transform="translate(44 6)">'+
+            //                 '<circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>'+
+            //                 '<circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>'+
+            //             '</g>'+
+                
+            //             '<g id="grp5" opacity="0" transform="translate(14 50)">'+
+            //                 '<circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>'+
+            //                 '<circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>'+
+            //             '</g>'+
+                
+            //             '<g id="grp4" opacity="0" transform="translate(35 50)">'+
+            //                 '<circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>'+
+            //                 '<circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>'+
+            //             '</g>'+
+                
+            //             '<g id="grp1" opacity="0" transform="translate(24)">'+
+            //                 '<circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>'+
+            //                 '<circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>'+
+            //             '</g>'+
+            //             '</g>'+
+            //         '</svg>'+
+            //         '</label>'+
+                
+                
+            //     '</div>'+
+            //     '</div>'+
+            // '</div>'
+
+            // );
+
 
 
         //     $('<div></div>').attr({'class':"like",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
+
+
+
+
         //     '<div id="corazon" class="'+data[row].Numero_habitacion+'">'+
         //     '<div id="main-content">'+
         //       '<div>'+

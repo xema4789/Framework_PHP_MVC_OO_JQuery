@@ -2042,10 +2042,79 @@ form#search button {
   /* background-color:rgba(1, 89, 161, 0.562); */
   box-shadow:5px 5px 40px 10px rgb(1, 89, 161);
 }
-.active-fav{
-  background-color:red;
+
+
+/* Corazon de internete */
+
+/* [id='toggle-heart'] {
+  position: absolute;
+  left: -100vw;
+}
+[id='toggle-heart']:checked + label {
+  color: #e2264d;
+  will-change: font-size;
+  animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
 }
 
+[for='toggle-heart'] {
+  align-self: center;
+  color: #aab8c2;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+@keyframes heart {
+  0%, 15% {
+    font-size: 0;
+  }
+} */
+
+/* Fin corazon de internete */
+
+
+
+
+
+/* Corazon de internet a partid de div */
+/* .like_item{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-color:hsl(0, 0%, 66%);
+}
+.like_item:before,
+.like_item:after{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  content: '';
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  background-color:hsl(0, 0%, 66%);
+}
+.like_item:before{
+  bottom: 0px;
+  left: -100px;
+}
+.like_item:after{
+  top: -100px;
+  right: 0px;
+} */
+
+
+
+.active-fav{
+  background-color:gold;
+}
+
+/* Fin corazon div */
 
 
 

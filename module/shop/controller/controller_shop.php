@@ -486,21 +486,23 @@ switch($_GET['op']){
     case 'ver_habitacion_like':
         try{
             $daoshop = new DAOShop();
-            $rdo = $daoshop->ver_habitacion_like($_GET['id']);
+            $rdo = $daoshop->ver_habitacion_like($_GET['id'],$_GET['user']);
   
         }catch (Exception $e){
             echo json_encode("error");
             exit;
         }
         if(!$rdo){
-            echo "vacio";
+            echo json_encode($rdo);
             exit;
         }else{
-            $dinfo = array();
-				foreach ($rdo as $row) {
-					array_push($dinfo, $row);
-				}
-				echo json_encode($dinfo);
+            $hola=mysqli_fetch_assoc($rdo);
+            // $dinfo = array();
+			// 	foreach ($rdo as $row) {
+			// 		array_push($dinfo, $row);
+			// 	}
+            // 	echo json_encode($dinfo);
+            echo json_encode($hola);
 
             exit;
         }

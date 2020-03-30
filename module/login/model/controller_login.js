@@ -21,9 +21,6 @@ function ajax_succes_promise(typeP, urlP,serializeP){
 
 
 $(document).ready(function(){
-// alert("ole los caracoles");
-alert("controler_login");
-
 
 
     $(document).on("click",'#lo_login', function(){
