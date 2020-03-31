@@ -57,6 +57,9 @@
 			</form>
 
 
+			<a class="shop_cart" href="index.php?page=controller_cart&op=list"></a>
+
+
 			
 			
 			

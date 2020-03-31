@@ -2,15 +2,16 @@
 <html class="no-js" lang="zxx">
 	
     <head>
-    <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Hoteles Xema </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
          <!-- Place favicon.ico in the root directory --> 
-		 
+		
 		<!-- all css here -->
         <link rel="stylesheet" href="view/smoth-corporate-html-template/smoth/css/bootstrap.min.css">
         <link rel="stylesheet" href="view/smoth-corporate-html-template/smoth/css/font-awesome.min.css">
@@ -72,23 +73,22 @@
         <script src="view/smoth-corporate-html-template/smoth/js/plugins.js"></script>
         <script src="view/smoth-corporate-html-template/smoth/js/main.js"></script>
 
-
-
-        <script type="text/javascript" src="module/login/model/controller_register.js"></script>
-        <!-- <script type="text/javascript" src="module/login/model/controller_login.js"></script>  -->
-        <script type="text/javascript" src="module/login/model/activity.js"></script>
+        <script type="text/javascript" src="module/login/model/controller_register.js"></script> 
+        <script type="text/javascript" src="module/login/model/activity.js"></script> 
+        
         <script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
-        <script type="text/javascript" src="module/cart/view/js/controller_cart.js"></script> 
-        
-        <script type="text/javascript" src="module/inicio/view/pintar_home.js"></script>
-        <script type="text/javascript" src="module/inicio/view/pintar.js"></script>
-        <script type="text/javascript" src="module/lang/translate.js"></script> 
 
-        <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
-       
+
+        <script type="text/javascript" src="module/cart/view/js/controller_cart.js"></script> 
+
         
+        
+        <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
+        <script type="text/javascript" src="module/lang/translate.js"></script> 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"></script>
+        
+
+
 
 
 </head> 
-
-    

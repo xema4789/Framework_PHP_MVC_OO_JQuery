@@ -76,13 +76,6 @@
     case 'ver_usuario':
       try{
         if($_SESSION['user']){
-          // $user = array(
-          //   "nombre" -> $_SESSION['user'],
-          //   "tipo" -> $_SESSION['type'],
-
-          // );
-
-
           echo json_encode($_SESSION);
         }else{
           echo json_encode("no");
@@ -95,9 +88,13 @@
     break;
     
     case 'log_out':
-      session_unset($_SESSION['type']);
-      session_unset($_SESSION['user']);
-      session_unset($_SESSION['tiempo']);
+      // echo ("session:");
+      // print_r ($_SESSION['user']);
+      // session_destroy();
+      unset($_SESSION['type']);
+      unset($_SESSION['user']);
+      unset($_SESSION['tiempo']);
+      // echo ($_SESSION);
       
       // if(session_destroy()) {
 			// 	$callback = 'index.php?page=controller_home&op=list';
@@ -107,8 +104,8 @@
       //    die('<script>window.location.href="'.$callback .'";</script>');
       // }
       //  session_destroy();
-     	 $callback = 'index.php?page=controller_home&op=list';
-	     die('<script>window.location.href="'.$callback .'";</script>');
+     	//  $callback = 'index.php?page=controller_home&op=list';
+	    //  die('<script>window.location.href="'.$callback .'";</script>');
 
 
 
