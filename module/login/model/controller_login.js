@@ -45,6 +45,12 @@ $(document).ready(function(){
                         console.log("data:");
                         console.log(data);
 
+
+                        //Pongo el carrito a 0 cuando se loguea (temporal)
+                        localStorage.setItem('carrito',"");
+                        // localStorage.setItem('Lujo',0);
+                        // localStorage.setItem('Asiatica',0);
+
                         
                         setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
                     }else{					

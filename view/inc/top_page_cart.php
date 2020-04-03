@@ -80,6 +80,7 @@
 
 
         <script type="text/javascript" src="module/cart/view/js/controller_cart.js"></script> 
+        <script type="text/javascript" src="module/cart/view/js/pintar_carrito.js"></script> 
 
         
         

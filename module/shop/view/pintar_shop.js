@@ -491,7 +491,7 @@ function favs_control(element){
         prueba="no";
 
         ajax_promise('module/shop/controller/controller_shop.php?op=ver_habitacion_like&id='+id_habitacion+'&user='+user,'GET','json').then(function(data){
-            console.log(data.id_user);//Si borro esto me lo cargo todo no se porque
+            console.log(data.id_user);//Si borro este console log me lo cargo todo no se porque
             like_dislike("dislike",id_habitacion,user);
         
             $('#'+id_habitacion).find('.like_item').removeClass('active-fav');

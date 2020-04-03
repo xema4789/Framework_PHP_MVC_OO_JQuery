@@ -91,6 +91,8 @@
       // echo ("session:");
       // print_r ($_SESSION['user']);
       // session_destroy();
+      echo ("sesion status:");
+      echo session_status();
       unset($_SESSION['type']);
       unset($_SESSION['user']);
       unset($_SESSION['tiempo']);

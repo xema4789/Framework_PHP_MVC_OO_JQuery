@@ -79,6 +79,7 @@
         <script type="text/javascript" src="module/login/model/activity.js"></script>
         <script type="text/javascript" src="module/login/view/js/vista_login.js"></script> 
         <script type="text/javascript" src="module/cart/view/js/controller_cart.js"></script> 
+        <script type="text/javascript" src="module/cart/view/js/pintar_carrito.js"></script> 
         
         <script type="text/javascript" src="module/inicio/view/pintar_home.js"></script>
         <script type="text/javascript" src="module/inicio/view/pintar.js"></script>

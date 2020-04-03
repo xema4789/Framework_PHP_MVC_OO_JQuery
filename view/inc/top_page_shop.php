@@ -96,6 +96,7 @@
         <script type="text/javascript" src="module/shop/view/map_shop.js"></script>
         <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
         <script type="text/javascript" src="module/cart/view/js/controller_cart.js"></script> 
+        <script type="text/javascript" src="module/cart/view/js/pintar_carrito.js"></script> 
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"></script>
 
