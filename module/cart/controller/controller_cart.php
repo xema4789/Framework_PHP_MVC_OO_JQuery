@@ -49,6 +49,7 @@ switch ($_GET['op']){
 
     case 'pintar_productos':
         try{
+            
             $daocart = new DAOCart();
             $rdo = $daocart->pintar_productos($_GET['prods']);
 
@@ -57,7 +58,7 @@ switch ($_GET['op']){
             exit;
         }
         if(!$rdo){
-            echo json_encode("error rdo");
+            echo json_encode("error");
             exit;
         }else{
             $dinfo = array();

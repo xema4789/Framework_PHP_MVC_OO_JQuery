@@ -60,7 +60,8 @@ $(document).ready(function(){
 
             items.push(id_habitacion);
 
-            localStorage.setItem('carrito',items);
+
+            localStorage.setItem('carrito',items.toString());
 
             console.log(localStorage.getItem('carrito'));
             //Añadir clase como que está en carrito y quitarle la clase que tenia para que no pueda volver a añadirlo
