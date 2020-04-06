@@ -1,14 +1,23 @@
 <!-- breadcrumb-area-start -->
 <?php
-$array = array(
-    'fruta1' => 'manzana',
-    'fruta2' => 'naranja',
-    'fruta3' => 'uva',
-    'fruta4' => 'manzana',
-	'fruta5' => 'manzana');
+$frutas = array(
+    'manzana',
+    'naranja',
+    'uva',
+    'manzana',
+	'manzana');
+	$vehiculos = array(
+		'coche',
+		'moto',
+		'avion',
+		'bici',
+		'barco');
 
 
-	print_r($array);
+	$datos = [];
+	
+
+
 	echo("posicionamiento");
 	print_r($array[0]);
 ?>

@@ -99,7 +99,7 @@ switch ($_GET['op']){
         try{
             
             $daocart = new DAOCart();
-            $rdo = $daocart->finalizar_compra($_GET['ids'],$_GET['tipos'],$_GET['precios'],$_GET['cantidad']);
+            $rdo = $daocart->finalizar_compra($_GET['datos']);
 
         }catch (Exception $e){
             echo json_encode("error");

@@ -26,11 +26,11 @@
         return $res;
     }
 
-    function finalizar_compra($ids,$tipos,$precios,$cantidad){
+    function finalizar_compra($datos){
         $user=$_SESSION['user'];
 
-        for($i = 0; $i < sizeof($ids); $i++){
-            $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES ($ids[$i],'$tipos[$i]',$cantidad[$i],$precios[$i],'$user[$i]')";
+        foreach($datos as $valor){
+            $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES ($valor[0][0],'$valor[0][0]',1,$valor[0][0],'$user')";
             $connection = connect::con();
             $res = mysqli_query($connection, $sql);
             connect::close($connection);

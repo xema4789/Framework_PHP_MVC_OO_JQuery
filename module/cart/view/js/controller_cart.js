@@ -175,9 +175,23 @@ $(document).ready(function(){
             console.log(tipos);
             console.log(precios);
             var cantidad=1;
+            var datos = new Array();
+
+            datos.push(ids);
+            datos.push(tipos);
+            datos.push(precios);
+            console.log("datos:");
+            console.log(datos[0][0]);
+
+            // datos[0];
 
 
-            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&ids=" + ids+"&tipos="+tipos+"&precios="+precios+"&cantidad="+cantidad, 'GET', 'json').then(function (data) {
+
+
+
+
+
+            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + datos, 'GET', 'json').then(function (data) {
 
 
 
