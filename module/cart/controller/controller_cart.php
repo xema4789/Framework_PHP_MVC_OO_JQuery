@@ -71,6 +71,56 @@ switch ($_GET['op']){
 
     break;
 
+    case 'pintar_carrito_final':
+        try{
+            
+            $daocart = new DAOCart();
+            $rdo = $daocart->pintar_carrito_final($_GET['prods']);
+
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error");
+            exit;
+        }else{
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+            exit;
+        }
+
+    break;
+
+    case 'finalizar_compra':
+        try{
+            
+            $daocart = new DAOCart();
+            $rdo = $daocart->finalizar_compra($_GET['ids'],$_GET['tipos'],$_GET['precios'],$_GET['cantidad']);
+
+        }catch (Exception $e){
+            echo json_encode("error");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error");
+            exit;
+        }else{
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+            exit;
+        }
+
+
+
+    break;
+
 
 
 }

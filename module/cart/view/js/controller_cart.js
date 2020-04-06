@@ -17,6 +17,9 @@ function ajax_promise(urlP, typeP, dataTypeP){
 
 $(document).ready(function(){
     // alert("ole los caracoles");
+    var ids= new Array();
+    var tipos= new Array();
+    var precios= new Array();
     
 
 
@@ -109,6 +112,79 @@ $(document).ready(function(){
             console.log("Fail promesa");
         })
     }
+
+
+
+    $(document).on("click","#btn_check",function(){
+        
+
+        $('#carrito').empty();
+
+        var items=localStorage.getItem('carrito');
+        ajax_promise("module/cart/controller/controller_cart.php?op=pintar_carrito_final&prods=" + items, 'GET', 'json').then(function (data) {
+            console.log(data);
+            var precio_total=0;
+            
+            $('<div></div>').attr('class',"carrito_final").appendTo('#carrito').html(
+                '<h1>TOTAL</h1>'
+                );
+
+
+                for (row in data){
+                    var precio_prod=data[row].precio * 1; //1 es la cantidad que aun no se como pintarla
+                    precio_total=precio_total+precio_prod;
+                    
+                    ////
+                    ids.push(data[row].Numero_habitacion);
+                    tipos.push(data[row].Tipo);
+                    precios.push(precio_prod);
+                    ////
+
+
+
+
+
+                    
+
+
+                    $('<div></div>').attr('class',"carrito_final_productos").appendTo('.carrito_final').html(
+                        '<img src="' + data[row].imagen + '" class="foto_cart" href="#" alt="No se puede cargar la imagen">' +
+                        '<a>Tipo de habitación: '+data[row].Tipo+'</a>'+
+                        '<a>Cantidad: </a>'+
+                        '<a>Precio: '+data[row].precio+'</a>'+
+                        '<a>Precio total:'+precio_prod+' </a>'
+
+
+                    );
+                }
+
+                $('<div></div>').attr('class',"finalizar_compra").appendTo('.carrito_final').html(
+                    '<h1>Precio total: '+precio_total+'</h1>'+
+                    '<a class="btn" id="finalizar_compra">Finalizar</a>'
+                    );
+
+                    
+
+
+            });
+        });
+
+
+        $(document).on("click","#finalizar_compra",function(){
+            console.log(ids);
+            console.log(tipos);
+            console.log(precios);
+            var cantidad=1;
+
+
+            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&ids=" + ids+"&tipos="+tipos+"&precios="+precios+"&cantidad="+cantidad, 'GET', 'json').then(function (data) {
+
+
+
+            });
+        });
+
+        
 
 
 });

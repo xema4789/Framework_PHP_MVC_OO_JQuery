@@ -1,4 +1,19 @@
 <!-- breadcrumb-area-start -->
+<?php
+$array = array(
+    'fruta1' => 'manzana',
+    'fruta2' => 'naranja',
+    'fruta3' => 'uva',
+    'fruta4' => 'manzana',
+	'fruta5' => 'manzana');
+
+
+	print_r($array);
+	echo("posicionamiento");
+	print_r($array[0]);
+?>
+
+
 <div class="breadcrumb-area bg-color ptb-100">
 			<div class="container">
 				<div class="row">

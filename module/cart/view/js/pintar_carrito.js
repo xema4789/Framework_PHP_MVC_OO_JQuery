@@ -94,7 +94,8 @@ $(document).ready(function () {
         // console.log(this);
         var todo=this;
         console.log(todo);
-        $(this).children('.cant').html(
+        $(this).children().empty();
+        $(this).children().html(
             '<a class="cant">Cantidad: '+cantidad+'</a>'
 
         );

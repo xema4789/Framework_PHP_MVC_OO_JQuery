@@ -1,4 +1,8 @@
 <!-- team-area-start -->
+
+
+
+
 <div class="team-area pt-100 pb-70">
 			<div class="container">
 				<div class="row">
