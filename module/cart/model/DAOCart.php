@@ -29,18 +29,52 @@
     function finalizar_compra($datos){
         $user=$_SESSION['user'];
 
-        foreach($datos as $valor){
-            $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES ($valor[0][0],'$valor[0][0]',1,$valor[0][0],'$user')";
+
+
+        for ($i = 0; $i < sizeof($datos['ids']); $i++){
+
+            
+            
+            $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES (".$datos['ids'][$i].",'".$datos['tipos'][$i]."',1,".$datos['precios'][$i].",'$user')";
             $connection = connect::con();
             $res = mysqli_query($connection, $sql);
+        }
             connect::close($connection);
             return $res;
-        }
+
+        // foreach($datos as $valor){
+        //     print_r($datos);
+           
+            // $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES ($valor[ids][0],'$valor[tipos][0]',1,$valor[precios][0],'$user')";
+            // $connection = connect::con();
+            // $res = mysqli_query($connection, $sql);
+            // connect::close($connection);
+            // return $res;
+        // }
 
 
 
 
         
+    }
+
+
+    function back_up_carrito($id){
+        $user=$_SESSION['user'];
+        $sql = "INSERT INTO Carrito_backup(Id, Usuario) VALUES ($id,'$user')";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function pintar_prods_bd(){
+        $user=$_SESSION['user'];
+        $sql = "SELECT * FROM Carrito_backup WHERE Usuario LIKE '$user'";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
     }
 
 

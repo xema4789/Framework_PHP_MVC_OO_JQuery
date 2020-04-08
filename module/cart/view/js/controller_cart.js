@@ -37,6 +37,14 @@ $(document).ready(function(){
     });
 
 
+    function add_to_carrito_backup(id){
+        ajax_promise("module/cart/controller/controller_cart.php?op=back_up_carrito&id="+id,'GET','json').then(function(data){
+            console.log(data);
+        });
+
+    }
+
+
 
     $(document).on("click",".shop_cart",function(){
         // alert("click en carrito");
@@ -49,6 +57,9 @@ $(document).ready(function(){
     function add_cart(element){
         var id_habitacion=element.closest('.shop_item').attr('id'); 
         console.log("el id del producto es: "+id_habitacion);
+        add_to_carrito_backup(id_habitacion);
+
+
         ajax_promise("module/cart/controller/controller_cart.php?op=ver_tipo&id="+id_habitacion,'GET','json').then(function(data){
             console.log("el tipo es: "+data[0]['Tipo_habitacion']);
             // localStorage.setItem('carrito',id_habitacion);
@@ -116,82 +127,110 @@ $(document).ready(function(){
 
 
     $(document).on("click","#btn_check",function(){
+
+
+        ajax_promise('module/login/controller/controller_login.php?&op=ver_usuario','GET','json').then(function(data){//Ver si esta logueado
+            if(data!="no"){//Está logueado
+                check_out();
+                
+            }else{//No está logueado
+                alert("Debes realizar el login primero");
+                // index.php?page=controller_login&op=list_login
+
+                // ajax_promise('module/login/controller/controller_login.php?&op=list_login','GET','json').then(function(data){
+                    
+                // });
+
+
+
+                callback="index.php?page=controller_login&op=list_login";
+                window.location.href=callback; 
+                //Ir a login
+            }
+        });
+
+
+
+
         
 
-        $('#carrito').empty();
-
-        var items=localStorage.getItem('carrito');
-        ajax_promise("module/cart/controller/controller_cart.php?op=pintar_carrito_final&prods=" + items, 'GET', 'json').then(function (data) {
-            console.log(data);
-            var precio_total=0;
-            
-            $('<div></div>').attr('class',"carrito_final").appendTo('#carrito').html(
-                '<h1>TOTAL</h1>'
-                );
-
-
-                for (row in data){
-                    var precio_prod=data[row].precio * 1; //1 es la cantidad que aun no se como pintarla
-                    precio_total=precio_total+precio_prod;
-                    
-                    ////
-                    ids.push(data[row].Numero_habitacion);
-                    tipos.push(data[row].Tipo);
-                    precios.push(precio_prod);
-                    ////
 
 
 
 
 
-                    
 
+        
 
-                    $('<div></div>').attr('class',"carrito_final_productos").appendTo('.carrito_final').html(
-                        '<img src="' + data[row].imagen + '" class="foto_cart" href="#" alt="No se puede cargar la imagen">' +
-                        '<a>Tipo de habitación: '+data[row].Tipo+'</a>'+
-                        '<a>Cantidad: </a>'+
-                        '<a>Precio: '+data[row].precio+'</a>'+
-                        '<a>Precio total:'+precio_prod+' </a>'
-
-
-                    );
-                }
-
-                $('<div></div>').attr('class',"finalizar_compra").appendTo('.carrito_final').html(
-                    '<h1>Precio total: '+precio_total+'</h1>'+
-                    '<a class="btn" id="finalizar_compra">Finalizar</a>'
-                    );
-
-                    
-
-
-            });
+        
         });
+
+
+        function check_out(){
+            $('#carrito').empty();
+
+                var items=localStorage.getItem('carrito');
+                ajax_promise("module/cart/controller/controller_cart.php?op=pintar_carrito_final&prods=" + items, 'GET', 'json').then(function (data) {
+                console.log(data);
+                var precio_total=0;
+                
+                $('<div></div>').attr('class',"carrito_final").appendTo('#carrito').html(
+                    '<h1>TOTAL</h1>'
+                    );
+
+
+                    for (row in data){
+                        var precio_prod=data[row].precio * 1; //1 es la cantidad que aun no se como pintarla
+                        precio_total=precio_total+precio_prod;
+                        
+                        ////
+                        ids.push(data[row].Numero_habitacion);
+                        tipos.push(data[row].Tipo);
+                        precios.push(precio_prod);
+                        ////
+                        $('<div></div>').attr('class',"carrito_final_productos").appendTo('.carrito_final').html(
+                            '<img src="' + data[row].imagen + '" class="foto_cart" href="#" alt="No se puede cargar la imagen">' +
+                            '<a>Tipo de habitación: '+data[row].Tipo+'</a>'+
+                            '<a>Cantidad: </a>'+
+                            '<a>Precio: '+data[row].precio+'</a>'+
+                            '<a>Precio total:'+precio_prod+' </a>'
+
+
+                        );
+                    }
+
+                    $('<div></div>').attr('class',"finalizar_compra").appendTo('.carrito_final').html(
+                        '<h1>Precio total: '+precio_total+'</h1>'+
+                        '<a class="btn" id="finalizar_compra">Finalizar</a>'
+                        );
+            });
+        }
 
 
         $(document).on("click","#finalizar_compra",function(){
             console.log(ids);
             console.log(tipos);
             console.log(precios);
+
+
+
             var cantidad=1;
-            var datos = new Array();
+            var datos={ids:ids,tipos:tipos,precios:precios};
+            
 
-            datos.push(ids);
-            datos.push(tipos);
-            datos.push(precios);
+
+
+
+            // datos.push(ids);
+            // datos.push(tipos);
+            // datos.push(precios);
+
+
+
+
             console.log("datos:");
-            console.log(datos[0][0]);
-
-            // datos[0];
-
-
-
-
-
-
-
-            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + datos, 'GET', 'json').then(function (data) {
+        
+            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + JSON.stringify(datos), 'GET', 'json').then(function (data) {
 
 
 

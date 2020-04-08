@@ -78,11 +78,11 @@ switch ($_GET['op']){
             $rdo = $daocart->pintar_carrito_final($_GET['prods']);
 
         }catch (Exception $e){
-            echo json_encode("error");
+            echo json_encode("error exct");
             exit;
         }
         if(!$rdo){
-            echo json_encode("error");
+            echo json_encode("error rdo");
             exit;
         }else{
             $dinfo = array();
@@ -97,18 +97,21 @@ switch ($_GET['op']){
 
     case 'finalizar_compra':
         try{
+            // echo ("hola");
+            // print_r($_GET['datos']);
             
             $daocart = new DAOCart();
-            $rdo = $daocart->finalizar_compra($_GET['datos']);
+            $rdo = $daocart->finalizar_compra(json_decode($_GET['datos'],true));
 
         }catch (Exception $e){
-            echo json_encode("error");
+            echo json_encode("error exc");
             exit;
         }
         if(!$rdo){
-            echo json_encode("error");
+            echo json_encode("error rdo");
             exit;
         }else{
+
             $dinfo = array();
 				foreach ($rdo as $row) {
 					array_push($dinfo, $row);
@@ -121,6 +124,61 @@ switch ($_GET['op']){
 
     break;
 
+    case 'back_up_carrito':
+
+        try{
+        
+            
+            $daocart = new DAOCart();
+            $rdo = $daocart->back_up_carrito($_GET['id']);
+
+        }catch (Exception $e){
+            echo json_encode("error exc");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+            exit;
+        }
+
+
+    break;
+
+
+    case 'pintar_prods_bd':
+        try{
+        
+            
+            $daocart = new DAOCart();
+            $rdo = $daocart->pintar_prods_bd();
+
+        }catch (Exception $e){
+            echo json_encode("error exc");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+            exit;
+        }
+
+    break;
+    
 
 
 }
