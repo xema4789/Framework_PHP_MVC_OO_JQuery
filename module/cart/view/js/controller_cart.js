@@ -28,9 +28,6 @@ $(document).ready(function(){
     
     
         if($(event.target).is('.shop_item')){
-            // alert("click en shop");
-            // var id = $(".shop_item").attr("id");
-            // console.log(id);
             add_cart($(this));
             
         }
@@ -39,7 +36,15 @@ $(document).ready(function(){
 
     function add_to_carrito_backup(id){
         ajax_promise("module/cart/controller/controller_cart.php?op=back_up_carrito&id="+id,'GET','json').then(function(data){
+            console.log("Dentro de la promise add to carrito backup");
             console.log(data);
+
+            // Trigger de la bd: DELIMITER //
+// CREATE TRIGGER bi_set_precios BEFORE INSERT ON Carrito 
+// FOR EACH ROW
+// SET NEW.Precio_total=(NEW.Cantidad*(SELECT precio FROM Tipos t WHERE t.Tipo LIKE 
+// (SELECT h.Tipo_habitacion FROM Habitaciones h WHERE h.Numero_habitacion = NEW.id_habitacion)))
+//
         });
 
     }
@@ -57,7 +62,9 @@ $(document).ready(function(){
     function add_cart(element){
         var id_habitacion=element.closest('.shop_item').attr('id'); 
         console.log("el id del producto es: "+id_habitacion);
+        console.log("Antes add to carrito");
         add_to_carrito_backup(id_habitacion);
+        console.log("Despues de add to carrito");
 
 
         ajax_promise("module/cart/controller/controller_cart.php?op=ver_tipo&id="+id_habitacion,'GET','json').then(function(data){
@@ -79,37 +86,12 @@ $(document).ready(function(){
 
             console.log(localStorage.getItem('carrito'));
             //Añadir clase como que está en carrito y quitarle la clase que tenia para que no pueda volver a añadirlo
-
-            
             $('#'+id_habitacion).find('.shop_item').addClass('active_cart');
-            $('#'+id_habitacion).find('.shop_item').removeClass('shop_item');
-            
-
-            
-           
-            
+            $('#'+id_habitacion).find('.shop_item').removeClass('shop_item'); 
         });
-
-
-
-
-
-        
-
-
-
-        
-        
-
     }
 
-    function ver_tipo(id){
-
-        
-        //ir al dao y preguntar de que tipo es esa habitacion
-
-
-    }
+  
 
 
     function pintar_items_carrito(){//Mas adelante acabaré esto, es para pintar los items que tengo ya en el carrito
@@ -135,13 +117,7 @@ $(document).ready(function(){
                 
             }else{//No está logueado
                 alert("Debes realizar el login primero");
-                // index.php?page=controller_login&op=list_login
-
-                // ajax_promise('module/login/controller/controller_login.php?&op=list_login','GET','json').then(function(data){
-                    
-                // });
-
-
+           
 
                 callback="index.php?page=controller_login&op=list_login";
                 window.location.href=callback; 
@@ -149,28 +125,26 @@ $(document).ready(function(){
             }
         });
 
-
-
-
-        
-
-
-
-
-
-
-
-        
-
         
         });
-
+    function productos_bd(){
+        return new Promise((resolve, reject) => {ajax_promise("module/cart/controller/controller_cart.php?op=pintar_prods_bd",'GET','json').then(function(data){ 
+            resolve (data);
+        });
+    });
+            
+        }
 
         function check_out(){
             $('#carrito').empty();
+            productos_bd().then(function(data){
+                var items2 = [];
 
+            for (row in data){
+                items2.push(data[row].Id)
+            }
                 var items=localStorage.getItem('carrito');
-                ajax_promise("module/cart/controller/controller_cart.php?op=pintar_carrito_final&prods=" + items, 'GET', 'json').then(function (data) {
+                ajax_promise("module/cart/controller/controller_cart.php?op=pintar_carrito_final&prods=" + items2, 'GET', 'json').then(function (data) {
                 console.log(data);
                 var precio_total=0;
                 
@@ -204,36 +178,19 @@ $(document).ready(function(){
                         '<a class="btn" id="finalizar_compra">Finalizar</a>'
                         );
             });
+
+        });
         }
 
 
         $(document).on("click","#finalizar_compra",function(){
-            console.log(ids);
-            console.log(tipos);
-            console.log(precios);
-
-
 
             var cantidad=1;
             var datos={ids:ids,tipos:tipos,precios:precios};
-            
-
-
-
-
-            // datos.push(ids);
-            // datos.push(tipos);
-            // datos.push(precios);
-
-
-
-
-            console.log("datos:");
-        
-            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + JSON.stringify(datos), 'GET', 'json').then(function (data) {
-
-
-
+      
+            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + JSON.stringify(datos), 'GET', 'json').then(function () {
+                alert("Compra realizada con éxito");
+                setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
             });
         });
 

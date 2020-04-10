@@ -178,6 +178,32 @@ switch ($_GET['op']){
         }
 
     break;
+
+    case 'delete':
+        try{
+        
+            
+            $daocart = new DAOCart();
+            $rdo = $daocart->delete($_GET['id']);
+
+        }catch (Exception $e){
+            echo json_encode("error exc");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+            exit;
+        }
+    break;
+    
     
 
 

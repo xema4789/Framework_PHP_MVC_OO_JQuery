@@ -16,15 +16,8 @@ function ajax_promise(urlP, typeP, dataTypeP) {
 
 
 $(document).ready(function () {
-    // alert("ole los caracoles");
-
-
-
-
+ 
     pintar_productos();
-
-
-
 
     function productos_bd(){
         return new Promise((resolve, reject) => {ajax_promise("module/cart/controller/controller_cart.php?op=pintar_prods_bd",'GET','json').then(function(data){
@@ -45,43 +38,18 @@ $(document).ready(function () {
 
 
 
-    function pintar_productos() {
-        // alert("pintar productos");   
+    function pintar_productos() { 
         
         //Buscar prods en bd
-
-        // var items_bd=productos_bd();
         
 
         productos_bd().then(function(data){
-            
+    
             var items = [];
-            // items = localStorage.getItem('carrito');
-            // console.log("items localstorage");
-            console.log(items);
-            console.log("Items bd:");
-            console.log(data);
 
             for (row in data){
                 items.push(data[row].Id)
             }
-
-            // let items_local= [];
-            // items_local= localStorage.getItem('carrito');
-
-            // if(items_local){
-            //     console.log("hay items en local");
-            // }else{
-            //     console.log("no hay items");
-            // }
-            
-
-            console.log("items bd y localstorage:");
-            console.log(items);
-
-
-
-
 
             ajax_promise("module/cart/controller/controller_cart.php?op=pintar_productos&prods=" + items, 'GET', 'json').then(function (data) {
                 console.log("data:");
@@ -99,15 +67,15 @@ $(document).ready(function () {
                         '<div>Ciudad: ' + data[row].Ciudad + '</div>' +
                         '<div>Tipo: ' + data[row].Tipo_habitacion + '</div>' +
                         'Cantidad:' +
-                        // '<div>'++'</div>'+
                         '<div id="cantidad_contenedor">'+
                         '<div><input type="range" name="cantidad_prod" class="cantidad" id="cantidad_prod" value="1" min="1" max="10" step="1"></div></br>' +
                         '<a class="cant">Cantidad: 1</a>'+
+                        '<input type="text" name="cantidad2" id="cantidad2"</input>'+
                         '</input>'+
+                        
                         '</div>'+
                         '<a class="cantidad"></a>' +
                         '<div class="btn" id="delete">Eliminar</div>'
-                        // '<div></div>'
                     );
                 }
                 $('<div></div>').attr('id', "btn_check").appendTo('#check_out').html(
@@ -119,35 +87,11 @@ $(document).ready(function () {
                     '<div>Cesta vacia</div>'
                     );
                 }
-    
-    
-                
-    
-    
-    
-    
-    
-    
-                // '<img src="'+data[row].imagen+'" id="'+data[row].Numero_habitacion+'" class="foto_carrito" href="#" alt="No se puede cargar la imagen">'+
             });//Fin promesa pintar productos
 
 
 
         });//Fin promesa productos_bd
-
-        
-
-        
-
-
-
-        
-
-
-
-        
-
-
     }
 
    
@@ -155,10 +99,6 @@ $(document).ready(function () {
 
     $(document).on('change', '.cantidad', function (event) {
         var cantidad = this.value;
-        console.log(cantidad);
-        // console.log(this);
-        var todo=this;
-        console.log(todo);
         $(this).children().empty();
         $(this).children().html(
             '<a class="cant">Cantidad: '+cantidad+'</a>'
@@ -170,15 +110,26 @@ $(document).ready(function () {
 
     $(document).on("click", "#delete", function () {
         var id = $(this).parent().attr('id');
+        eliminar_producto_bd(id).then(function(){
+            var items =  localStorage.getItem('carrito');
+            var items2= new Array();
+            items2=items.split(",");
 
-        var items =  localStorage.getItem('carrito');
-        var items2= new Array();
-        items2=items.split(",");
+            const index = items2.indexOf(id);
 
-        const index = items2.indexOf(id);
-
-        items2.splice(index,1);
-        localStorage.setItem('carrito',items2);
-        pintar_productos();
+            items2.splice(index,1);
+            localStorage.setItem('carrito',items2);
+            pintar_productos();
+        })
     });
+
+
+    function eliminar_producto_bd(id){
+        return new Promise((resolve,reject)=>{
+            ajax_promise("module/cart/controller/controller_cart.php?op=delete&id="+id,"GET",'json').then(function(){
+                console.log("Borrado");
+                resolve("ok");
+            });
+        });   
+    }
 });
