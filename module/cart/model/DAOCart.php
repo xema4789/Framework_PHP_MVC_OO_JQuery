@@ -11,7 +11,7 @@
     }
 
     function pintar_productos($ids){
-        $sql = "SELECT * FROM Habitaciones WHERE Numero_habitacion IN ($ids)";
+        $sql = "SELECT h.*, c.cantidad FROM Habitaciones h INNER JOIN Carrito_backup c ON h.Numero_habitacion=c.Id WHERE h.Numero_habitacion IN ($ids)";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);
@@ -19,7 +19,7 @@
     }
 
     function pintar_carrito_final($ids){
-        $sql = "SELECT t.Tipo, h.imagen, t.precio, h.Numero_habitacion FROM Tipos t INNER JOIN Habitaciones h ON t.Tipo = h.Tipo_habitacion WHERE h.Numero_habitacion IN ($ids)";
+        $sql = "SELECT t.Tipo, h.imagen, t.precio, h.Numero_habitacion, c.cantidad FROM Tipos t INNER JOIN Habitaciones h ON t.Tipo = h.Tipo_habitacion INNER JOIN Carrito_backup c ON h.Numero_habitacion = c.Id WHERE h.Numero_habitacion IN ($ids)";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);
@@ -30,7 +30,7 @@
         $user=$_SESSION['user'];
 
         for ($i = 0; $i < sizeof($datos['ids']); $i++){
-            $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES (".$datos['ids'][$i].",'".$datos['tipos'][$i]."',1,".$datos['precios'][$i].",'$user')";
+            $sql = "INSERT INTO Carrito (id_habitacion, Tipo, Cantidad, Precio_total, usuario) VALUES (".$datos['ids'][$i].",'".$datos['tipos'][$i]."','".$datos['cantidades'][$i]."',".$datos['precios'][$i].",'$user')";
             $connection = connect::con();
             $res = mysqli_query($connection, $sql);
         }
@@ -70,6 +70,15 @@
     function delete($id){
         $user=$_SESSION['user'];
         $sql = "DELETE FROM Carrito_backup WHERE Usuario LIKE '$user' AND Id = $id";
+        $connection = connect::con();
+        $res = mysqli_query($connection, $sql);
+        connect::close($connection);
+        return $res;
+    }
+
+    function cambiar_cantidad($id,$cant){
+        $user=$_SESSION['user'];
+        $sql = "UPDATE Carrito_backup SET cantidad=$cant WHERE Usuario LIKE '$user' AND Id = $id";
         $connection = connect::con();
         $res = mysqli_query($connection, $sql);
         connect::close($connection);

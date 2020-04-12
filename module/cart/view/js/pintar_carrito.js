@@ -67,13 +67,13 @@ $(document).ready(function () {
                         '<div>Ciudad: ' + data[row].Ciudad + '</div>' +
                         '<div>Tipo: ' + data[row].Tipo_habitacion + '</div>' +
                         'Cantidad:' +
-                        '<div id="cantidad_contenedor">'+
-                        '<div><input type="range" name="cantidad_prod" class="cantidad" id="cantidad_prod" value="1" min="1" max="10" step="1"></div></br>' +
-                        '<a class="cant">Cantidad: 1</a>'+
-                        '<input type="text" name="cantidad2" id="cantidad2"</input>'+
-                        '</input>'+
                         
-                        '</div>'+
+                        '<div><input type="range" name="cantidad_prod" class="cantidad" id="'+data[row].Numero_habitacion+'"  value="1" min="1" max="10" step="1"></br>' +
+                        '<div class="cant">Cantidad: '+data[row].cantidad+' </div>'+
+                        // '<input type="text" name="cantidad2" id="cantidad2"</input>'+
+                        '</input></div>'+
+                        
+                       
                         '<a class="cantidad"></a>' +
                         '<div class="btn" id="delete">Eliminar</div>'
                     );
@@ -98,15 +98,38 @@ $(document).ready(function () {
 
 
     $(document).on('change', '.cantidad', function (event) {
+        // if($(event.target).is('.cantidad')){
+            
+        // }
         var cantidad = this.value;
-        $(this).children().empty();
-        $(this).children().html(
-            '<a class="cant">Cantidad: '+cantidad+'</a>'
+        console.log(cantidad);
+        // event.children().empty();
+            $(this).children().empty();
+            var id=event.target.id;
+            console.log(id);
+            cambiar_cantidad(id,cantidad).then(function(data){
+                console.log(data);
+                pintar_productos();
+            })
 
-        );
+
+            // $(this).children().html(
+            //     '<a class="cant">Cantidad: '+cantidad+'</a>'
+
+            // );
+        
 
 
     });
+
+    function cambiar_cantidad(id,cantidad){
+        return new Promise((resolve,reject)=>{
+            ajax_promise("module/cart/controller/controller_cart.php?op=cambiar_cantidad&id="+id+"&cant="+cantidad,"GET",'json').then(function(){
+                console.log("cambiado");
+                resolve("ok");
+            });
+        });   
+    }
 
     $(document).on("click", "#delete", function () {
         var id = $(this).parent().attr('id');

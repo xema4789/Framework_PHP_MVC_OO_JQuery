@@ -20,6 +20,7 @@ $(document).ready(function(){
     var ids= new Array();
     var tipos= new Array();
     var precios= new Array();
+    var cantidades= new Array();
     
 
 
@@ -38,13 +39,6 @@ $(document).ready(function(){
         ajax_promise("module/cart/controller/controller_cart.php?op=back_up_carrito&id="+id,'GET','json').then(function(data){
             console.log("Dentro de la promise add to carrito backup");
             console.log(data);
-
-            // Trigger de la bd: DELIMITER //
-// CREATE TRIGGER bi_set_precios BEFORE INSERT ON Carrito 
-// FOR EACH ROW
-// SET NEW.Precio_total=(NEW.Cantidad*(SELECT precio FROM Tipos t WHERE t.Tipo LIKE 
-// (SELECT h.Tipo_habitacion FROM Habitaciones h WHERE h.Numero_habitacion = NEW.id_habitacion)))
-//
         });
 
     }
@@ -154,19 +148,21 @@ $(document).ready(function(){
 
 
                     for (row in data){
-                        var precio_prod=data[row].precio * 1; //1 es la cantidad que aun no se como pintarla
+                       
+                        var precio_prod=data[row].precio * data[row].cantidad; 
                         precio_total=precio_total+precio_prod;
                         
                         ////
                         ids.push(data[row].Numero_habitacion);
                         tipos.push(data[row].Tipo);
                         precios.push(precio_prod);
+                        cantidades.push(data[row].cantidad);
                         ////
                         $('<div></div>').attr('class',"carrito_final_productos").appendTo('.carrito_final').html(
-                            '<img src="' + data[row].imagen + '" class="foto_cart" href="#" alt="No se puede cargar la imagen">' +
-                            '<a>Tipo de habitación: '+data[row].Tipo+'</a>'+
-                            '<a>Cantidad: </a>'+
-                            '<a>Precio: '+data[row].precio+'</a>'+
+                            '<img src="' + data[row].imagen + '" class="foto_cart" href="#" alt="No se puede cargar la imagen"><br>' +
+                            '<a>Tipo de habitación: '+data[row].Tipo+'</a><br>'+
+                            '<a>Cantidad: '+data[row].cantidad+' </a><br>'+
+                            '<a>Precio: '+data[row].precio+'</a><br>'+
                             '<a>Precio total:'+precio_prod+' </a>'
 
 
@@ -185,8 +181,8 @@ $(document).ready(function(){
 
         $(document).on("click","#finalizar_compra",function(){
 
-            var cantidad=1;
-            var datos={ids:ids,tipos:tipos,precios:precios};
+            // var cantidad=1;
+            var datos={ids:ids,tipos:tipos,precios:precios,cantidades:cantidades};
       
             ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + JSON.stringify(datos), 'GET', 'json').then(function () {
                 alert("Compra realizada con éxito");

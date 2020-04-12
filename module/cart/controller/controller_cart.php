@@ -203,6 +203,32 @@ switch ($_GET['op']){
             exit;
         }
     break;
+
+    case 'cambiar_cantidad':
+        try{
+        
+            
+            $daocart = new DAOCart();
+            $rdo = $daocart->cambiar_cantidad($_GET['id'],$_GET['cant']);
+
+        }catch (Exception $e){
+            echo json_encode("error exc");
+            exit;
+        }
+        if(!$rdo){
+            echo json_encode("error rdo");
+            exit;
+        }else{
+
+            $dinfo = array();
+				foreach ($rdo as $row) {
+					array_push($dinfo, $row);
+				}
+				echo json_encode($dinfo);
+            exit;
+        }
+
+    break;
     
     
 
