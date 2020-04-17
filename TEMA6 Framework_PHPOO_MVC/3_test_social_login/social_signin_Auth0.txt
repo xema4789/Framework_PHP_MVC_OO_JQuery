@@ -1,0 +1,9 @@
+- signin_Auth0 -> social signin GMail/GHub
+---------------------------------------------
+1. Crear un app en:
+	- Console developer GMail (test-google-php-js): https://console.developers.google.com/
+	- Console developer GHub (test_auth0_php_js):   https://github.com/settings/developers
+
+2. Crear un app en:
+	- https://auth0.com/
+	- Auth0(test_php_js) 

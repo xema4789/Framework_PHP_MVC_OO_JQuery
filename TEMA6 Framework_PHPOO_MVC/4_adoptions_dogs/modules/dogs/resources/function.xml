@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>create_dogs</name>
+        <uri>create_dogs</uri>
+    </function>
+    <function>
+        <name>result_dogs</name>
+        <uri>result_dogs</uri>
+    </function>
+    <function>
+        <name>json_dog</name>
+        <uri>json_dog</uri>
+    </function>
+    <function>
+        <name>load_country</name>
+        <uri>load_country</uri>
+    </function>
+    <function>
+        <name>load_provinces</name>
+        <uri>load_provinces</uri>
+    </function>
+    <function>
+        <name>load_cities</name>
+        <uri>load_cities</uri>
+    </function>
+    <function>
+        <name>upload_dog</name>
+        <uri>upload_dog</uri>
+    </function>
+    <function>
+        <name>delete_dog</name>
+        <uri>delete_dog</uri>
+    </function>
+    <function>
+        <name>load_info_dog</name>
+        <uri>load_info_dog</uri>
+    </function>
+</functions>

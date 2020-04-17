@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <div id="loading">
+    <img src="assets/loading.svg" alt="Loading spinner">
+  </div>
+
+  <div class="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Auth0 - jQuery</a>
+
+          <button id="btn-home-view" class="btn btn-primary btn-margin">
+              Home
+          </button>
+
+          <button id="btn-profile-view" class="btn btn-primary btn-margin">
+              Profile
+          </button>
+
+          <button id="btn-login" class="btn btn-primary btn-margin">
+              Log In
+          </button>
+
+          <button id="btn-logout" class="btn btn-primary btn-margin">
+              Log Out
+          </button>
+
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <!-- home view -->
+      <div id="home-view">
+        <h4></h4>
+      </div>
+
+      <!-- profile view -->
+      <div id="profile-view" class="panel panel-default profile-area">
+        <div class="panel-heading"><h3>Profile</h3></div>
+          <div class="panel-body">
+            <img class="avatar" alt="avatar">
+            <div>
+              <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
+              <h3 class="nickname"></h3>
+            </div>
+            <pre class="full-profile"></pre>
+          </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdn.auth0.com/js/auth0/9.2.2/auth0.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

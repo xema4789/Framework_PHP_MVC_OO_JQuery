@@ -1,0 +1,14 @@
+- https://github.com/buster95/ConfidentORM
+    - class Table: select, where, whereOr, inner, order, ...
+    - class Query: ejecutar/consultar
+    - class View: getJSON
+    - class DB: table/query/backup/jsondata/count_rows/encriptar
+
+echo DB::query('select * from usuarios')->getJSON();
+echo DB::table('usuarios')->getJSON();
+echo DB::table('usuarios')->select('nombre, apellido')->getJSON();
+echo DB::table('usuarios')->order('id_usuario')->getSQL();
+echo DB::table('usuarios')->findJSON(1);
+echo DB::table('usuarios')->KEY(); //get_PK
+echo DB::table('usuarios')->selectAs('concat(nombre,\' \',apellido)','fullname')->getJSON();
+echo DB::table('usuarios')->selectAs('concat(APELLIDO,\' \',nombre)','fullname')->select('id_usuario')->findJSON(2);

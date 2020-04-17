@@ -1,0 +1,4 @@
+$ php -v
+    PHP 7.2.29
+$ sudo apt-get install php7.2-curl
+$ sudo service apache2 restart

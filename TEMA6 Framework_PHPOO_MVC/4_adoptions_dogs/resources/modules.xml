@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules>
+    <module>
+        <name>home</name>
+        <uri>home</uri>
+    </module>
+    <module>
+        <name>dogs</name>
+        <uri>dogs</uri>
+    </module>
+    <module>
+        <name>adoptions</name>
+        <uri>adoptions</uri>
+    </module>
+    <module>
+        <name>contact</name>
+        <uri>contact</uri>
+    </module>
+    <module>
+        <name>ubication</name>
+        <uri>ubication</uri>
+    </module>
+    <module>
+        <name>login</name>
+        <uri>login</uri>
+    </module>
+</modules>

@@ -1,0 +1,136 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.js"></script>
+
+<!--End of dropzone scripts-->
+<script type="text/javascript" src="<?php echo JS_VIEW_DOGS ?>create_dogs.js"></script>
+<form name="formproduct" id="formproduct">
+    <br>
+    <table>
+        <tr>
+           <td>Nombre: </td>
+           <td id="error_dname"><input type="text" name="dname" id="dname" required="required" placeholder="Nombre perro/a"
+             value=""/>
+             <div></div>
+           </td>
+        </tr>
+        <tr>
+           <td>Chip: </td>
+           <td id="error_dchip"><input type="text" name="dchip" id="dchip" required="required" placeholder="Chip perro/a"
+            value=""/>
+            <div ></div>
+           </td>
+
+        </tr>
+        <tr>
+           <td>Raza: </td>
+           <td id="error_breed"><input type="text" name="breed" id="breed" required="required" placeholder="Raza perro/a"
+            value=""/>
+            <div ></div>
+           </td>
+
+        </tr>
+        <tr>
+           <td>Teléfono: </td>
+           <td id="error_dtlp"><input type="text" name="dtlp" id="dtlp" required="required" placeholder="Teléfono de contacto"
+            value=""/>
+            <div ></div>
+          </td>
+        </tr>
+
+		</tr>
+		<tr>
+	      	<div class="form-group">
+	           <td>Información:  </td>
+	           <td id="error_cinfo" >
+	          	<input type="checkbox" name="info[]" class="DCheckbox" value="Castrado"> Castrado/a
+	          	<input type="checkbox" name="info[]" class="DCheckbox" value="Vacunado"> Vacunado/a
+		        <input type="checkbox" name="info[]" class="DCheckbox" value="Cariñoso"> Cariñoso/a
+		        <input type="checkbox" name="info[]" class="DCheckbox" value="Traquilo"> Traquilo/a
+		        <input type="checkbox" name="info[]" class="DCheckbox" value="Jugueton"> Jugueton/a
+	           </td>
+	      	</div>
+        </tr>
+        <tr>
+            <td>Sexo:</td>
+            <td>
+		        Perro <input name="sex" id="sex" type="radio" class="sex" value="perro" checked>
+		        Perra <input name="sex" id="sex" type="radio" class="sex" value="perra">
+            </td>
+        </tr>
+        <tr>
+            <td>Estatura:</td>
+            <td>
+		        Pequeña <input name="stature" id="stature" type="radio" class="stature" value="pequeña" checked>
+		        Mediana <input name="stature" id="stature" type="radio" class="stature" value="mediana">
+		        Grande <input name="stature" id="stature" type="radio" class="stature" value="grande">
+            </td>
+        </tr>
+        <tr>
+           <td>Fecha de Nacimiento: </td>
+           <td id="error_date_birth"><input type="text" name="date_birth" id="date_birth" placeholder="Date of birth" readonly="readonly"
+             value=""/>
+             <div ></div>
+           </td>
+        </tr>
+        <tr>
+           <td>Fecha de Registro: </td>
+           <td id="error_date_regis"><input type="text" name="date_regis" id="date_regis" placeholder="Date of register" readonly="readonly"
+             value=""/>
+             <div ></div>
+           </td>
+        </tr>
+        <tr><td>Ubicación:</td></tr>
+        <tr>
+            <td>Pais: </td>
+        <td id="error_country">
+          <select name="country" id="country">
+          <option selected>Select country</option>
+        </select>
+        <div ></div>
+      </td>
+        </tr>
+        <tr>
+          <td> </td>
+        </tr>
+        <tr>
+            <td>Provincia: </td>
+        <td id="error_province">
+          <select name="province" id="province">
+          <option selected>Select province</option>
+        </select>
+        <div></div>
+      </td>
+        </tr>
+        <tr>
+          <td> </td>
+        </tr>
+        <tr>
+            <td>Ciudad: </td>
+        <td id="error_city">
+          <select name="city" id="city">
+          <option selected>Select city</option>
+        </select>
+        <div></div>
+      </td>
+        <tr>
+           <td>Información adicional: </td>
+           <td id="error_dinfo">
+           	<textarea rows="4" cols="50" name="dinfo" id="dinfo" placeholder="Información adicional del perro"
+             value=""></textarea>
+           </td>
+        </tr>
+         <tr>
+          <td>Subir imagen:
+          </td>
+          <td id="error_pic">
+            <div class="msg"></div>
+            <br/>
+            <div id="dropzone" class="dropzone"></div><br/>
+          </td>
+        </tr>
+    </table>
+    <br/>
+    <button type="button" name="submit_dog" id="submit_dog" value="submit">
+      Añadir Perro
+    </button>
+</form>

@@ -1,0 +1,1 @@
+<div id="back_img_404"><img src="<?php echo IMG_PATH ?>404error.jpg"></div>
