@@ -3,7 +3,7 @@
     //Authorized Recipients -> afegir a 'yomogan@gmail.com'
     
     function send_mailgun($email){
-		$email="123xema45@gmail.com";
+		$email="jmqmaestre@gmail.com";
     	$config = array();
     	$config['api_key'] = "035d2e7f4e5711359f04b81c760c747e-915161b7-10e0fec3"; //API Key
     	$config['api_url'] = "https://api.mailgun.net/v3/sandbox9b78e0b277c24abfbdfce01f6de6d108.mailgun.org/messages"; //API Base URL
