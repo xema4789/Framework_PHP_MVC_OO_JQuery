@@ -19,7 +19,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- breadcrumb-area-end -->
+
 		<!-- about-area-start -->
 		<div class="about-area pt-100 pb-70">
 			<div class="container">
