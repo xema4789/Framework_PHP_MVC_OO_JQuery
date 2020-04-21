@@ -1,26 +1,5 @@
 <!-- breadcrumb-area-start -->
-<?php
-$frutas = array(
-    'manzana',
-    'naranja',
-    'uva',
-    'manzana',
-	'manzana');
-	$vehiculos = array(
-		'coche',
-		'moto',
-		'avion',
-		'bici',
-		'barco');
 
-
-	$datos = [];
-	
-
-
-	echo("posicionamiento");
-	print_r($array[0]);
-?>
 
 
 <div class="breadcrumb-area bg-color ptb-100">
