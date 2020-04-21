@@ -75,11 +75,6 @@ $(document).ready(function () {
 
                     initMap();
             
-                    // window.onload = function () {
-                    //     alert("dentro de onload");
-                    //     initMap();
-                    // };
-            
                     function addMarker() {
                         console.log("function add marker");
                         for (var i = 0; i < markersOnMap.length; i++) {
@@ -115,7 +110,6 @@ $(document).ready(function () {
                             InforObj.length = 0;
                         }
                     }
-                    // initMap();
             
                     function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {

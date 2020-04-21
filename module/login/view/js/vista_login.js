@@ -1,60 +1,5 @@
-
-// function ajax_succes_promise(typeP, urlP,datatypeP){
-//     return new Promise((resolve, reject)=>{
-//         $.ajax({
-//             url:urlP,
-//             type:typeP,
-//             dataType: datatypeP,
-                
-//           }).done(function(data){
-//             resolve(data);
-//           }).fail(function(){
-//             console.log("FAIL");
-//             reject("FAIL");
-//           });
-//     }); 
-
-    
-// }
-
-// function ajax_succes_promise(typeP, urlP){
-//     return new Promise((resolve,reject)=>{
-//         $.ajax({
-//             type : typeP,
-//             url  : urlP,
-//             dataType: 'json',
-//             success: function(data){	
-//                 resolve(data);
-//             },
-//             error: function(XMLHttpRequest, textStatus, errorThrown) { 
-//                 //Aqui me salta el error
-//                 alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-//                 reject ("Error");
-//             }       
-//         });
-//     });
-
-    
-// }
-
-
-
 $(document).ready(function(){
-    
 
-    // ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=ver_usuario','json').then(function(data){
-    //     alert("dentro de la promesa");
-    //     alert(data);
-    // }).catch(function(){
-    //     alert("catch despues de la promesa");
-    // });
-
-    
-
-
-
-
-    // pintar_menu("user");
     pintar_login('login');
 
     $.ajax({
@@ -83,27 +28,9 @@ $(document).ready(function(){
 
       }).fail(function(){
         console.log("FAIL");
-        // reject("FAIL");
       });
 
-
-    //Conflicto de promesas
-
-    //   ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=ver_usuario').then(function(data){
-    //       if(data!="no"){
-    //         console.log("usuario encontrado");
-    //         console.log(data);
-    //       }else{
-    //           console.log("usuario no encontrado");
-    //       }
-    //   });
-
-
-
-
     $('#lo_register').on("click",function(){
-        // callback="index.php?page=controller_login&op=register";
-        // window.location(callback);
         pintar_login('register');
     });
  
@@ -159,24 +86,6 @@ $(document).ready(function(){
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function pintar_menu(tipo,nombre){
 
         switch(tipo){
@@ -210,7 +119,6 @@ $(document).ready(function(){
 											'</ul>'+
 										'</li>'+
 										'<li><a href="index.php?page=controller_contact&op=list">Contacto</a></li>'+
-                                        // '<li><a href="index.php?page=controller_login&op=log_out">'+nombre+'</a></li>'+
                                         '<li class="active"><a>'+nombre+'<i class="fa fa-angle-down"></i></a>'+
                                         '<ul class="submenu">'+
                                             '<li><a id="desconectar" href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+

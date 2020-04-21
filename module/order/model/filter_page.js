@@ -1,25 +1,5 @@
 $(document).ready(function(){
-    console.log ("dentro del ready order");
-    console.log("antes del ajax");
 
-//     $.ajax({
-//         url:"module/order/controller/controller_order.php?op=datatable",
-//         type: 'GET',
-//         dataType: 'json',
-            
-//       }).done(function(data){
-//         console.log(data);
-//     }).fail(function(){
-//         console.log("FAIL");
-//     })
-// })
-
-    console.log("despues del ajax");
-
-
-
-
-    
     var url = "module/order/controller/controller_order.php?op=datatable";
     //preparar data
      var source=
@@ -34,8 +14,7 @@ $(document).ready(function(){
          id: 'id',
          url: url
      };
-     //console.log("despues del source");
-     //console.log(source);
+
      var dataAdapter = new $.jqx.dataAdapter(source);  //Error en esta linea
      console.log("despues del dataAdapter");
      console.log(dataAdapter);
