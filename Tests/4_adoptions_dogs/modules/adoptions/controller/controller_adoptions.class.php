@@ -54,10 +54,10 @@
 					if ($json) {
 						echo json_encode($json);
 					}else
-						echo $json_encode(false);
+						echo json_encode(false);
 				}else
-					echo $json_encode(false);
+					echo json_encode(false);
 			}else
-				echo $json_encode(false);
+				echo json_encode(false);
 		}
 	}
