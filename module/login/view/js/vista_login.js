@@ -180,7 +180,8 @@ $(document).ready(function(){
                                             '<li><a href="#" id="btn-va" name="btn-va">Valenciano</a></li>'+
                                         '</ul>'+
                                     '</li>'+
-                                    '<li><a href="index.php?page=controller_login&op=list_login">Entrar</a></li>'+
+                                    '<li><a href="index.php?page=controller_login&op=list_login">Entrarrj</a></li>'+
+                                    '<li><a href="index.php?page=controller_contact&op=list">Contacto</a></li>'+
                                 '</ul>'+
                             '</nav>'
                 );

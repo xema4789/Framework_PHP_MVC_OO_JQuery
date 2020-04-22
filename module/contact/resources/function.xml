@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>list_contact</name>
+        <uri>list_contact</uri>
+    </function>
+    
+</functions>
