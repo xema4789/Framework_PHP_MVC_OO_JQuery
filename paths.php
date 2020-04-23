@@ -38,4 +38,7 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
 //   define('BLL_CONTACT', SITE_ROOT . 'modules/contact/model/BLL/');
 //   define('MODEL_CONTACT', SITE_ROOT . 'modules/contact/model/model/');
 
+
+  //TESTS
+  define('TEST_PATH', SITE_ROOT . 'Tests/');
 ?>

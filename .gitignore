@@ -3,4 +3,5 @@
 # /Tests/3_test_social_login/signin_Auth0/
 # /Tests/social_login_xema/
 # /Tests/4_adoptions_dogs/
-# /Tests/ORM_generic
+/Tests/2_test_email_mailgun/credentials.ini
+/Tests/4_adoptions_dogs/model/db.ini
