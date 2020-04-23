@@ -23,7 +23,7 @@ function loadClasses($className){
     //model
     elseif(file_exists('model/' . $className . 'class.singleton.php')){
         set_include_path('model/');
-        spl_autoload($className);
+        spl_autoload($className); //khv
     }
 }
 
