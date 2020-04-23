@@ -1,2 +1,0 @@
-RewriteEngine on
-RewriteRule ^home/(\w+)/?$ index.php?page=controller_home&op=list
