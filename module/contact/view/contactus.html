@@ -72,20 +72,24 @@
 				</div>
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-sm-12">
-						<form id="contact-form" action="mail.php" method="post">
+						<form autocomplete="on" id="contact-form" name="contact-form" method="post"> <!-- action="mail.php" -->
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<input type="text"  placeholder="Name" name="name">
+									<input type="text" id="name"  placeholder="Name" name="name"></input>
+									<a class="error" id="e_name" style="color: red;"></a>
 								</div>
 								<div class="col-md-6 col-sm-6">
-									<input type="email"  placeholder="Email" name="email">
+									<input type="text" id="email" placeholder="Email" name="email"></input>
+									<a class="error" id="e_email" style="color: red;"></a>
 								</div>
 								<div class="col-md-12">
-									<input type="text" placeholder="Subject" name="subject">
+									<input type="text" id="asunto" placeholder="Subject" name="asunto"></input>
+									<a class="error" id="e_asunto" style="color: red;"></a>
 									<textarea id="message" placeholder="Message*" rows="6" cols="30" name="message"></textarea>
+									<a class="error" id="e_message" style="color: red;"></a>
 								</div>
 								<div class="col-md-12 text-center">
-									<button class="btn" type="submit">Send Email</button>
+									<a class="btn" id="send_mail">Enviar</a>
 								</div>
 							</div>
 						</form>
@@ -94,3 +98,5 @@
 				</div>				
 			</div>
 		</div>
+
+		<div id="email"></div>

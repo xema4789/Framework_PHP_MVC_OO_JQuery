@@ -1,3 +1,17 @@
+function ajax_succes_promise(type, url, serialize){
+  return new Promise((resolve,reject)=>{
+      $.ajax({
+          type : type,
+          url  : url + serialize,
+          success: function(data){	
+              resolve(data);
+          }
+      });
+  });
+
+  
+}
+
 $(document).ready(function () {
     if(document.getElementById("mapa") != null){
       var script = document.createElement('script');
@@ -45,4 +59,83 @@ $(document).ready(function () {
               infowindow.open(map, marker);
             });
           }
+
+
+
+          $(document).on("click","#send_mail",function(){
+            // alert("click");
+            
+            
+
+            if(validate_email()){
+              alert("enviar");
+            }
+
+            
+            
+            // $("#contact-form").submit(function(e){
+            //   e.preventDefault();
+
+            //   var serialize= $("#send_mail").serialize();
+            //   console.log("hola");
+            //   console.log(serialize);
+
+            //   // if(validate_user()){
+            //           ajax_succes_promise('POST',).then(function(data){
+                        
+            //           });
+            //   // }
+            });
+
+            function validate_email(){
+              var nombre=$("#name").val();
+              var email=$("#email").val();
+              var asunto=$("#asunto").val();
+              var message=$("#message").val();
+              var comprobar=true;
+              var pname = /^[a-zA-Z]+[\-'\s]?[a-zA-Z]{2,51}$/;
+	            var pmessage = /^[0-9A-Za-z\s]{20,100}$/;
+    	        var pmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+              
+              if(!nombre){
+                $("#e_name").html("El nombre no puede estar vacio");
+                comprobar=false;
+              }else if(!pname.test(nombre)){
+                $("#e_name").html("El nombre tiene que tener un minimo de 3 caracteres");
+                comprobar=false;
+                
+              }else{
+                $("#e_name").html("");
+              }
+
+              if(!email){
+                $("#e_email").html("El email no puede estar vacio");
+                comprobar=false;
+              }else if(!pmail.test(email)){
+                $("#e_email").html("El email no cumple con los requisitos");
+                comprobar=false;
+              }else{
+                $("#e_email").html("");
+              }
+
+              if(!asunto){
+                $("#e_asunto").html("El asunto no puede estar vacio");
+                comprobar=false;
+              }else{
+                $("#e_asunto").html("");
+              }
+              
+              if(!message){
+                $("#e_message").html("El mensaje no puede estar vacio");
+                comprobar=false;
+              }else if(!pmessage.test(message)){
+                $("#e_message").html("El mensaje debe contener al menos 20 caracteres");
+                comprobar=false;
+              }else{
+                $("#e_message").html("");
+              }
+              return comprobar;
+            }
+
+
   
