@@ -41,4 +41,10 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
 
   //TESTS
   define('TEST_PATH', SITE_ROOT . 'Tests/');
+
+
+
+
+  //amigables
+  define('URL_AMIGABLES', TRUE);
 ?>
