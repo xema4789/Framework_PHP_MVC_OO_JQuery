@@ -86,7 +86,10 @@
         <script type="text/javascript" src="module/lang/translate.js"></script> 
         <script type="text/javascript" src="module/contact/view/js/map.js"></script> 
         
-
+        <!-- Toastr -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet"/>
+        <script type = "text/javascript" src = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <!-- Toastr -->
 
 
 

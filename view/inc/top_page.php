@@ -83,7 +83,11 @@
         <script type="text/javascript" src="module/search/view/js/function_search.js"></script>
         <script type="text/javascript" src="module/lang/translate.js"></script> 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"></script>
-        
+
+        <!-- Toastr -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet"/>
+        <script type = "text/javascript" src = "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <!-- Toastr -->
 
 
 

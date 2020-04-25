@@ -13,6 +13,7 @@ function ajax_succes_promise(type, url, serialize){
 }
 
 $(document).ready(function () {
+  
     if(document.getElementById("mapa") != null){
       var script = document.createElement('script');
       script.src = "https://maps.googleapis.com/maps/api/js?key="+"AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"+"&callback=initMap";
@@ -66,25 +67,57 @@ $(document).ready(function () {
             // alert("click");
             
             
+            
+            
 
             if(validate_email()){
               alert("enviar");
+
+              $('#send_contact').attr('disabled', true);
+			        $('.ajaxLoader').fadeIn("fast");
+              var data = {"cname":$("#name").val(),"cemail":$("#email").val(),"matter":$("#asunto").val(),"message":$("#message").val()};
+              var fin_data=JSON.stringify(data);
+              console.log("data1: ");
+              console.log(fin_data);
+
+
+              $.ajax({
+                type : 'POST',
+                url  : "?module=contact&function=send_cont",
+                data: {'fin_data':fin_data},
+                success: function(data){	
+                  $("#name").html(" aaaaaaaaa");
+      $("#message").html(" dfdf");
+      $("#asunto").html("dfbsf");
+      $("#email").html(" nfdndt");
+            
+
+                    limpiar();
+                    Command: toastr["success"]("Mail enviado con éxito", "Succes!")
+
+                    toastr.options = {
+                      "closeButton": true,
+                      "debug": false,
+                      "newestOnTop": true,
+                      "progressBar": true,
+                      "positionClass": "toast-top-right",
+                      "preventDuplicates": false,
+                      "onclick": null,
+                      "showDuration": "300",
+                      "hideDuration": "1000",
+                      "timeOut": "5000",
+                      "extendedTimeOut": "1000",
+                      "showEasing": "swing",
+                      "hideEasing": "linear",
+                      "showMethod": "fadeIn",
+                      "hideMethod": "fadeOut"
+                    }
+
+                }
+              });
+
             }
 
-            
-            
-            // $("#contact-form").submit(function(e){
-            //   e.preventDefault();
-
-            //   var serialize= $("#send_mail").serialize();
-            //   console.log("hola");
-            //   console.log(serialize);
-
-            //   // if(validate_user()){
-            //           ajax_succes_promise('POST',).then(function(data){
-                        
-            //           });
-            //   // }
             });
 
             function validate_email(){
@@ -136,6 +169,15 @@ $(document).ready(function () {
               }
               return comprobar;
             }
+
+    function limpiar(){
+      console.log("limpiar");
+
+      // console.log($(document).getElementById("name").val());
+      $("#message").html(" ");
+      $("#asunto").html(" ");
+      $("#email").html(" ");
+    }
 
 
   
