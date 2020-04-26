@@ -58,22 +58,7 @@ $(document).ready(function () {
             });
             marker.addListener('click', function() {
               infowindow.open(map, marker);
-            });
-          }
-
-
-
-          $(document).on("click","#send_mail",function(){
-            // alert("click");
-            
-            
-            
-            
-
-            if(validate_email()){
-              alert("enviar");
-
-              $('#send_contact').attr('disabled', true);
+            });amigable("?module=contact&function=send_cont")
 			        $('.ajaxLoader').fadeIn("fast");
               var data = {"cname":$("#name").val(),"cemail":$("#email").val(),"matter":$("#asunto").val(),"message":$("#message").val()};
               var fin_data=JSON.stringify(data);
@@ -83,13 +68,13 @@ $(document).ready(function () {
 
               $.ajax({
                 type : 'POST',
-                url  : "?module=contact&function=send_cont",
+                url  : "?module=contact&function=send_cont", //amigable("?module=contact&function=send_cont")
                 data: {'fin_data':fin_data},
                 success: function(data){	
                   $("#name").html(" aaaaaaaaa");
-      $("#message").html(" dfdf");
-      $("#asunto").html("dfbsf");
-      $("#email").html(" nfdndt");
+                  $("#message").html(" dfdf");
+                  $("#asunto").html("dfbsf");
+                  $("#email").html(" nfdndt");
             
 
                     limpiar();

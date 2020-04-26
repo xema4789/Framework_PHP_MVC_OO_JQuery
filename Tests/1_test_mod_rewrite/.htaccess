@@ -1,2 +1,4 @@
 RewriteEngine on
 RewriteRule ^home/(\w+)/?$ index.php?page=controller_home&op=list
+
+RewriteRule ^contact/list_contact$ ?module=contact&function=list_contact

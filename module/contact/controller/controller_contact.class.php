@@ -5,6 +5,7 @@
         }
 
         function list_contact(){
+            // include(UTILS . "utils.inc.php");
             require(VIEW_PATH_INC. "top_page_contact.php");
             require (VIEW_PATH_INC . "header.php");
             require (VIEW_PATH_INC . "menu.php");

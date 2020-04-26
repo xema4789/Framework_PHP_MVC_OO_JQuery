@@ -1,0 +1,7 @@
+RewriteEngine on
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+Rewriterule ^([^/]*)/([^/]*)$ ?module=$1&function=$2 [L,NC]
+

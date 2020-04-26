@@ -21,10 +21,10 @@ function handlerRouter(){
     }else{
         $URI_module='contact';
 
-        echo'<script>window.location.href = "?module=contact&function=list_contact";</script>'; //Cambiar cuando funcione a list home por defecto
+        echo'<script>window.location.href = "contact/list_contact";</script>'; //Cambiar cuando funcione a list home por defecto
                                             //?module=contact&function=list_contact
                                             //./contact/list_contact/
-    }
+    }                                       //"?module=contact&function=list_contact"
    
 
     if(!empty($_GET['function'])){ //Buscamos la funcion, si no hay por defecto list_home

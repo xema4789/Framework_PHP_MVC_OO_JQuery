@@ -4,7 +4,8 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-2">
 							<div class="logo">
-								<a href="?module=contact&function=list_contact"><img src="view/smoth-corporate-html-template/smoth/img/logo/1.png" alt="" /></a>
+								<a href="contact/list_contact"><img src="view/smoth-corporate-html-template/smoth/img/logo/1.png" alt="" /></a>
+										<!-- ?module=contact&function=list_contact -->
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-10">
