@@ -1,5 +1,5 @@
 RewriteEngine on
-
+RewriteBase /Programacion/Tema5_1.0/Tema5_1.0/Framework/
 
 
 RewriteCond %{REQUEST_FILENAME} !-f
