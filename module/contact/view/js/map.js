@@ -21,7 +21,7 @@ $(document).ready(function () {
       script.defer;
       document.getElementsByTagName('script')[0].parentNode.appendChild(script);
     }
-  })
+  });
   // "https://maps.googleapis.com/maps/api/js?key="+"AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"
 
   
@@ -56,25 +56,34 @@ $(document).ready(function () {
               map: map,
               title: 'Ontinyent'
             });
+
             marker.addListener('click', function() {
               infowindow.open(map, marker);
-            });amigable("?module=contact&function=send_cont")
+
+              
+             });
+            }
+
+            $(document).on("click","#send_mail",function(){
+              // alert("hola");
 			        $('.ajaxLoader').fadeIn("fast");
               var data = {"cname":$("#name").val(),"cemail":$("#email").val(),"matter":$("#asunto").val(),"message":$("#message").val()};
               var fin_data=JSON.stringify(data);
               console.log("data1: ");
               console.log(fin_data);
 
+              if(validate_email()){
 
+              
               $.ajax({
                 type : 'POST',
                 url  : "?module=contact&function=send_cont", //amigable("?module=contact&function=send_cont")
                 data: {'fin_data':fin_data},
                 success: function(data){	
-                  $("#name").html(" aaaaaaaaa");
-                  $("#message").html(" dfdf");
-                  $("#asunto").html("dfbsf");
-                  $("#email").html(" nfdndt");
+                  // $("#name").html(" aaaaaaaaa");
+                  // $("#message").html(" dfdf");
+                  // $("#asunto").html("dfbsf");
+                  // $("#email").html(" nfdndt");
             
 
                     limpiar();
@@ -98,12 +107,27 @@ $(document).ready(function () {
                       "hideMethod": "fadeOut"
                     }
 
+
+
+
                 }
               });
 
             }
 
+            
+
             });
+
+
+
+
+
+
+
+
+
+            
 
             function validate_email(){
               var nombre=$("#name").val();

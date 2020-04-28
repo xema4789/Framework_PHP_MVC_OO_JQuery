@@ -10,6 +10,7 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
 
  //CSS
  define('CSS_PATH', SITE_PATH . 'view/css/');
+ define ('CSS_PLANTILLA_PATH', SITE_PATH .'view/smoth-corporate-html-template/smoth/');
  
  //JS
  define('JS_PATH', SITE_PATH . 'view/js/');
@@ -37,6 +38,27 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
 //   define('DAO_CONTACT', SITE_ROOT . 'modules/contact/model/DAO/');
 //   define('BLL_CONTACT', SITE_ROOT . 'modules/contact/model/BLL/');
 //   define('MODEL_CONTACT', SITE_ROOT . 'modules/contact/model/model/');
+
+  //MODEL SEARCH
+
+  define('MODEL_PATH_SEARCH', SITE_ROOT. 'module/search/model/');
+  define('JS_VIEW_SEARCH', SITE_PATH. 'module/search/view/js/');
+
+  //MODEL HOME
+  define('MODEL_PATH_HOME', SITE_ROOT).'module/inicio/model/';
+  define('JS_VIEW_HOME',SITE_PATH. 'module/inicio/view/js/');
+
+  //MODEL LOGIN
+  define('MODEL_PATH_LOGIN', SITE_ROOT. 'module/login/model/');
+  define('JS_VIEW_LOGIN',SITE_PATH. 'module/login/view/js/');
+
+  //MODEL SHOP
+  define('MODEL_PATH_SHOP',SITE_ROOT.'module/shop/model/');
+  define('JS_VIEW_SHOP',SITE_PATH.'module/shop/view/');
+
+  //MODEL CART
+  define('MODEL_PATH_CART',SITE_ROOT.'module/cart/model/');
+  define('JS_VIEW_CART',SITE_PATH.'module/cart/view/js/');
 
 
   //TESTS

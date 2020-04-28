@@ -21,7 +21,7 @@ function handlerRouter(){
     }else{
         $URI_module='contact';
 
-        echo'<script>window.location.href = "contact/list_contact";</script>'; //Cambiar cuando funcione a list home por defecto
+        echo'<script>window.location.href = "home/list_home";</script>'; //Cambiar cuando funcione a list home por defecto
                                             //?module=contact&function=list_contact
                                             //./contact/list_contact/
     }                                       //"?module=contact&function=list_contact"
@@ -35,7 +35,7 @@ function handlerRouter(){
 
 
     }else{
-        $URI_function = 'list_contact';
+        $URI_function = 'list_home';
     }
 
     handlerModule($URI_module,$URI_function); //Cargamos el module con el modulo y la funcion que le hemos pasado

@@ -6,7 +6,7 @@
             $url = explode("&", str_replace("?", "", $url));
             foreach ($url as $key => $value) {
                 $aux = explode("=", $value);
-                $link .=  $aux[1]."/";
+                $link . $aux[1]."/";
             }
         } else {
             $link = "index.php?" . $url;

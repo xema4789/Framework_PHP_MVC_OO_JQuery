@@ -13,7 +13,7 @@
 						<div class="col-md-3 col-sm-4">
 							<div class="footer-widget md-30">
 								<div class="footer-img">
-									<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/logo/2.png" alt="" /></a>
+									<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/logo/2.png" alt="" /></a>
 								</div>
 								<div class="footer-address">
 									<p>We create themes and templates with bootstrap framework.</p>
@@ -36,21 +36,21 @@
 									<ul class="posts-list">
 										<li>
 											<div class="list-img">
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/footer/1.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/footer/1.jpg" alt="" /></a>
 											</div>
 											<h5><a href="#">Dolores labore quod.</a></h5>
 											<span>Jan 08, 2016</span>
 										</li>
 										<li>
 											<div class="list-img">
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/footer/2.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/footer/2.jpg" alt="" /></a>
 											</div>
 											<h5><a href="#">Dolores labore ipsum quod.</a></h5>
 											<span>Jan 08, 2018</span>
 										</li>
 										<li>
 											<div class="list-img">
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/footer/3.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/footer/3.jpg" alt="" /></a>
 											</div>
 											<h5><a href="#">Dolores labore ipsum</a></h5>
 											<span>Jan 01, 2016</span>
@@ -92,31 +92,31 @@
 									<div class="rows">
 										<ul class="Flickr-list">
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-1.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-1.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-2.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-2.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-3.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-3.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-4.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-4.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-5.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-5.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-6.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-6.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-7.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-7.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-8.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-8.jpg" alt="" /></a>
 											</li>
 											<li>
-												<a href="#"><img src="view/smoth-corporate-html-template/smoth/img/portfolio/img-9.jpg" alt="" /></a>
+												<a href="#"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/portfolio/img-9.jpg" alt="" /></a>
 											</li>
 										</ul>
 									</div>
