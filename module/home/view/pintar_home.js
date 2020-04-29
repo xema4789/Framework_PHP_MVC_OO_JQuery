@@ -1,5 +1,6 @@
     //function ajax promise
     function ajax_promise(urlP, typeP, dataTypeP){
+        urlP=(amigable(urlP));
         return new Promise((resolve, reject)=>{
             $.ajax({
                 url:urlP,
@@ -28,6 +29,7 @@ $(document).ready(function(){
     localStorage.setItem('posicion_home',0);
 
     function ajaxForSearch(url,tipo){
+        url=(amigable(url));
         $.ajax({
             url:url,
             type: 'GET',
@@ -51,15 +53,17 @@ $(document).ready(function(){
                 break;
             }
           }).fail(function(){
-            console.log("FAIL");
+            console.log("FAIL AJAXFORSEARCH HOME");
           });
     }
 
 
     // Pintar carousel
-
-    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_ciudades_valoracion",1);
+    
+    console.log("list_ciudades_valoracion")
+    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1);
     function pintar_carousel(data){
+        console.log("PINTAR CAROUSEL");
         for (row in data){
             if(row==0){
                  $('<div></div>').attr({'class':"item active",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (

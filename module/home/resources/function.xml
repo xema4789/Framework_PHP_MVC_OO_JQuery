@@ -4,5 +4,9 @@
         <name>list_home</name>
         <uri>list_home</uri>
     </function>
+    <function>
+        <name>list_ciudades_valoracion</name>
+        <uri>list_ciudades_valoracion</uri>
+    </function>
     
 </functions>
