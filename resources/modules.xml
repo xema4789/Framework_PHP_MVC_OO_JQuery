@@ -13,8 +13,8 @@
         <uri>contact</uri>
     </module>
     <module>
-        <name>inicio</name>
-        <uri>inicio</uri>
+        <name>home</name>
+        <uri>home</uri>
     </module>
     <module>
         <name>lang</name>

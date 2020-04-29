@@ -45,8 +45,8 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
   define('JS_VIEW_SEARCH', SITE_PATH. 'module/search/view/js/');
 
   //MODEL HOME
-  define('MODEL_PATH_HOME', SITE_ROOT).'module/inicio/model/';
-  define('JS_VIEW_HOME',SITE_PATH. 'module/inicio/view/js/');
+  define('MODEL_PATH_HOME', SITE_ROOT).'module/home/model/';
+  define('JS_VIEW_HOME',SITE_PATH. 'module/home/view/');
 
   //MODEL LOGIN
   define('MODEL_PATH_LOGIN', SITE_ROOT. 'module/login/model/');

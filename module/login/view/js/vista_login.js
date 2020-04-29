@@ -1,14 +1,15 @@
 $(document).ready(function(){
+    console.log("ole los caracoles login");
 
     pintar_login('login');
 
-    $.ajax({
-        url:'module/login/controller/controller_login.php?&op=ver_usuario',
+    $.ajax({//Este ayax pinta el menu
+        url:amigable("?module=login&function=ver_usuario"), 
         type:'GET',
         dataType: 'json',
             
       }).done(function(data){
-        // alert(data);
+         
         if(data!="no"){
             console.log("usuario encontrado");
             console.log(data);
@@ -18,6 +19,7 @@ $(document).ready(function(){
             pintar_menu(tipo,nombre);
 
         }else{
+            
             console.log("usuario no encontrado");
             pintar_menu();
         }
@@ -27,7 +29,9 @@ $(document).ready(function(){
 
 
       }).fail(function(){
+      
         console.log("FAIL");
+        pintar_menu();  //De momento me entra aqui porque me está fallando algo y no se el que, pero la funcionalidad si no estas logueado es la misma y el usuario no se entera
       });
 
     $('#lo_register').on("click",function(){
@@ -40,9 +44,11 @@ $(document).ready(function(){
 
 
     function pintar_login(tipo){
+        
 
         switch (tipo){
             case 'register':
+                
                 $('.login').empty();
                 $('<div></div>').attr('class',"op_login").appendTo('.login').html (
                 '<h1>Register</h1>'+
@@ -87,8 +93,11 @@ $(document).ready(function(){
 
 
     function pintar_menu(tipo,nombre){
-
+     
+        
+        
         switch(tipo){
+            
             case 'admin':
                 // main-menu
                 $('<div></div>').attr('class',"op_menu").appendTo('.main-menu').html (
@@ -161,6 +170,7 @@ $(document).ready(function(){
             break;
 
             default://No está logueado
+            console.log("DEFAULT");
             $('<div></div>').attr('class',"op_menu").appendTo('.main-menu').html (
                 '<nav>'+
                                 '<ul>'+
@@ -180,8 +190,8 @@ $(document).ready(function(){
                                             '<li><a href="#" id="btn-va" name="btn-va">Valenciano</a></li>'+
                                         '</ul>'+
                                     '</li>'+
-                                    '<li><a href="index.php?page=controller_login&op=list_login">Entrarrj</a></li>'+
-                                    '<li><a href="index.php?page=controller_contact&op=list">Contacto</a></li>'+
+                                    '<li><a href="index.php?page=controller_login&op=list_login">Entrar</a></li>'+
+                                    '<li><a href="'+amigable("?module=contact&function=list_contact")+'">Contacto</a></li>'+
                                 '</ul>'+
                             '</nav>'
                 );

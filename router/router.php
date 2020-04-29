@@ -14,14 +14,19 @@ $_SESSION['module'] = "";
 
 
 function handlerRouter(){
+    // print_r("1");
     
     if(!empty($_GET['module'])){ //Buscamos el modulo, si no hay por defecto home
         $URI_module = $_GET['module'];
+        // print_r("no empty");
+        // print_r("urimodule: ");
+        // print_r($URI_module);
         
     }else{
-        $URI_module='contact';
+        $URI_module='home';
+        // print_r("empty");
 
-        echo'<script>window.location.href = "home/list_home";</script>'; //Cambiar cuando funcione a list home por defecto
+        echo'<script>window.location.href = "./home/list_home";</script>'; //Cambiar cuando funcione a list home por defecto
                                             //?module=contact&function=list_contact
                                             //./contact/list_contact/
     }                                       //"?module=contact&function=list_contact"
@@ -29,12 +34,15 @@ function handlerRouter(){
 
     if(!empty($_GET['function'])){ //Buscamos la funcion, si no hay por defecto list_home
         
-    
+        // print_r("no empty funct");
         $URI_function = $_GET['function'];
+        // print_r("func:   ");
+        // print_r($URI_function);
       
 
 
     }else{
+        // print_r("empty func");
         $URI_function = 'list_home';
     }
 
@@ -44,16 +52,24 @@ function handlerRouter(){
 }
 
 function handlerModule($URI_module,$URI_function){
+    // print_r("2");
     $modules=simplexml_load_file("resources/modules.xml");
+    // print_r("3");
+    // print_r("xml:   ");
+    // print_r($modules);
     $exist=false;
     
     foreach($modules->module as $module){//Recorremos la variable modules para buscar el modulo que le hemos pasado
+        // print_r("4");
         if(($URI_module === (String) $module->uri)){//modulo encontrado
             $exist=true;
 
             $path=MODULES_PATH . $URI_module . "/controller/controller_".$URI_module . ".class.php";
+            // // print_r("path: ");
+            // print_r($path);
 
             if(file_exists($path)){
+                // print_r("5");
                 require_once($path);//hacemos el include del path, que contiene la ruta del modulo que le hemos pasado
                 $controllerClass="controller_" . $URI_module;
                 // print_r($controllerClass);

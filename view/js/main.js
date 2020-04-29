@@ -1,5 +1,5 @@
 function amigable(url){
-    alert("amigable widgets");
+    console.log("amigable_js");
     var link="";
     url= url.replace("?", "");
     url=url.split("&");
@@ -7,13 +7,14 @@ function amigable(url){
 
     for(var i=0; i<url.length;i++){
         cont++;
-        var aux = url[i].split("_");
+        var aux = url[i].split("=");
         if(cont==2){
-            link+= "/"+aux[i]+"/";
+            link+= "/"+aux[i];
         }else{
-            link+="/"+aux[i];
+            link+=aux[1];
         }
     }
+    console.log(link);
 
     return "/Programacion/Tema5_1.0/Tema5_1.0/Framework/"+link;
 }

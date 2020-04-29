@@ -75,7 +75,7 @@
         <script src="<?php echo CSS_PLANTILLA_PATH ?>js/waypoints.min.js"></script>
         <script src="<?php echo CSS_PLANTILLA_PATH ?>js/plugins.js"></script>
         <script src="<?php echo CSS_PLANTILLA_PATH ?>js/main.js"></script>
-        
+        <script src="<?php echo JS_PATH ?>main.js"></script>
         
 
         <script type="text/javascript" src="<?php echo JS_VIEW_CONTACT ?>map.js"></script> 

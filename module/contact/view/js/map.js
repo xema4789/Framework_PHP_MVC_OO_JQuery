@@ -77,7 +77,7 @@ $(document).ready(function () {
               
               $.ajax({
                 type : 'POST',
-                url  : "?module=contact&function=send_cont", //amigable("?module=contact&function=send_cont")
+                url  : amigable("?module=contact&function=send_cont"), //amigable("?module=contact&function=send_cont")
                 data: {'fin_data':fin_data},
                 success: function(data){	
                   // $("#name").html(" aaaaaaaaa");

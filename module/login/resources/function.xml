@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>ver_usuario
+    <function>
+        <name>list_login</name>
+        <uri>list_login</uri>
+    </function>
+    <function>
+        <name>ver_usuario</name>
+        <uri>ver_usuario</uri>
+    </function>
+</functions>
