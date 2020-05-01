@@ -1,6 +1,6 @@
     //function ajax promise
     function ajax_promise(urlP, typeP, dataTypeP){
-        urlP=(amigable(urlP));
+        // urlP=(amigable(urlP));
         return new Promise((resolve, reject)=>{
             $.ajax({
                 url:urlP,
@@ -28,13 +28,17 @@ $(document).ready(function(){
 
     localStorage.setItem('posicion_home',0);
 
-    function ajaxForSearch(url,tipo){
+    function ajaxForSearch(url,tipo,dataP){
+        // console.log(url);
         url=(amigable(url));
+        // alert(url);
+        // console.log(url);
         $.ajax({
             url:url,
-            type: 'GET',
-            async: false,
-            dataType: 'json',
+            type: 'POST',
+            // async: false,
+            data:{'list_ciudades_valoracion':true},
+            // dataType: 'json',
                 
           }).done(function(data){
 
@@ -60,10 +64,12 @@ $(document).ready(function(){
 
     // Pintar carousel
     
-    console.log("list_ciudades_valoracion")
-    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1);
+    // console.log("list_ciudades_valoracion")
+    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1,"list_ciudades_valoracion");  //"?module=home&function=list_ciudades_valoracion"
     function pintar_carousel(data){
-        console.log("PINTAR CAROUSEL");
+        alert("ole los caracoles carousel");
+        console.log("PINTAR CAROUSEL, data:");
+        console.log(data);
         for (row in data){
             if(row==0){
                  $('<div></div>').attr({'class':"item active",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (

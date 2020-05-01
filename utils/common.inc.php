@@ -3,6 +3,7 @@
         $model = $model_path . $model_name . '.class.singleton.php';
         
         if (file_exists($model)) {
+            return "HOLA SI QUE EXISTE";
             include_once($model);
             $modelClass = $model_name;
 
@@ -21,6 +22,8 @@
             }   
             
         } else {
+            return $model;
+            return "HOLA NO EXISTE";
             throw new Exception();
         }
     }

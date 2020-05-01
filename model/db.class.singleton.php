@@ -3,7 +3,7 @@ class db{
     private $server;
     private $user;
     private $password;
-    private $fatabase;
+    private $database;
     private $link;
     private $stmt;
     private $array;

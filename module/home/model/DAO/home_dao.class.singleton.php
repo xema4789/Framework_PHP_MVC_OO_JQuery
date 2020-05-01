@@ -13,7 +13,7 @@ class home_dao{
         return self::$_instance;
     }
 
-    public function list_ciudades_valoracion(){
+    public function list_ciudades_valoracion($db,$arrArgument){
         $sql="'SELECT * FROM Habitaciones ORDER BY Valoracion DESC LIMIT 4'";
         $stmt=$db->ejecutar($sql);
         return $db->listar($stmt);

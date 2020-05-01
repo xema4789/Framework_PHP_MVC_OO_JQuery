@@ -15,25 +15,17 @@
 
 
         function list_ciudades_valoracion(){
+            // echo json_encode($_POST);
 
-            try{
-                $daohome = new DAOHome();
-                $rdo = $daohome->list_ciudades_valoracion();
-            }catch(Exception $e){
-                echo json_encode("error");
-                exit;
+            if((isset($_POST['list_ciudades_valoracion'])) && ($_POST['list_ciudades_valoracion'] == true)){
+                // echo json_encode("EEEEEOOOOOO1");
+                $json = array();
+                $json = loadModel(MODEL_PATH_HOME,"home_model", "list_ciudades_valoracion"); //$_POST['position'] //Revisar path de model_home, ver los valores que le paso, sobre todo el segundo, y el tercero será list_ciudades_valoracion, y averiguar que es POSt['position']
+                echo json_encode($json);
             }
-            if(!$rdo){
-                echo json_encode("error");
-                exit;
-            }else{
-                $dinfo = array();
-                foreach ($rdo as $row) {
-                    array_push($dinfo, $row);
-                }
-                echo json_encode($dinfo);
-    
-            }
+            // print_r("List_ciudades_valoracion");
+            // echo json_encode("EEEEEOOOO CACA");
+          
         }
     }
 
