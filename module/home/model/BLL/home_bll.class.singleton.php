@@ -1,8 +1,14 @@
 <?php
+
+include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/home/model/DAO/home_dao.class.singleton.php");
+include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/model/db.class.singleton.php");//Me falla el include
+
+
 class home_bll{
     private $dao;
     private $db;
     static $_instance;
+
 
     private function __construct(){
         $this->dao = home_dao::getInstance();
@@ -16,8 +22,8 @@ class home_bll{
         return self::$_instance;
     }
 
-    public function list_ciudades_valoracion($arrArgument){
-        return $this->dao->list_ciudades_valoracion($this->db,$arrArgument);
+    public function list_ciudades_valoracion(){
+        return $this->dao->list_ciudades_valoracion($this->db);
     }
 
 

@@ -1,4 +1,5 @@
 <?php
+
 class home_dao{
     static $_instance;
 
@@ -13,8 +14,10 @@ class home_dao{
         return self::$_instance;
     }
 
-    public function list_ciudades_valoracion($db,$arrArgument){
-        $sql="'SELECT * FROM Habitaciones ORDER BY Valoracion DESC LIMIT 4'";
+    public function list_ciudades_valoracion($db){
+        // return ("ESTOY EN EL DAO");
+        // print_r($db);
+        $sql="SELECT * FROM Habitaciones ORDER BY Valoracion DESC LIMIT 4";
         $stmt=$db->ejecutar($sql);
         return $db->listar($stmt);
     }

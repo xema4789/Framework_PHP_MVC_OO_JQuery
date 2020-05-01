@@ -1,29 +1,28 @@
 <?php
   function loadModel($model_path, $model_name, $function, $arrArgument = '',$arrArgument2 = ''){
         $model = $model_path . $model_name . '.class.singleton.php';
+        $model=str_replace('"\"',"",$model);
+
+        //el model necesita el del bll y bll necesita el del dao
         
         if (file_exists($model)) {
-            return "HOLA SI QUE EXISTE";
             include_once($model);
             $modelClass = $model_name;
 
             if (!method_exists($modelClass, $function)){
                 throw new Exception();
             }
-
+        
             $obj = $modelClass::getInstance();
             if (isset($arrArgument)){
-                if (isset($arrArgument2)) {
-                    //return $obj->$function($arrArgument,$arrArgument2);
+                if ($arrArgument2) {
+  
                     return call_user_func(array($obj, $function),$arrArgument,$arrArgument2);
                 }
-                //return $obj->$function($arrArgument);
                 return call_user_func(array($obj, $function),$arrArgument);
             }   
             
         } else {
-            return $model;
-            return "HOLA NO EXISTE";
             throw new Exception();
         }
     }

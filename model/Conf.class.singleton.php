@@ -1,4 +1,7 @@
 <?php
+// include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/model/db.class.singleton.php");
+// include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/model/connect.php");
+
 class Conf{
     private $_userdb;
     private $_passdb;
@@ -7,11 +10,17 @@ class Conf{
     private $_instance;
 
     private function __construct(){
-        $cnfg = parse_ini_file(MODEL_PATH."db_ini");
-        $this->_userdb=$cnfg['user'];
-        $this-> _passdb=$cnfg['pass'];
-        $this-> _hostdb=$cnfg['host'];
-        $this->_db=$cnfg['db'];
+        // $cnfg = parse_ini_file(MODEL_PATH."db_ini");
+        $this->_userdb="xema";
+        $this->_passdb="@Mondongo99";
+        $this->_hostdb="127.0.0.1";
+        $this->_db="Hoteles";
+
+
+        // $this->_userdb=$cnfg['user'];
+        // $this->_passdb=$cnfg['pass'];
+        // $this->_hostdb=$cnfg['host'];
+        // $this->_db=$cnfg['db'];
     }
     private function __clone(){
 
@@ -25,7 +34,7 @@ class Conf{
     }
 
     public function getUserDB(){
-        $var = $this-> _userdb;
+        $var = $this->_userdb;
         return $var;
     }
 

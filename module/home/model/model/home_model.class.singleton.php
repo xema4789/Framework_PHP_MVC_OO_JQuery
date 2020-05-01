@@ -1,9 +1,13 @@
 <?php
+
+include ("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/home/model/BLL/home_bll.class.singleton.php");
+
+
 class home_model{
     private $bll;
     static $_instance;
 
-    private function __construct(){
+    function __construct(){
         $this->bll = home_bll::getInstance();
     }
 
@@ -14,9 +18,8 @@ class home_model{
         return self::$_instance;
     }
 
-    public function list_ciudades_valoracion ($arrArgument){
-        return $this->bll->list_ciudades_valoracion($arrArgument);
-
+    public function list_ciudades_valoracion(){
+        return $this->bll->list_ciudades_valoracion();
     }
 }
 ?>

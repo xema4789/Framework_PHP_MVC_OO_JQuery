@@ -38,7 +38,7 @@ $(document).ready(function(){
             type: 'POST',
             // async: false,
             data:{'list_ciudades_valoracion':true},
-            // dataType: 'json',
+            dataType: 'json',
                 
           }).done(function(data){
 
@@ -67,20 +67,26 @@ $(document).ready(function(){
     // console.log("list_ciudades_valoracion")
     ajaxForSearch("?module=home&function=list_ciudades_valoracion",1,"list_ciudades_valoracion");  //"?module=home&function=list_ciudades_valoracion"
     function pintar_carousel(data){
-        alert("ole los caracoles carousel");
+        // alert("ole los caracoles carousel");
         console.log("PINTAR CAROUSEL, data:");
         console.log(data);
+        
+
+
+
+        //NO ME PINTA EL CAROUSEL
         for (row in data){
+            // console.log("hola");
             if(row==0){
                  $('<div></div>').attr({'class':"item active",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (
-                    '<img src="'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
+                    '<img src="/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
                     );
 
                     $('<p>'+data[row].Valoracion+'</p>').attr('class',"texto_valoracion").appendTo('.item').html ();
                     
             }else{
                 $('<div></div>').attr({'class':"item",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (
-                    '<img src="'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
+                    '<img src="/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
                     );
             }
         }
