@@ -25,6 +25,15 @@ class home_bll{
     public function list_ciudades_valoracion(){
         return $this->dao->list_ciudades_valoracion($this->db);
     }
+    public function list_tipos(){
+        return $this->dao->list_tipos($this->db);
+    }
+    public function list_ciudades(){
+        return $this->dao->list_ciudades($this->db);
+    }
+    public function list_visitas($num){
+        return $this->dao->list_visitas($this->db,$num);
+    }
 
 
 }

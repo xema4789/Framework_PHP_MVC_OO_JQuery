@@ -28,16 +28,15 @@ $(document).ready(function(){
 
     localStorage.setItem('posicion_home',0);
 
-    function ajaxForSearch(url,tipo,dataP){
-        // console.log(url);
+    function ajaxForSearch(url,tipo,arrArgument=''){
+        // alert(url);
         url=(amigable(url));
         // alert(url);
-        // console.log(url);
         $.ajax({
             url:url,
             type: 'POST',
             // async: false,
-            data:{'list_ciudades_valoracion':true},
+            data:{'okay':true,'arrArgument':arrArgument},
             dataType: 'json',
                 
           }).done(function(data){
@@ -65,28 +64,26 @@ $(document).ready(function(){
     // Pintar carousel
     
     // console.log("list_ciudades_valoracion")
-    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1,"list_ciudades_valoracion");  //"?module=home&function=list_ciudades_valoracion"
+    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1);  //"?module=home&function=list_ciudades_valoracion"
     function pintar_carousel(data){
-        // alert("ole los caracoles carousel");
-        console.log("PINTAR CAROUSEL, data:");
-        console.log(data);
+       console.log(data);
+   
         
 
 
 
-        //NO ME PINTA EL CAROUSEL
         for (row in data){
-            // console.log("hola");
+         
             if(row==0){
                  $('<div></div>').attr({'class':"item active",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (
-                    '<img src="/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
+                    '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
                     );
 
                     $('<p>'+data[row].Valoracion+'</p>').attr('class',"texto_valoracion").appendTo('.item').html ();
                     
             }else{
                 $('<div></div>').attr({'class':"item",'id':data[row].Numero_habitacion}).appendTo('.carousel-inner').html (
-                    '<img src="/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
+                    '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="img_carousel" alt="No se puede cargar la imagen" style="z-index:0">'
                     );
             }
         }
@@ -95,11 +92,11 @@ $(document).ready(function(){
 
 
     // Pintar categorias
-    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_tipos",2);
+    ajaxForSearch("?module=home&function=list_tipos",2);
     function pintar_categorias(data){
         for (row in data){
             $('<div></div>').attr({'class':"categoria",'id':data[row].Tipo}).appendTo('.ciudades').html (
-                '<img src="'+data[row].Imagen+'" href="#" alt="No se puede cargar la imagen">'
+                '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].Imagen+'" href="#" alt="No se puede cargar la imagen">'
                  );
         }
     }
@@ -109,11 +106,11 @@ $(document).ready(function(){
     
 
     //Pintar ciudades
-    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_ciudades",3);
+    ajaxForSearch("?module=home&function=list_ciudades",3); 
     function pintar_ciudades(data){
         for (row in data){
             $('<div></div>').attr({'class':"ciudad_home",'id':data[row].Ciudad}).appendTo('.ciudades_home').html (
-                '<img src="'+data[row].imagen+'" class="imagen_ciudad_home"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'
+                '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="imagen_ciudad_home"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'
                  );
         }
     }
@@ -121,11 +118,13 @@ $(document).ready(function(){
 
     // Categorias mas visitadas
     var num=localStorage.getItem('posicion_home');
-    ajaxForSearch("module/inicio/controller/controller_home.php?op=list_visitas&num="+num,4);
+    ajaxForSearch("?module=home&function=list_visitas",4,num); //list_visitas  &num="+num,4
     function pintar_categorias_visitadas(data){
+        console.log("HOLAAAAAAAAAAa");
+        console.log(data);
         for(row in data){
             $('<div></div>').attr({'class':"categoria_visitas",'id':data[row].Tipo_habitacion}).appendTo('.visitas_home').html (
-                '<img src="'+data[row].imagen+'" class="imagen_categoria_visitas"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'+
+                '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="imagen_categoria_visitas"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'+
                 '<p class="texto_imagen">'+data[row].Tipo_habitacion+'</p>'
                 );
         }

@@ -8,5 +8,17 @@
         <name>list_ciudades_valoracion</name>
         <uri>list_ciudades_valoracion</uri>
     </function>
+    <function>
+        <name>list_tipos</name>
+        <uri>list_tipos</uri>
+    </function>
+    <function>
+        <name>list_ciudades</name>
+        <uri>list_ciudades</uri>
+    </function>
+    <function>
+        <name>list_visitas</name>
+        <uri>list_visitas</uri>
+    </function>
     
 </functions>

@@ -15,11 +15,26 @@ class home_dao{
     }
 
     public function list_ciudades_valoracion($db){
-        // return ("ESTOY EN EL DAO");
-        // print_r($db);
         $sql="SELECT * FROM Habitaciones ORDER BY Valoracion DESC LIMIT 4";
         $stmt=$db->ejecutar($sql);
         return $db->listar($stmt);
     }
+
+    public function list_tipos($db){
+        $sql="SELECT * FROM Tipos";
+        $stmt=$db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+    public function list_ciudades($db){
+        $sql="SELECT DISTINCT Ciudad, imagen FROM Habitaciones";
+        $stmt=$db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+    public function list_visitas($db,$num){
+        $sql="SELECT h.*, t.visitas FROM Tipos t INNER JOIN Habitaciones h WHERE t.Tipo = h.Tipo_habitacion ORDER BY t.visitas DESC LIMIT 3 OFFSET $num";
+        $stmt=$db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+
 }
 ?>

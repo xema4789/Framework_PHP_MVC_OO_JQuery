@@ -21,5 +21,14 @@ class home_model{
     public function list_ciudades_valoracion(){
         return $this->bll->list_ciudades_valoracion();
     }
+    public function list_tipos(){
+        return $this->bll->list_tipos();
+    }
+    public function list_ciudades(){
+        return $this->bll->list_ciudades();
+    }
+    public function list_visitas($num){
+        return $this->bll->list_visitas($num);
+    }
 }
 ?>
