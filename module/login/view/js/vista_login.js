@@ -191,6 +191,7 @@ $(document).ready(function(){
                                         '</ul>'+
                                     '</li>'+
                                     '<li><a href="index.php?page=controller_login&op=list_login">Entrar</a></li>'+
+                                    '<li><a href="'+amigable("?module=shop&function=list_shop")+'">Tienda</a></li>'+
                                     '<li><a href="'+amigable("?module=contact&function=list_contact")+'">Contacto</a></li>'+
                                 '</ul>'+
                             '</nav>'

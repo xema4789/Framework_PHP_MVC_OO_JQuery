@@ -120,8 +120,6 @@ $(document).ready(function(){
     var num=localStorage.getItem('posicion_home');
     ajaxForSearch("?module=home&function=list_visitas",4,num); //list_visitas  &num="+num,4
     function pintar_categorias_visitadas(data){
-        console.log("HOLAAAAAAAAAAa");
-        console.log(data);
         for(row in data){
             $('<div></div>').attr({'class':"categoria_visitas",'id':data[row].Tipo_habitacion}).appendTo('.visitas_home').html (
                 '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="imagen_categoria_visitas"  href="#" alt="No se puede cargar la imagen" style="z-index:0">'+

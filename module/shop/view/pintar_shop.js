@@ -107,6 +107,7 @@ $(document).ready(function(){
 
     //Pintar los filtros
     function pintar_filtros(){
+        alert("hola2");
         $('<div></div>').attr('class',"filtros").appendTo('.filters_container').html (
             '<h1>Filtros</h1>'+
             '<ul>'+

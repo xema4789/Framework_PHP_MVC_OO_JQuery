@@ -22,7 +22,7 @@ $(document).ready(function () {
       document.getElementsByTagName('script')[0].parentNode.appendChild(script);
     }
   });
-  // "https://maps.googleapis.com/maps/api/js?key="+"AIzaSyDw70qnfrtBW3CFI-C8VNxRxbU7Nyha5jE"
+ 
 
   
   
@@ -65,19 +65,17 @@ $(document).ready(function () {
             }
 
             $(document).on("click","#send_mail",function(){
-              // alert("hola");
 			        $('.ajaxLoader').fadeIn("fast");
               var data = {"cname":$("#name").val(),"cemail":$("#email").val(),"matter":$("#asunto").val(),"message":$("#message").val()};
               var fin_data=JSON.stringify(data);
-              console.log("data1: ");
-              console.log(fin_data);
+              
 
               if(validate_email()){
 
               
               $.ajax({
                 type : 'POST',
-                url  : amigable("?module=contact&function=send_cont"), //amigable("?module=contact&function=send_cont")
+                url  : amigable("?module=contact&function=send_cont"), 
                 data: {'fin_data':fin_data},
                 success: function(data){	
                   // $("#name").html(" aaaaaaaaa");
@@ -114,19 +112,7 @@ $(document).ready(function () {
               });
 
             }
-
-            
-
             });
-
-
-
-
-
-
-
-
-
             
 
             function validate_email(){
@@ -180,13 +166,7 @@ $(document).ready(function () {
             }
 
     function limpiar(){
-      console.log("limpiar");
-
-      // console.log($(document).getElementById("name").val());
       $("#message").html(" ");
       $("#asunto").html(" ");
       $("#email").html(" ");
     }
-
-
-  
