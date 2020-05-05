@@ -28,10 +28,8 @@ $(document).ready(function(){
 
     localStorage.setItem('posicion_home',0);
 
-    function ajaxForSearch(url,tipo,arrArgument=''){
-        // alert(url);
+    function ajaxForSearch(url,tipo,arrArgument=''){     
         url=(amigable(url));
-        // alert(url);
         $.ajax({
             url:url,
             type: 'POST',
@@ -40,7 +38,6 @@ $(document).ready(function(){
             dataType: 'json',
                 
           }).done(function(data){
-
             switch(tipo){
                 case 1:
                     pintar_carousel(data);
@@ -63,9 +60,9 @@ $(document).ready(function(){
 
     // Pintar carousel
     
-    // console.log("list_ciudades_valoracion")
-    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1);  //"?module=home&function=list_ciudades_valoracion"
+    ajaxForSearch("?module=home&function=list_ciudades_valoracion",1);
     function pintar_carousel(data){
+        console.log("HOLAAAAAAAAAAAAAAaa");
        console.log(data);
    
         

@@ -14,17 +14,14 @@ $_SESSION['module'] = "";
 
 
 function handlerRouter(){
-    // print_r("1");
     
     if(!empty($_GET['module'])){ //Buscamos el modulo, si no hay por defecto home
         $URI_module = $_GET['module'];
-        // print_r("NO EMPTY");
-        // print_r("urimodule: ");
-        // print_r($URI_module);
+        
         
     }else{
         $URI_module='home';
-        // print_r("empty");
+       
 
         echo'<script>window.location.href = "./home/list_home";</script>'; //Cambiar cuando funcione a list home por defecto
                                             //?module=contact&function=list_contact

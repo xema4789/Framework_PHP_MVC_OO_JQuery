@@ -11,6 +11,24 @@
             loadView('module/home/view/','shop.html');
             require (VIEW_PATH_INC . "footer.php");
         }
+
+        function list_paginacion(){
+            if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['arrArgument'])){
+                $json = array();
+                $json = loadModel(MODEL_PATH_SHOP,"shop_model", "list_paginacion",$_POST['arrArgument']); 
+                echo json_encode($json);
+            }
+        }
+        function contar(){
+            
+            if((isset($_POST['okay'])) && ($_POST['okay'] == true)){
+                // echo json_encode("CONTAR CONTROLLER");
+                // die;
+                $json = array();
+                $json = loadModel(MODEL_PATH_SHOP,"shop_model", "contar"); 
+                echo json_encode($json);
+            }
+        }
     }
 
 ?>

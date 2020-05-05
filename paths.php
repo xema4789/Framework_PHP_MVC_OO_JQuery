@@ -53,7 +53,7 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
   define('JS_VIEW_LOGIN',SITE_PATH. 'module/login/view/js/');
 
   //MODEL SHOP
-  define('MODEL_PATH_SHOP',SITE_ROOT.'module/shop/model/');
+  define('MODEL_PATH_SHOP',SITE_ROOT.'module/shop/model/model/');
   define('JS_VIEW_SHOP',SITE_PATH.'module/shop/view/');
 
   //MODEL CART

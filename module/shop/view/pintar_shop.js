@@ -152,13 +152,16 @@ $(document).ready(function(){
 
     function pintar_paginacion(){
         // var productos="module/shop/controller/controller_shop.php?op=list_habitaciones";
-        var count="module/shop/controller/controller_shop.php?op=contar";
+        var count=amigable("?module=shop&function=contar");
         $.ajax({
             url:count,
-            type: 'GET',
+            type: 'POST',
+            data:{'okay':true},
             dataType: 'json',
                 
           }).done(function(data){
+              console.log("DATA CONTAR:");
+              console.log(data);
             let totalItems=0;
             let totalPages=0;
 
@@ -199,13 +202,15 @@ $(document).ready(function(){
 
 
 
-    function pintar_shop(total_items){
+    function pintar_shop(total_items){     
         $.ajax({
-            url:"module/shop/controller/controller_shop.php?op=list_paginacion&posicion="+total_items,
-            type: 'GET',
+            url:amigable("?module=shop&function=list_paginacion"),
+            type: 'POST',
+            data: {'arrArgument':total_items,'okay':true},
             dataType: 'json',
                 
           }).done(function(data){
+              console.log("OLE LOS CARACOLES");
             mostrar(data);
            
           }).fail(function(){

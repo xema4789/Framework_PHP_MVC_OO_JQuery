@@ -1,10 +1,4 @@
-<!-- <div id="header"> -->
-    <!-- <img src="view/slideshow/img/3.jpg" alt="">      -->
-        
-  
-
-
-	<header>
+<header>
 
 		<div class="header-top-area black-bg hidden-xs">
 			<div class="container">

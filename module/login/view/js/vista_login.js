@@ -170,7 +170,6 @@ $(document).ready(function(){
             break;
 
             default://No está logueado
-            console.log("DEFAULT");
             $('<div></div>').attr('class',"op_menu").appendTo('.main-menu').html (
                 '<nav>'+
                                 '<ul>'+

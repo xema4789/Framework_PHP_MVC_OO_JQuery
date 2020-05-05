@@ -4,6 +4,18 @@
         <name>list_shop</name>
         <uri>list_shop</uri>
     </function>
+    <function>
+        <name>list_habitaciones</name>
+        <uri>list_habitaciones</uri>
+    </function>
+    <function>
+        <name>list_paginacion</name>
+        <uri>list_paginacion</uri>
+    </function>
+    <function>
+        <name>contar</name>
+        <uri>contar</uri>
+    </function>
   
     
 </functions>
