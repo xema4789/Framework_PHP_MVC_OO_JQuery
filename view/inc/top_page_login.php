@@ -74,9 +74,9 @@
         <script src="<?php echo CSS_PLANTILLA_PATH ?>js/main.js"></script>
         <script src="<?php echo JS_PATH ?>main.js"></script>
         
-        <script type="text/javascript" src="<?php echo MODEL_PATH_LOGIN ?>controller_register.js"></script> 
-        <script type="text/javascript" src="<?php echo MODEL_PATH_LOGIN ?>controller_login.js"></script>
-        <script type="text/javascript" src="<?php echo MODEL_PATH_LOGIN ?>activity.js"></script> 
+        <script type="text/javascript" src="<?php echo JS_VIEW_LOGIN ?>controller_register.js"></script> 
+        <script type="text/javascript" src="<?php echo JS_VIEW_LOGIN ?>controller_login.js"></script>
+        <!-- <script type="text/javascript" src="<//?php echo JS_VIEW_LOGIN ?>activity.js"></script>  -->
         <script type="text/javascript" src="<?php echo JS_VIEW_LOGIN ?>vista_login.js"></script> 
         <script type="text/javascript" src="<?php echo JS_VIEW_CART ?>controller_cart.js"></script> 
         <script type="text/javascript" src="<?php echo JS_VIEW_CART ?>pintar_carrito.js"></script> 

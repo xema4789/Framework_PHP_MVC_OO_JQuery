@@ -55,7 +55,7 @@
 
     case 'register':
       $check=true;
-      $check=validate_user_register($_GET['re_user']);
+      // $check=validate_user_register($_GET['re_user']);
         if($check){
           try{
             $daologin = new DAOLogin();

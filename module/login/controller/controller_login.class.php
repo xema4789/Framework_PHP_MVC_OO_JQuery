@@ -23,5 +23,15 @@ class controller_login{
             echo json_encode("fail");
           }
     }
+
+    function register(){
+      if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
+        // echo json_encode($_POST['user']);
+        // die;
+        $json = array();
+        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "insert_user",$_POST['user']);
+        echo json_encode($json);
+    }
+    }
 }
 ?>

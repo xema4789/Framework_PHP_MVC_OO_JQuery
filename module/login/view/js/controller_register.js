@@ -1,54 +1,72 @@
-function ajax_promise(urlP, typeP, dataTypeP){
-    return new Promise((resolve, reject)=>{
-        $.ajax({
-            url:urlP,
-            type:typeP,
-            dataType: dataTypeP,
+// function ajax_promise(urlP, typeP, dataTypeP){
+//     return new Promise((resolve, reject)=>{
+//         $.ajax({
+//             url:urlP,
+//             type:typeP,
+//             dataType: dataTypeP,
                 
-          }).done(function(data){
-              alert("donde");
-              console.log(data);
-            resolve(data);
-          }).fail(function(){
-              alert("fail");
-            console.log("FAIL");
-            reject("FAIL");
-          });
-    }); 
-}
+//           }).done(function(data){
+//               alert("donde");
+//               console.log(data);
+//             resolve(data);
+//           }).fail(function(){
+//               alert("fail");
+//             console.log("FAIL");
+//             reject("FAIL");
+//           });
+//     }); 
+// }
 
 
-function ajax_succes_promise(type, url, serialize){
-    return new Promise((resolve,reject)=>{
-        $.ajax({
-            type : type,
-            url  : url + serialize,
-            success: function(data){	
-                resolve(data);
-            }
-        });
-    });
 
-    
-}
 
 
 $(document).ready(function(){
+    function ajax_succes_promise(type, url, user){
+       
+        return new Promise((resolve,reject)=>{
+            $.ajax({
+                type : type,
+                url  : url,
+                data:{'okay':true,'user':user},
+                dataType:'json',
+                success: function(data){	
+                    resolve(data);
+                }
+            });
+        });
+    
+        
+    }
+    // alert("sbsr");
+  
 
 
 
 
 
     function form_register_submit(){
+        
         $("#alta_login").submit(function(e){
             e.preventDefault();
             var register_serialized = $("#alta_login").serialize();
+            
+            user={
+                "nombre":$("#re_user").val(),
+                "email":$("#re_email").val(),
+                "password":$("#re_password").val()
+
+            };
+            // console.log(user);
+
             if(validate_user()){
-                ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=register&',register_serialized).then(function(data){
+                ajax_succes_promise('POST',amigable("?module=login&function=register"),user).then(function(data){   //'module/login/controller/controller_login.php?&op=register&'
+                console.log("DATAAAAAAAA"),
+                console.log(data);
                     if(data){	
                         alert("Registro realizado correctamente");
                         // console.log(data);
-                        setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
+                        setTimeout(' window.location.href = "'+amigable("?module=login&function=list_login")+';',1000);
                     }else{					
                         alert("Usuario en uso");
                         document.getElementById('re_user').style.borderColor = "red";

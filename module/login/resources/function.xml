@@ -8,4 +8,8 @@
         <name>ver_usuario</name>
         <uri>ver_usuario</uri>
     </function>
+    <function>
+        <name>register</name>
+        <uri>register</uri>
+    </function>
 </functions>

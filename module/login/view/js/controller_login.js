@@ -1,19 +1,19 @@
 function ajax_succes_promise(typeP, urlP,serializeP){
-    return new Promise((resolve,reject)=>{
-        $.ajax({
-            type : typeP,
-            url  : urlP + serializeP,
-            dataType: 'json',
-            success: function(data){	
-                resolve(data);
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                //Aqui me salta el error
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-                reject ("Error");
-            }       
-        });
-    });
+    // return new Promise((resolve,reject)=>{
+    //     $.ajax({
+    //         type : typeP,
+    //         url  : urlP + serializeP,
+    //         dataType: 'json',
+    //         success: function(data){	
+    //             resolve(data);
+    //         },
+    //         error: function(XMLHttpRequest, textStatus, errorThrown) { 
+    //             //Aqui me salta el error
+    //             alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+    //             reject ("Error");
+    //         }       
+    //     });
+    // });
 
     
 }

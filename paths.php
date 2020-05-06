@@ -49,7 +49,7 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
   define('JS_VIEW_HOME',SITE_PATH. 'module/home/view/');
 
   //MODEL LOGIN
-  define('MODEL_PATH_LOGIN', SITE_ROOT. 'module/login/model/');
+  define('MODEL_PATH_LOGIN', SITE_ROOT. 'module/login/model/model/');
   define('JS_VIEW_LOGIN',SITE_PATH. 'module/login/view/js/');
 
   //MODEL SHOP
