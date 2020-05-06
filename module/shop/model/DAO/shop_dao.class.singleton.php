@@ -2,9 +2,9 @@
 class shop_dao{
     static $_instance;
 
-    private function __construct(){
+    // private function __construct(){
 
-    }
+    // }
 
     public static function getInstance(){
         if(!(self::$_instance instanceof self)){
@@ -24,8 +24,12 @@ class shop_dao{
         return $db->listar($stmt);
     }
     public function contar($db){
-        return $db;
         $sql="SELECT COUNT(*) AS total FROM Habitaciones";
+        $stmt=$db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+    public function maps($db){
+        $sql="SELECT * FROM Ciudades";
         $stmt=$db->ejecutar($sql);
         return $db->listar($stmt);
     }

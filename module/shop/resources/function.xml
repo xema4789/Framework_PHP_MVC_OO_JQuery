@@ -16,6 +16,10 @@
         <name>contar</name>
         <uri>contar</uri>
     </function>
+    <function>
+        <name>maps</name>
+        <uri>maps</uri>
+    </function>
   
     
 </functions>

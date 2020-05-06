@@ -14,8 +14,9 @@ $(document).ready(function () {
 
         
             $.ajax({
-                url:"module/shop/controller/controller_shop.php?op=maps",
-                type: 'GET',
+                url:amigable("?module=shop&function=maps"),
+                type: 'POST',
+                data:{"okay":true},
                 dataType: 'json',
                     
             }).done(function(data){

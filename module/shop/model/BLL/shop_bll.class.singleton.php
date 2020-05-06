@@ -10,7 +10,7 @@ class shop_bll{
 
     private function __construct(){
         $this->dao = shop_dao::getInstance();
-        $this->db::getInstance();
+        $this->db=db::getInstance();
     }
     public static function getInstance(){
         if(!(self::$_instance instanceof self)){
@@ -25,9 +25,10 @@ class shop_bll{
         return $this->dao->list_paginacion($this->db,$arrgument);
     }
     public function contar(){
-        return "BLL CONTAR";
-        die;
         return $this->dao->contar($this->db);
+    }
+    public function maps(){
+        return $this->dao->maps($this->db);
     }
 
 

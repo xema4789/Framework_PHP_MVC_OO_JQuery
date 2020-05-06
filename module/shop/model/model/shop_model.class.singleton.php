@@ -22,9 +22,10 @@ class shop_model{
         return $this->bll->list_paginacion($arrgument);
     }
     public function contar(){
-        return "MODEL CONTAR";
-        die;
         return $this->bll->contar();
+    }
+    public function maps(){
+        return $this->bll->maps();
     }
 
     

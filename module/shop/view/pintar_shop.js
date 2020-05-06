@@ -195,7 +195,7 @@ $(document).ready(function(){
 
 
           }).fail(function(){
-            console.log("FAIL PAGINACION");
+            console.log("FAIL PAGINACION me cago en todo 1");
         });
     }
 
@@ -211,10 +211,11 @@ $(document).ready(function(){
                 
           }).done(function(data){
               console.log("OLE LOS CARACOLES");
-            mostrar(data);
+              console.log(data);
+              mostrar(data);
            
           }).fail(function(){
-            console.log("FAIL");
+            console.log("FAIL me cago en todo");
           });
 
 
@@ -364,7 +365,7 @@ function pintar_tipos(){
 
         for (row in data){
             $('<div></div>').attr({'class':"foto",'id':data[row].Tipo}).appendTo('.ciudades').html (
-                '<img src="'+data[row].Imagen+'" href="#" alt="No se puede cargar la imagen" style="z-index:0">'
+                '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].Imagen+'" href="#" alt="No se puede cargar la imagen" style="z-index:0">'
                  );
         }
     }).fail(function(){
@@ -410,7 +411,7 @@ function rellenar(data){
             '<br></ul></br>'
         );
         $("#Div2").html(
-            '<br><img id="imagen" src="'+data[row].imagen+'"></img></br>'
+            '<br><img id="imagen" src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'"></img></br>'
         );
     }
 }
@@ -555,7 +556,7 @@ function mostrar(data){
 
     for (row in data){
         $('<div></div>').attr({'class':"foto",'id':data[row].Numero_habitacion}).appendTo('#contenedor').html (
-            '<img src="'+data[row].imagen+'" id="'+data[row].Numero_habitacion+'" class="foto_shop" href="#" alt="No se puede cargar la imagen">'+
+            '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" id="'+data[row].Numero_habitacion+'" class="foto_shop" href="#" alt="No se puede cargar la imagen">'+
             '<p class="texto_imagen">'+data[row].Ciudad+'</p>'+
             '<p class="texto_visitas">'+data[row].visitas+'</p>'+
             '<p class="texto_ojo"></p>'+
