@@ -8,7 +8,7 @@ class login_bll{
     static $_instance;
 
 
-    private function construct(){
+    private function __construct(){
         $this->dao=login_dao::getInstance();
         $this->db=db::getInstance();
     }
@@ -21,10 +21,13 @@ class login_bll{
     }
 
 
-    public function insert_user($user){
-        return $user;
-        die;
-        // return $this->dao->insert_user($user,$passwd,$email);
+    public function register($datos){
+        // return "PENE";
+        // die;
+        $email=$datos['email'];
+        $nombre=$datos['nombre'];
+        $passwd=$datos['password'];
+        return $this->dao->insert_user($this->db,$nombre,$passwd,$email);
     }
 }
 ?>

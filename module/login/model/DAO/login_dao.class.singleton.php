@@ -16,10 +16,14 @@
             return self::$_instance;
         }
 
-        function insert_user($user,$passwd,$email){
-            $passwd_encript=DAOLogin::encriptar($passwd);
-            $sql = "INSERT INTO Users (user, password, email,type) VALUES ('$user','$passwd_encript','$email','user')";
+        function insert_user($db,$nombre,$passwd,$email){
+            $passwd_encript=login_dao::encriptar($passwd);
+            $sql = "INSERT INTO Users (user, password, email,type) VALUES ('$nombre','$passwd_encript','$email','user')";
+            $stmt=$db->ejecutar($sql);
+            return 'okay';
+            // return $db->listar($stmt);
         }
+
 
 
 

@@ -4,15 +4,19 @@
     
     function send_mailgun($email){
 		$conf= parse_ini_file(TEST_PATH . '2_test_email_mailgun/credentials.ini');
-		$email="jmqmaestre@gmail.com";
+		print_r("xml: ");
+		print_r($conf);
+		// $email="xemaiestacio@gmail.com";
     	$config = array();
-    	$config['api_key'] = $conf['api_key']; //API Key
+		$config['api_key'] = $conf['api_key']; //API Key
+		
     	$config['api_url'] = $conf['api_url']; //API Base URL
+		
 
     	$message = array();
-    	$message['from'] = "jmqmaestre@gmail.com";
+    	$message['from'] = "xemaiestacio@gmail.com";
     	$message['to'] = $email;
-    	$message['h:Reply-To'] = "jmqmaestre@gmail.com";
+    	$message['h:Reply-To'] = "xemaiestacio@gmail.com";
     	$message['subject'] = "Hello, this is a test";
     	$message['html'] = 'Hello ' . $email . ',</br></br> This is a test';
      
@@ -27,9 +31,17 @@
     	curl_setopt($ch, CURLOPT_POST, true); 
     	curl_setopt($ch, CURLOPT_POSTFIELDS,$message);
     	$result = curl_exec($ch);
-    	curl_close($ch);
+		curl_close($ch);
+		
     	return $result;
     }
     
-    $json = send_mailgun('jmqmaestre@gmail.com');
+    $json = send_mailgun('xemaiestacio@gmail.com');
     print_r($json);
+	print_r("HOLAA");
+
+
+	
+	// print_r("srgwrgv");
+
+	?>

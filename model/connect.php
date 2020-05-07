@@ -1,10 +1,11 @@
 <?php
 	class connect{
 		public static function con(){
-			$host = "127.0.0.1";  
-    		$user = "xema";                  
-			$pass = "@Mondongo99";            
-    		$db = "Hoteles";                     
+			$conf= parse_ini_file(MODEL_PATH . "db.ini");
+			$host = $conf['host'];  
+    		$user = $conf['user'];                  
+			$pass = $conf['pass'];            
+    		$db = $conf['db'];                     
 			$conexion = mysqli_connect($host, $user,$pass,$db)or die (mysqli_connect_error()) ;
 			return $conexion;
 		}

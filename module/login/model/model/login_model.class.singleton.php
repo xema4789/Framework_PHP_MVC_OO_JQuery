@@ -5,7 +5,7 @@ class login_model{
     private $bll;
     static $_instance;
 
-    function construct(){
+    function __construct(){
         $this->bll= login_bll::getInstance();
     }
 
@@ -14,6 +14,12 @@ class login_model{
             self::$_instance = new self();
         }
         return self::$_instance;
+    }
+
+    public function register($datos){
+        // return $this->bll;
+        // die;
+        return $this->bll->register($datos);
     }
 }
 

@@ -29,7 +29,7 @@ class controller_login{
         // echo json_encode($_POST['user']);
         // die;
         $json = array();
-        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "insert_user",$_POST['user']);
+        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "register",$_POST['user']);
         echo json_encode($json);
     }
     }
