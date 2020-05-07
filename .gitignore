@@ -5,4 +5,4 @@
 # /Tests/4_adoptions_dogs/
 /Tests/2_test_email_mailgun/credentials.ini
 /Tests/4_adoptions_dogs/model/db.ini
-/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/model/db.ini
+/model/db.ini

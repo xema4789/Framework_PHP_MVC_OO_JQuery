@@ -25,13 +25,56 @@ class controller_login{
     }
 
     function register(){
-      if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
-        // echo json_encode($_POST['user']);
-        // die;
-        $json = array();
-        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "register",$_POST['user']);
-        echo json_encode($json);
+        if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
+          
+          $json = array();
+          $json = loadModel(MODEL_PATH_LOGIN,"login_model", "register",$_POST['user']);
+          $token="hola";
+          $email="xemaiestacio@gmail.com";
+          $result=controller_login::enviar_mail($token,$email);
+          
+          echo json_encode($json);
+        }
     }
-    }
+
+    function enviar_mail($token,$email){
+      $conf= parse_ini_file(TEST_PATH . '2_test_email_mailgun/credentials.ini');
+      // print_r("xml: ");
+      // print_r($conf);
+      // $email="xemaiestacio@gmail.com";
+        $config = array();
+        $config['api_key'] = $conf['api_key']; //API Key
+      
+        $config['api_url'] = $conf['api_url']; //API Base URL
+      
+
+        $message = array();
+        $message['from'] = "xemaiestacio@gmail.com";
+        $message['to'] = $email;
+        $message['h:Reply-To'] = "xemaiestacio@gmail.com";
+        $message['subject'] = "Hello, this is a test";
+        $message['html'] = 'Hello ' . $email . ',</br></br> Para confirmar su cuenta haga click en <a href="'.amigable("?module=login&function=confirm_cuenta").'">este</a> enlace';
+      
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $config['api_url']);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "api:{$config['api_key']}");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_POST, true); 
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$message);
+        $result = curl_exec($ch);
+        curl_close($ch);
+      
+        return $result;
+      }
+
+      function confirm_cuenta($token){
+        print_r("OLE LOS CARACOLES");
+        die;
+      }
+
 }
 ?>

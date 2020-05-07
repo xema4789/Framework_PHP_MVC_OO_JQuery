@@ -12,4 +12,12 @@
         <name>register</name>
         <uri>register</uri>
     </function>
+    <function>
+        <name>enviar_mail</name>
+        <uri>enviar_mail</uri>
+    </function>
+    <function>
+        <name>confirm_cuenta</name>
+        <uri>confirm_cuenta</uri>
+    </function>
 </functions>
