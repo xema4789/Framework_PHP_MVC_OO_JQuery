@@ -83,13 +83,23 @@ class controller_login{
 
       function confirm_cuenta(){
         $token=$_GET['param'];
-        
+        $result=controller_login::validate_token($token);
         require(VIEW_PATH_INC. "top_page_login.php");
         require (VIEW_PATH_INC . "header.php");
         require (VIEW_PATH_INC . "menu.php");
+        
+        if($result=="no"){
+          
+        loadView('module/login/view/','no_confirm.php');
+       
+        }else{
+        
         loadView('module/login/view/','confirm.php');
+        
+        }
         require (VIEW_PATH_INC . "footer.php");
-        controller_login::validate_token($token);
+        
+        
 
         //Ir a base de datos y confirmar la cuenta donde coincida el token recibido
 
@@ -99,7 +109,7 @@ class controller_login{
         //Ir al dao, ver los tokens, y si coincide, active="true"
         $json = array();
         $json = loadModel(MODEL_PATH_LOGIN,"login_model", "validate_token",$token);
-        echo json_encode($json);
+        return($json);
       }
 
 

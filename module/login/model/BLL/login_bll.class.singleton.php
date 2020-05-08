@@ -33,7 +33,7 @@ class login_bll{
         if($user){
             return $this->dao->active_user($this->db,$token); 
         }
-        return "token no encontrado";
+        return "no";
     }
 }
 ?>
