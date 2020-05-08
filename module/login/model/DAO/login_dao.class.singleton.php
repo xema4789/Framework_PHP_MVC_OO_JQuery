@@ -16,12 +16,22 @@
             return self::$_instance;
         }
 
-        function insert_user($db,$nombre,$passwd,$email){
+        function insert_user($db,$nombre,$passwd,$email,$token){
             $passwd_encript=login_dao::encriptar($passwd);
-            $sql = "INSERT INTO Users (user, password, email,type) VALUES ('$nombre','$passwd_encript','$email','user')";
+            $sql = "INSERT INTO Users (user, password, email,type,active,token) VALUES ('$nombre','$passwd_encript','$email','user','false','$token')";
             $stmt=$db->ejecutar($sql);
-            return 'okay';
-            // return $db->listar($stmt);
+            return 'okay'; 
+        }
+        function validate_token($db,$token){
+            $sql="SELECT * FROM Users WHERE token='$token'";
+            $stmt=$db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        function active_user($db,$token){
+            $sql="UPDATE Users SET active='true' WHERE token='$token'";
+            $stmt=$db->ejecutar($sql);
+            return $db->listar($stmt);
         }
 
 

@@ -25,11 +25,16 @@ class controller_login{
     }
 
     function register(){
+      // print_r("hola");
+      // die;
         if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
+
+          //Crear token aqui y enviarlo al dao
+          $token=controller_login::generate_Token_secure(20);
           
           $json = array();
-          $json = loadModel(MODEL_PATH_LOGIN,"login_model", "register",$_POST['user']);
-          $token="hola";
+          $json = loadModel(MODEL_PATH_LOGIN,"login_model", "register",$_POST['user'],$token);
+          
           $email="xemaiestacio@gmail.com";
           $result=controller_login::enviar_mail($token,$email);
           
@@ -37,11 +42,16 @@ class controller_login{
         }
     }
 
+    function generate_Token_secure($longitud){
+      if ($longitud < 4) {
+          $longitud = 4;
+      }
+      return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
+  }
+
     function enviar_mail($token,$email){
       $conf= parse_ini_file(TEST_PATH . '2_test_email_mailgun/credentials.ini');
-      // print_r("xml: ");
-      // print_r($conf);
-      // $email="xemaiestacio@gmail.com";
+
         $config = array();
         $config['api_key'] = $conf['api_key']; //API Key
       
@@ -53,7 +63,7 @@ class controller_login{
         $message['to'] = $email;
         $message['h:Reply-To'] = "xemaiestacio@gmail.com";
         $message['subject'] = "Hello, this is a test";
-        $message['html'] = 'Hello ' . $email . ',</br></br> Para confirmar su cuenta haga click en <a href="'.amigable("?module=login&function=confirm_cuenta").'">este</a> enlace';
+        $message['html'] = 'Hello ' . $email . ',</br></br> Para confirmar su cuenta haga click en <a href="'.amigable("?module=login&function=confirm_cuenta&token=".$token."").'">este</a> enlace';//amigable("?module=login&function=confirm_cuenta&token=".$token
       
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $config['api_url']);
@@ -71,10 +81,27 @@ class controller_login{
         return $result;
       }
 
-      function confirm_cuenta($token){
-        print_r("OLE LOS CARACOLES");
-        die;
+      function confirm_cuenta(){
+        $token=$_GET['param'];
+        
+        require(VIEW_PATH_INC. "top_page_login.php");
+        require (VIEW_PATH_INC . "header.php");
+        require (VIEW_PATH_INC . "menu.php");
+        loadView('module/login/view/','confirm.php');
+        require (VIEW_PATH_INC . "footer.php");
+        controller_login::validate_token($token);
+
+        //Ir a base de datos y confirmar la cuenta donde coincida el token recibido
+
       }
+
+      function validate_token($token){
+        //Ir al dao, ver los tokens, y si coincide, active="true"
+        $json = array();
+        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "validate_token",$token);
+        echo json_encode($json);
+      }
+
 
 }
 ?>

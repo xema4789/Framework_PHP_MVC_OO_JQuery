@@ -269,6 +269,12 @@ h6 a {
 }
 
 /*Fin loader  */
+#confirmado{
+  margin-left: 40%;
+  /* margin-right: 50%; */
+  float: center;
+  /* align-content: center; */
+}
 
 /* Spinner */
   input[type=number]::-webkit-inner-spin-button, 

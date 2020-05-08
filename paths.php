@@ -15,6 +15,9 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
  //JS
  define('JS_PATH', SITE_PATH . 'view/js/');
 
+ //IMG
+ define('IMG_PATH', SITE_PATH . 'view/img/');
+
   //MODEL
   define('MODEL_PATH', SITE_ROOT . 'model/');
     

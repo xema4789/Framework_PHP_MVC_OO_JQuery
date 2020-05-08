@@ -21,13 +21,19 @@ class login_bll{
     }
 
 
-    public function register($datos){
-        // return "PENE";
-        // die;
+    public function register($datos,$token){
         $email=$datos['email'];
         $nombre=$datos['nombre'];
         $passwd=$datos['password'];
-        return $this->dao->insert_user($this->db,$nombre,$passwd,$email);
+        return $this->dao->insert_user($this->db,$nombre,$passwd,$email,$token);
+    }
+
+    public function validate_token($token){
+        $user= $this->dao->validate_token($this->db,$token);
+        if($user){
+            return $this->dao->active_user($this->db,$token); 
+        }
+        return "token no encontrado";
     }
 }
 ?>

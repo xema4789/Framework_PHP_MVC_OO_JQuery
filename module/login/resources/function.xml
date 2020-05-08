@@ -20,4 +20,12 @@
         <name>confirm_cuenta</name>
         <uri>confirm_cuenta</uri>
     </function>
+    <function>
+        <name>generate_Token_secure</name>
+        <uri>generate_Token_secure</uri>
+    </function>
+    <function>
+        <name>validate_token</name>
+        <uri>validate_token</uri>
+    </function>
 </functions>

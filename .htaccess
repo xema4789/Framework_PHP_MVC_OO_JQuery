@@ -5,3 +5,6 @@ RewriteBase /Programacion/Tema5_1.0/Tema5_1.0/Framework/
 RewriteCond %{REQUEST_FILENAME} !-f
 Rewriterule ^([^/]*)/([^/]*)$ ?module=$1&function=$2 [L,NC]
 
+RewriteCond %{REQUEST_FILENAME} !-f
+Rewriterule ^([^/]*)/([^/]*)/([^/]*)$ index.php?module=$1&function=$2&param=$3 [L,NC]
+

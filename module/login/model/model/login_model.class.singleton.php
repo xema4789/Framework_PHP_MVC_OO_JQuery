@@ -16,10 +16,12 @@ class login_model{
         return self::$_instance;
     }
 
-    public function register($datos){
-        // return $this->bll;
-        // die;
-        return $this->bll->register($datos);
+    public function register($datos,$token){
+        return $this->bll->register($datos,$token);
+    }
+
+    public function validate_token($token){
+        return $this->bll->validate_token($token);
     }
 }
 
