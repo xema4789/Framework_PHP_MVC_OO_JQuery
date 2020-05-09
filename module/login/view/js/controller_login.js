@@ -1,26 +1,20 @@
-function ajax_succes_promise(typeP, urlP,serializeP){
-    // return new Promise((resolve,reject)=>{
-    //     $.ajax({
-    //         type : typeP,
-    //         url  : urlP + serializeP,
-    //         dataType: 'json',
-    //         success: function(data){	
-    //             resolve(data);
-    //         },
-    //         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-    //             //Aqui me salta el error
-    //             alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-    //             reject ("Error");
-    //         }       
-    //     });
-    // });
-
-    
-}
-
-
-
 $(document).ready(function(){
+    function ajax_succes_promise(type, url, user){
+       
+        return new Promise((resolve,reject)=>{
+            $.ajax({
+                type : type,
+                url  : url,
+                data:{'okay':true,'user':user},
+                dataType:'json',
+                success: function(data){	
+                    resolve(data);
+                }
+            });
+        });
+    
+        
+    }
 
 
     $(document).on("click",'#lo_login', function(){
@@ -32,13 +26,23 @@ $(document).ready(function(){
         $("#alta_login").submit(function(e){
             e.preventDefault();
             var login_serialized = $("#alta_login").serialize();
+
+
+            user={
+                "nombre":$("#lo_user").val(),
+                "password":$("#lo_password").val()
+            };
+           
+
+
+
             if(validate_login()){
                 console.log("serialize:");
                 console.log(login_serialized);
                 
 
                 //Error aqui
-                ajax_succes_promise('GET','module/login/controller/controller_login.php?&op=login&', login_serialized,'json').then(function(data){
+                ajax_succes_promise('POST',amigable("?module=login&function=login"),user).then(function(data){ 
 
                     if(data){	
                         alert("Login realizado correctamente");
@@ -52,7 +56,7 @@ $(document).ready(function(){
                         // localStorage.setItem('Asiatica',0);
 
                         
-                        setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
+                        // setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
                     }else{					
                         alert("Usuario o contraseña incorrectos");
                         console.log(data);

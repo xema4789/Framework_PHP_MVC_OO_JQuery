@@ -33,6 +33,11 @@
             $stmt=$db->ejecutar($sql);
             return $db->listar($stmt);
         }
+        function login($db,$nombre,$passwd){
+            $sql="SELECT * FROM Users WHERE user LIKE '$nombre'";
+            $stmt=$db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
 
 
 

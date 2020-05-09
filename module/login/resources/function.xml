@@ -28,4 +28,8 @@
         <name>validate_token</name>
         <uri>validate_token</uri>
     </function>
+    <function>
+        <name>login</name>
+        <uri>login</uri>
+    </function>
 </functions>

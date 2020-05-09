@@ -8,19 +8,19 @@
         
         switch ($arr['type']) {
             case 'alta':
-                $subject = 'Tu Alta en Ohana dogs';
-                $ruta = "<a href='" . amigable("?module=home&function=active_user&param=" . $arr['token'], true) . "'>aqu&iacute;</a>";
-                $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
+                $subject = 'Tu Alta Hoteles Xema';
+                $ruta = "<a href='" . amigable("?module=login&function=confirm_cuenta&token=" . $arr['token'], true) . "'>aqu&iacute;</a>";
+                $body = 'Gracias por unirte a nuestro Hotel<br> Para finalizar el registro, pulsa ' . $ruta;
                 break;
     
             case 'changepass':
-                $subject = 'Tu Nuevo Password en Ohana dogs<br>';
+                $subject = 'Tu Nuevo Password en Hoteles Xema<br>';
                 $ruta = '<a href="' . amigable("?module=login&function=changepass&aux=" . $arr['token'], true) . '">aqu&iacute;</a>';
                 $body = 'Para recordar tu password pulsa ' . $ruta;
                 break;
                 
             case 'contact':
-                $subject = 'Tu Petici&oacute;n a Ohana_dogs ha sido enviada<br>';
+                $subject = 'Tu Petición a Hoteles Xema ha sido enviada<br>';
                 $ruta = '<a href=' . 'http://localhost/1_Fw_PHP_OO_MVC_jQuery_AngularJS/Framework/9_adoptions_dogs/'. '>aqu&iacute;</a>';
                 $body = 'Para visitar nuestra web, pulsa ' . $ruta;
                 break;
@@ -46,17 +46,17 @@
            $html .= "<br><br>";
 	       $html .= $body;
 	       $html .= "<br><br>";
-	       $html .= "<p>Sent by OHANA_DOGS</p>";
+	       $html .= "<p>Sent by Hoteles Xema</p>";
 		$html .= "</body>";
 		$html .= "</html>";
 
         //set_error_handler('ErrorHandler');
         try{
             if ($arr['type'] === 'admin')
-                $address = 'ruralshoponti@gmail.com';
+                $address = 'xemaiestacio@gmail.com';
             else
                 $address = $arr['inputEmail'];
-            $result = send_mailgun('ruralshoponti@gmail.com', $address, $subject, $html);    
+            $result = send_mailgun('xemaiestacio@gmail.com', $address, $subject, $html);    
         } catch (Exception $e) {
 			$return = 0;
 		}
@@ -73,9 +73,9 @@
     $config['api_url'] = $conf['api_url']; //API Base URL
 
     $message = array();
-    $message['from'] = "jmqmaestre@gmail.com";
+    $message['from'] = "xemaiestacio@gmail.com";
     $message['to'] = $email;
-    $message['h:Reply-To'] = "jmqmaestre@gmail.com";
+    $message['h:Reply-To'] = "xemaiestacio@gmail.com";
     $message['subject'] = $subject;
     $message['html'] = $html;
  

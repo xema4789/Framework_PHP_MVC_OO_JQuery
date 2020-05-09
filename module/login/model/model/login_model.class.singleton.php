@@ -23,6 +23,9 @@ class login_model{
     public function validate_token($token){
         return $this->bll->validate_token($token);
     }
+    public function login($user){
+        return $this->bll->login($user);
+    }
 }
 
 

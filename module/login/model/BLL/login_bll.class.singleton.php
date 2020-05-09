@@ -35,5 +35,12 @@ class login_bll{
         }
         return "no";
     }
+
+    public function login($user){
+        $nombre=$user['nombre'];
+        $passwd=$user['password'];
+        return $this->dao->login($this->db,$nombre,$passwd);
+
+    }
 }
 ?>

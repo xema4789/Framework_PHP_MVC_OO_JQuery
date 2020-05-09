@@ -304,7 +304,7 @@ h6 a {
   background-image: url("view/img/plus.png");
 }
 
-#lo_register:hover{
+#lo_register:hover,#recu_passwd:hover{
   cursor: pointer;
   background-color: lightblue;
 

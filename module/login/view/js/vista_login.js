@@ -20,7 +20,7 @@ $(document).ready(function(){
 
         }else{
             
-            console.log("usuario no encontrado");
+            console.log("USUARIO NO ENCONTRADO");
             pintar_menu();
         }
 
@@ -36,6 +36,9 @@ $(document).ready(function(){
 
     $('#lo_register').on("click",function(){
         pintar_login('register');
+    });
+    $('#recu_passwd').on("click",function(){
+        pintar_login('recu_passwd');
     });
  
 
@@ -84,8 +87,26 @@ $(document).ready(function(){
                         '<input name="lo_password" id="lo_password" placeholder="Contraseña" type="password" />'+ 
                         '<a id="error_lo_password" class="error"></a><br>'+
                     '</div>'+
-                    '<a id="lo_register">Registrate</a>'
+                    '<div>'+
+                        '<a id="lo_register">Registrate</a>'+
+                        '<a id="recu_passwd">He olvidado mi contraseña</a>'+
+                    '</div>'
                 );
+            break;
+
+            case 'recu_passwd':
+                $('.login').empty();
+                $('<div></div>').attr('class',"op_login").appendTo('.login').html (
+                    '<input type="submit" value="Enviar email" name="recu_passwd" class="btn" id="recu_passwd"></input>'+
+                        '<div class="autocomplete"> '+
+                        
+                        '<td><label>Email:</label></td>'+
+                        '<td><input type="email" id="re_email" name="re_email"><br><br></td>'+
+                        '<td><a id="error_re_email" class="error"></a><br></td>'+
+                    '</div>'
+                    
+                );
+
             break;
         }
 

@@ -23,6 +23,22 @@ class controller_login{
             echo json_encode("fail");
           }
     }
+    function login(){
+      if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
+        // echo json_encode($_POST);
+        // die;
+        //Generar token con jwt y guardarlo en localstorage
+
+        $json = array();
+        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "login",$_POST['user']);
+        $_SESSION['type'] = $json[0]['type'];
+        $_SESSION['user'] = $json[0]['user'];
+				$_SESSION['tiempo'] = time();
+        echo json_encode($_SESSION);
+
+      }
+    }
+
 
     function register(){
       // print_r("hola");
@@ -36,7 +52,7 @@ class controller_login{
           $json = loadModel(MODEL_PATH_LOGIN,"login_model", "register",$_POST['user'],$token);
           
           $email="xemaiestacio@gmail.com";
-          $result=controller_login::enviar_mail($token,$email);
+          $result=controller_login::enviar_mail($token,$email,"alta");
           
           echo json_encode($json);
         }
@@ -49,60 +65,33 @@ class controller_login{
       return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
   }
 
-    function enviar_mail($token,$email){
-      $conf= parse_ini_file(TEST_PATH . '2_test_email_mailgun/credentials.ini');
+    function enviar_mail($token,$email,$type){
+      $arr['token']=$token;
+      $arr['inputEmail']=$email;
+      $arr['type']=$type;
+      enviar_email($arr);
 
-        $config = array();
-        $config['api_key'] = $conf['api_key']; //API Key
-      
-        $config['api_url'] = $conf['api_url']; //API Base URL
-      
-
-        $message = array();
-        $message['from'] = "xemaiestacio@gmail.com";
-        $message['to'] = $email;
-        $message['h:Reply-To'] = "xemaiestacio@gmail.com";
-        $message['subject'] = "Hello, this is a test";
-        $message['html'] = 'Hello ' . $email . ',</br></br> Para confirmar su cuenta haga click en <a href="'.amigable("?module=login&function=confirm_cuenta&token=".$token."").'">este</a> enlace';//amigable("?module=login&function=confirm_cuenta&token=".$token
-      
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $config['api_url']);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($ch, CURLOPT_USERPWD, "api:{$config['api_key']}");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_POST, true); 
-        curl_setopt($ch, CURLOPT_POSTFIELDS,$message);
-        $result = curl_exec($ch);
-        curl_close($ch);
-      
-        return $result;
       }
+
+
+
+
+
 
       function confirm_cuenta(){
         $token=$_GET['param'];
         $result=controller_login::validate_token($token);
+
         require(VIEW_PATH_INC. "top_page_login.php");
         require (VIEW_PATH_INC . "header.php");
         require (VIEW_PATH_INC . "menu.php");
         
         if($result=="no"){
-          
-        loadView('module/login/view/','no_confirm.php');
-       
+          loadView('module/login/view/','no_confirm.php');
         }else{
-        
-        loadView('module/login/view/','confirm.php');
-        
+          loadView('module/login/view/','confirm.php');
         }
         require (VIEW_PATH_INC . "footer.php");
-        
-        
-
-        //Ir a base de datos y confirmar la cuenta donde coincida el token recibido
-
       }
 
       function validate_token($token){
@@ -111,6 +100,9 @@ class controller_login{
         $json = loadModel(MODEL_PATH_LOGIN,"login_model", "validate_token",$token);
         return($json);
       }
+
+
+
 
 
 }
