@@ -14,9 +14,9 @@
                 break;
     
             case 'changepass':
-                $subject = 'Tu Nuevo Password en Hoteles Xema<br>';
-                $ruta = '<a href="' . amigable("?module=login&function=changepass&aux=" . $arr['token'], true) . '">aqu&iacute;</a>';
-                $body = 'Para recordar tu password pulsa ' . $ruta;
+                $subject = 'Tu Nueva Contraseña en Hoteles Xema<br>';
+                $ruta = '<a href="' . amigable("?module=login&function=change_passwd&aux=" . $arr['token'], true) . '">aqu&iacute;!!!!!!!</a>';
+                $body = 'Hola '.$arr['nombre'].'!. Para recordar tu password pulsa ' . $ruta;
                 break;
                 
             case 'contact':
@@ -41,7 +41,7 @@
 	       $html .= "<h4>". $subject ."</h4>";
            $html .= "<br><br>";
            $html .= "Mensaje:";
-           $html .= "<br><br>";
+           $html .= '<br><img id="foto_mail" src="http://localhost/Programacion/Tema5_1.0/Tema5_1.0/Framework/Programacion/Tema5_1.0/Tema5_1.0/Framework/view/img/hotel_mail.jpg"></img><br>';
            $html .= $arr['inputMessage'];
            $html .= "<br><br>";
 	       $html .= $body;
@@ -67,13 +67,13 @@
 
  function send_mailgun($from,$email,$subject,$html){
     $conf= parse_ini_file(TEST_PATH . '2_test_email_mailgun/credentials.ini');
-    // $email="jmqmaestre@gmail.com";
+    $email="xemaiestacio@gmail.com";
     $config = array();
     $config['api_key'] = $conf['api_key']; //API Key
     $config['api_url'] = $conf['api_url']; //API Base URL
 
     $message = array();
-    $message['from'] = "xemaiestacio@gmail.com";
+    $message['from'] = "HotelSupport@gmail.com";
     $message['to'] = $email;
     $message['h:Reply-To'] = "xemaiestacio@gmail.com";
     $message['subject'] = $subject;

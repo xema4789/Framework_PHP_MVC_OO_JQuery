@@ -72,11 +72,13 @@ class controller_login{
       return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
   }
 
-    function enviar_mail($token,$email,$type){
+    function enviar_mail($token,$email,$type,$nombre = ""){
       $arr['token']=$token;
       $arr['inputEmail']=$email;
       $arr['type']=$type;
-      enviar_email($arr);
+      $arr['nombre']=$nombre;
+      $result= enviar_email($arr);
+      return $result;
 
       }
 
@@ -114,7 +116,15 @@ class controller_login{
         if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
           $json = array();
           $json = loadModel(MODEL_PATH_LOGIN,"login_model", "recover_passwd",$_POST['user']);
-          echo json_encode($json);
+        //   $datos = array(
+        //     "email" => $json[0]['email'],
+        //     "token" => $json[0]['token'],
+        //     "nombre" => $json[0]['user']
+        // );
+        echo json_encode(controller_login::enviar_mail($json[0]['token'],$json[0]['email'],"changepass",$json[0]['user']));
+
+
+          // echo json_encode($json[0]['token']);
         }
 
       }

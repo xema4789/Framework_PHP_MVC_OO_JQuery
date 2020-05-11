@@ -309,6 +309,10 @@ h6 a {
   background-color: lightblue;
 
 }
+#foto_mail{
+  width: 750px;
+  height: 500px;
+}
 #re_user,#lo_user,#lo_password,#re_password,#re_email{
   border-width: 5px;
   
