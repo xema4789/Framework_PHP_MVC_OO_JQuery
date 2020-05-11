@@ -38,6 +38,11 @@
             $stmt=$db->ejecutar($sql);
             return $db->listar($stmt);
         }
+        function recover_passwd($db,$user){
+            $sql="SELECT * FROM Users WHERE user LIKE '$user'";
+            $stmt=$db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
 
 
 

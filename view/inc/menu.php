@@ -4,10 +4,10 @@
 					<div class="row">
 						<div class="col-md-3 col-sm-2">
 							<div class="logo">
-								<a href="<?php amigable('?module=home&function=list_home')?>"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/logo/1.png" alt="" /></a>
+								<a href="<?php echo amigable('?module=home&function=list_home') ?>"><img src="<?php echo CSS_PLANTILLA_PATH ?>img/logo/1.png" alt="" /></a>
 										<!-- ?module=contact&function=list_contact -->
-										<!-- <
-											?php amigable('?module=contact&function=list_contact') ?> -->
+										 <!-- amigable('?module=home&function=list_home') -->
+											<!-- ?php amigable('?module=contact&function=list_contact') ?> -->
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-10">

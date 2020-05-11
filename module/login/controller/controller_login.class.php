@@ -11,6 +11,13 @@ class controller_login{
         loadView('module/login/view/','view_login.php');
         require (VIEW_PATH_INC . "footer.php");
     }    
+    function list_profile(){
+      require(VIEW_PATH_INC. "top_page_login.php");
+        require (VIEW_PATH_INC . "header.php");
+        require (VIEW_PATH_INC . "menu.php");
+        loadView('module/login/view/','view_profile.php');
+        require (VIEW_PATH_INC . "footer.php");
+    }
     
     function ver_usuario(){
         try{
@@ -99,6 +106,17 @@ class controller_login{
         $json = array();
         $json = loadModel(MODEL_PATH_LOGIN,"login_model", "validate_token",$token);
         return($json);
+      }
+
+      function recover_passwd(){
+        $user=$_POST['user'];
+        // echo json_encode($user);
+        if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
+          $json = array();
+          $json = loadModel(MODEL_PATH_LOGIN,"login_model", "recover_passwd",$_POST['user']);
+          echo json_encode($json);
+        }
+
       }
 
 

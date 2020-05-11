@@ -26,6 +26,9 @@ class login_model{
     public function login($user){
         return $this->bll->login($user);
     }
+    public function recover_passwd($user){
+        return $this->bll->recover_passwd($user);
+    }
 }
 
 

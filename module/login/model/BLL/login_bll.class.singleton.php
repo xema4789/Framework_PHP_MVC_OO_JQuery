@@ -42,5 +42,8 @@ class login_bll{
         return $this->dao->login($this->db,$nombre,$passwd);
 
     }
+    public function recover_passwd($user){
+        return $this->dao->recover_passwd($this->db,$nombre);
+    }
 }
 ?>

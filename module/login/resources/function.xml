@@ -32,4 +32,16 @@
         <name>login</name>
         <uri>login</uri>
     </function>
+    <function>
+        <name>list_profile</name>
+        <uri>list_profile</uri>
+    </function>
+    <function>
+        <name>change_passwd</name>
+        <uri>change_passwd</uri>
+    </function>
+    <function>
+        <name>recover_passwd</name>
+        <uri>recover_passwd</uri>
+    </function>
 </functions>

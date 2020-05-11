@@ -40,6 +40,8 @@ $(document).ready(function(){
     $('#recu_passwd').on("click",function(){
         pintar_login('recu_passwd');
     });
+
+    
  
 
      
@@ -97,12 +99,15 @@ $(document).ready(function(){
             case 'recu_passwd':
                 $('.login').empty();
                 $('<div></div>').attr('class',"op_login").appendTo('.login').html (
-                    '<input type="submit" value="Enviar email" name="recu_passwd" class="btn" id="recu_passwd"></input>'+
+                    '<input type="submit" value="Enviar email" name="recover_passwd" class="btn" id="recover_passwd"></input>'+
                         '<div class="autocomplete"> '+
+                        '<td><label>Usuario:</label></td>'+
+                        '<td><input id="re_user" name="re_user" placeholder="Nombre" type="text" /></td>'+
+                        '<td><a id="error_re_user" class="error"></a><br></td>'+
                         
-                        '<td><label>Email:</label></td>'+
-                        '<td><input type="email" id="re_email" name="re_email"><br><br></td>'+
-                        '<td><a id="error_re_email" class="error"></a><br></td>'+
+                        // '<td><label>Email:</label></td>'+
+                        // '<td><input type="email" id="re_email" placeholder="Email" name="re_email"><br><br></td>'+
+                        // '<td><a id="error_re_email" class="error"></a><br></td>'+
                     '</div>'
                     
                 );
@@ -149,7 +154,7 @@ $(document).ready(function(){
 											'</ul>'+
 										'</li>'+
 										'<li><a href="index.php?page=controller_contact&op=list">Contacto</a></li>'+
-                                        '<li class="active"><a>'+nombre+'<i class="fa fa-angle-down"></i></a>'+
+                                        '<li class="active"><a href="'+amigable("?module=login&function=list_profile")+'">'+nombre+'<i class="fa fa-angle-down"></i></a>'+
                                         '<ul class="submenu">'+
                                             '<li><a id="desconectar" href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+
                                         '</ul>'+
@@ -180,7 +185,7 @@ $(document).ready(function(){
 										'</li>'+
 										'<li><a href="index.php?page=controller_shop&op=list">Tienda</a></li>'+
 										'<li><a href="index.php?page=controller_contact&op=list">Contacto</a></li>'+
-										'<li class="active"><a>'+nombre+'<i class="fa fa-angle-down"></i></a>'+
+										'<li class="active"><a href="'+amigable("?module=login&function=list_profile")+'">'+nombre+'<i class="fa fa-angle-down"></i></a>'+
                                         '<ul class="submenu">'+
                                         '<li><a id="desconectar" href="index.php?page=controller_login&op=log_out">Desconectarse</a></li>'+
                                         '</ul>'+

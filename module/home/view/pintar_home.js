@@ -24,7 +24,7 @@
 
 $(document).ready(function(){
     cargar_api();
-    alert("ole los caracoles");
+    
 
     localStorage.setItem('posicion_home',0);
 

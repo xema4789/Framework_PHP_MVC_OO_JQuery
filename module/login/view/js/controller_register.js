@@ -75,12 +75,33 @@ $(document).ready(function(){
             }
         });
     }
+    function recover_passwd_submit(){
+        $("#alta_login").submit(function(e){  
+            e.preventDefault();
+            user=$('#re_user').val();
+            
+            console.log("datos");
+            console.log(user);
+            //Ir a bd y buscar ese nombre, si está, cogemos el token y el email, le enviamos un email con href al controller y function recover password que lanza una vista para cambiar la contraseña a ese usuario con ese token
+            ajax_succes_promise('POST',amigable("?module=login&function=recover_passwd"),user).then(function(data){
+                if(data){
+                    console.log("DATA:");
+                    console.log(data);
+
+                }
+
+            });
+        });
+    }
 
 
 
      $(document).on('click', '#re_register', function(){
         form_register_submit();
      });
+     $(document).on("click","#recover_passwd",function(){
+        recover_passwd_submit();
+    });
 
 
      function validate_user(){
