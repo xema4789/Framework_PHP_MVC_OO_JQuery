@@ -43,6 +43,14 @@
             $stmt=$db->ejecutar($sql);
             return $db->listar($stmt);
         }
+        function change_passwd($db,$passwd,$token){
+            $passwd=login_dao::encriptar($passwd);
+            $token_new=bin2hex(openssl_random_pseudo_bytes((20 - (20 % 2)) / 2));
+            $sql="UPDATE Users u SET u.password='$passwd', u.token='$token_new' WHERE u.token='$token'";
+            $stmt=$db->ejecutar($sql);
+            return $db->listar($stmt);
+
+        }
 
 
 

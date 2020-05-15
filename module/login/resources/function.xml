@@ -44,4 +44,8 @@
         <name>recover_passwd</name>
         <uri>recover_passwd</uri>
     </function>
+    <function>
+        <name>new_passwd</name>
+        <uri>new_passwd</uri>
+    </function>
 </functions>

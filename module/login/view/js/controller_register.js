@@ -104,6 +104,65 @@ $(document).ready(function(){
     });
 
 
+
+
+
+    $(document).on("click","#recover_passwd",function(){
+        // alert("srbrw");
+        if(validate_passwd()){
+            var user=pass1=$('#new_passwd').val();
+            ajax_succes_promise('POST',amigable("?module=login&function=new_passwd"),user).then(function(data){
+                if(data){
+                    console.log("DATA:");
+                    console.log(data);
+                    //Lanzar toastr
+                    alert("contraseña cambiada correctamente");
+
+                }
+
+            });
+        }
+    });
+
+    function validate_passwd(){
+        var pass1=$('#new_passwd').val();
+        var pass2=$('#new_passwd2').val();
+
+        var check=true;
+        
+
+        if(!pass1){
+            $("#error_new_passwd").html("Debe introducir la contraseña");
+            check=false;
+        }else{
+            $("#error_new_passwd").html(" ");
+        }
+
+        if(!pass2){
+            $("#error_new_passwd2").html("Debe repetir la contraseña");
+            check=false;
+        }else{
+            $("#error_new_passwd2").html(" ");
+        }
+
+        if(check){
+            if(pass1!==pass2){
+                // alert("ole los caracoles");
+            
+                alert("Las contraseñas deben coincidir");
+                check=false;
+            }
+        }
+
+        return check;
+        
+    }
+
+
+
+
+
+
      function validate_user(){
 
         let re_user=validate_user_php(document.getElementById('re_user').value);

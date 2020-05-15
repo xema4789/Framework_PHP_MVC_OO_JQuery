@@ -29,6 +29,9 @@ class login_model{
     public function recover_passwd($user){
         return $this->bll->recover_passwd($user);
     }
+    public function change_passwd($passwd,$token){
+        return $this->bll->change_passwd($passwd,$token);
+    }
 }
 
 

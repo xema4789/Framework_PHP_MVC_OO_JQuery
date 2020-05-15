@@ -129,7 +129,25 @@ class controller_login{
 
       }
 
+      function change_passwd(){
+        $_SESSION['token_passwd']=$_GET['param'];
 
+        require(VIEW_PATH_INC. "top_page_login.php");
+        require (VIEW_PATH_INC . "header.php");
+        require (VIEW_PATH_INC . "menu.php");
+        loadView('module/login/view/','recover_passwd.php');
+        require (VIEW_PATH_INC . "footer.php");
+      }
+
+      function new_passwd(){
+        $passwd=$_POST['user'];
+        $token=$_SESSION['token_passwd'];
+
+        $json = array();
+        $json = loadModel(MODEL_PATH_LOGIN,"login_model", "change_passwd",$passwd,$token);
+
+        echo json_encode($json);
+      }
 
 
 

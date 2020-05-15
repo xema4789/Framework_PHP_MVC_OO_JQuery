@@ -114,4 +114,4 @@ $(document).ready(function(){
 
 
 
-});
+});$_SESSION['token_passwd']

@@ -47,5 +47,11 @@ class login_bll{
         
         return $usuario;
     }
+    public function change_passwd($passwd,$token){
+        //Primero comprobar que existe el token, si existe, generamos otro token, y llamamos al dao con el antiguo token, el nuevo token y la nueva passwd y hacemos update
+        
+        return $this->dao->change_passwd($this->db,$passwd,$token);
+
+    }
 }
 ?>
