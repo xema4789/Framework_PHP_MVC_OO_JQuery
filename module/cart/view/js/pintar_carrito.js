@@ -1,27 +1,35 @@
-function ajax_promise(urlP, typeP, dataTypeP) {
+function ajax_promise(urlP, typeP, dataTypeP,arg1='no') {
+    urlP=(amigable(urlP));
+    console.log("URL");
+    console.log(urlP);
     return new Promise((resolve, reject) => {
+        console.log("HOLA???")
         $.ajax({
             url: urlP,
             type: typeP,
+            data: {"okay":true,"arg1":arg1},
             dataType: dataTypeP,
 
         }).done(function (data) {
             resolve(data);
         }).fail(function () {
-            console.log("FAIL");
-            reject("FAIL");
+            console.log("FAIiiL CARRITO");
+            reject("FAILLL CARRITO");
         });
     });
 }
 
 
 $(document).ready(function () {
+
  
     pintar_productos();
+    
 
     function productos_bd(){
-        return new Promise((resolve, reject) => {ajax_promise("module/cart/controller/controller_cart.php?op=pintar_prods_bd",'GET','json').then(function(data){
-            console.log("Productos de la bd:");
+
+        return new Promise((resolve, reject) => {ajax_promise("?module=cart&function=pintar_prods_bd",'POST','json').then(function(data){
+            console.log("DATAAAA BD:");
             console.log(data);
 
             
@@ -50,8 +58,10 @@ $(document).ready(function () {
             for (row in data){
                 items.push(data[row].Id)
             }
+            
 
-            ajax_promise("module/cart/controller/controller_cart.php?op=pintar_productos&prods=" + items, 'GET', 'json').then(function (data) {
+
+            ajax_promise("?module=cart&function=pintar_productos",'POST','json',items).then(function (data) {
                 console.log("data:");
                 console.log(data);
     

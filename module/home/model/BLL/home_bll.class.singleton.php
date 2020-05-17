@@ -1,7 +1,7 @@
 <?php
 
 include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/home/model/DAO/home_dao.class.singleton.php");
-include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/model/db.class.singleton.php");//Me falla el include
+include("/var/www/html/Programacion/Tema5_1.0/Tema5_1.0/Framework/model/db.class.singleton.php");
 
 
 class home_bll{

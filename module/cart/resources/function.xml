@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>list_cart</name>
+        <uri>list_cart</uri>
+    </function>
+    <function>
+        <name>pintar_productos</name>
+        <uri>pintar_productos</uri>
+    </function>
+    <function>
+        <name>pintar_prods_bd</name>
+        <uri>pintar_prods_bd</uri>
+    </function>
+    
+</functions>

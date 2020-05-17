@@ -17,22 +17,26 @@ function handlerRouter(){
     
     if(!empty($_GET['module'])){ //Buscamos el modulo, si no hay por defecto home
         $URI_module = $_GET['module'];
+       
         
         
     }else{
+        
         $URI_module='home';
        
 
         echo'<script>window.location.href = "./home/list_home";</script>'; //Cambiar cuando funcione a list home por defecto
                                             //?module=contact&function=list_contact
                                             //./contact/list_contact/
-    }                                       //"?module=contact&function=list_contact"
+    }                  
+                       //"?module=contact&function=list_contact"
    
 
     if(!empty($_GET['function'])){ //Buscamos la funcion, si no hay por defecto list_home
         $URI_function = $_GET['function'];
-
+       
     }else{
+        
         // print_r("empty func");
         $URI_function = 'list_home';
     }

@@ -452,7 +452,7 @@ h6 a {
   height: 50px;
   width: 50px;
   float: right;
-  background-image: url("view/img/cart.png");
+  background-image: url("/Programacion/Tema5_1.0/Tema5_1.0/Framework/view/img/cart.png"); 
 }
 
 .shop_cart:hover{

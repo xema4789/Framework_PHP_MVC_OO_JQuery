@@ -60,7 +60,7 @@ define ('PROJECT', '/Programacion/Tema5_1.0/Tema5_1.0/Framework/');
   define('JS_VIEW_SHOP',SITE_PATH.'module/shop/view/');
 
   //MODEL CART
-  define('MODEL_PATH_CART',SITE_ROOT.'module/cart/model/');
+  define('MODEL_PATH_CART',SITE_ROOT.'module/cart/model/model/');
   define('JS_VIEW_CART',SITE_PATH.'module/cart/view/js/');
 
 

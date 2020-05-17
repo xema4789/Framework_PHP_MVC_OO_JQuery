@@ -51,7 +51,7 @@
 			</form>
 
 
-			<a class="shop_cart" href="index.php?page=controller_cart&op=list"></a>
+			<a class="shop_cart" href="<?php echo amigable('?module=cart&function=list_cart') ?>"></a>  
 
 
 			
