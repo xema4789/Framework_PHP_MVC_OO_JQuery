@@ -1,4 +1,6 @@
 <?php
+include (UTILS . "token_jwt.php");
+// include (UTILS . "JWT.php");
 class controller_login{
     function __construct(){
         $_SESSION['module']='login';
@@ -18,18 +20,40 @@ class controller_login{
         loadView('module/login/view/','view_profile.php');
         require (VIEW_PATH_INC . "footer.php");
     }
+
+
+
+
+
+
     
     function ver_usuario(){
         try{
             if($_SESSION['user']){
+              // $token = encode_token($_SESSION['user']);
+              // $array=array(
+              //   "token" => $token,
+              //   "sesion" => $_SESSION
+              // );
+              
+              // print_r($token);
+              // die;
               echo json_encode($_SESSION);
+              // echo json_encode($_SESSION);
+
             }else{
               echo json_encode("no");
             }
           }catch(Exception $e){
-            echo json_encode("fail");
+            echo json_encode("fail ver usuario");
           }
     }
+
+
+
+
+
+
     function login(){
       if((isset($_POST['okay'])) && ($_POST['okay'] == true) && isset($_POST['user'])){
         // echo json_encode($_POST);
@@ -40,10 +64,21 @@ class controller_login{
         $json = loadModel(MODEL_PATH_LOGIN,"login_model", "login",$_POST['user']);
         $_SESSION['type'] = $json[0]['type'];
         $_SESSION['user'] = $json[0]['user'];
-				$_SESSION['tiempo'] = time();
-        echo json_encode($_SESSION);
+        $_SESSION['tiempo'] = time();
+        
+        //Generar jwt con el nombre y guardarlo en localstorage 
+        $token=encode_token($_SESSION['user']);
+        $token=controller_login::create_token($_SESSION['user']);
+        echo json_encode($token);
+
+        // echo json_encode($_SESSION);
 
       }
+    }
+
+    function create_token($nombre){
+      $token=encode_token($nombre);
+      return $token;
     }
 
 

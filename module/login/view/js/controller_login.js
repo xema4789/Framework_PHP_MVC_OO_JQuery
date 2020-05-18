@@ -9,8 +9,13 @@ $(document).ready(function(){
                 dataType:'json',
                 success: function(data){	
                     resolve(data);
-                }
+                }// ,error: function(data){
+                //     reject(data);
+                // }
             });
+
+
+
         });
     
         
@@ -43,13 +48,16 @@ $(document).ready(function(){
 
                 //Error aqui
                 ajax_succes_promise('POST',amigable("?module=login&function=login"),user).then(function(data){ 
-
+                    // console.log("TOKEN JWT:");
+                    //     console.log(data);
                     if(data){	
                         alert("Login realizado correctamente");
+                        console.log("TOKEN JWT:");
+                        console.log(data);
                         localStorage.setItem('carrito',"");
-                   
+                        localStorage.setItem('token_JWT',data);
                         
-                        setTimeout(' window.location.href = "'+amigable("?module=login&function=login")+'";',1000);
+                        setTimeout(' window.location.href = "'+amigable("?module=home&function=list_home")+'";',1000);
                     }else{					
                         alert("Usuario o contraseña incorrectos");
                         console.log(data);

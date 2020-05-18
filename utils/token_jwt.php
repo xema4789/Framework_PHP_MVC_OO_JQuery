@@ -3,33 +3,39 @@
 
     function encode_token($name){
         $header = '{"typ":"JWT", "alg":"HS256"}';
-        $secret = 'maytheforcebewithyou';
+        $secret = 'oleloscaracoles';
         $arrayPayload =array(
          'iat' => time(),
          'exp'=> time() + (5 * 60),
          'name'=> $name
         );
         $payload = json_encode($arrayPayload);
+        // return $payload;
     
         $JWT = new JWT;
         return $JWT->encode($header, $payload, $secret);
     }
     ////////////////test encode_token
-    $token = encode_token('yomogan');
-    echo $token;
-    echo '<br>';
+    // $token = encode_token('xema');
+    // $token = encode_token($_SESSION['user']);
+    // $user=$_SESSION['user'];
+    // print_r ($token);
+    // echo '<br>';
+    // print_r(decode_token($token));
+    
+
 
 
     function decode_token($token){
-        $secret = 'maytheforcebewithyou';
+        $secret = 'oleloscaracoles';
         $JWT = new JWT;
         $json = $JWT->decode($token, $secret);
         return $json;
     }
     ////////////////test decode_token
-    $json = decode_token($token);
-    echo json_decode($json)->name;
-    echo '<br>';
+    // $json = decode_token($token);
+    // echo json_decode($json)->name;
+    // echo '<br>';
 
 
     function validate_user_token($token){
@@ -53,7 +59,7 @@
         return $result;
     }
     ////////////////test validate_user_token
-    $result = validate_user_token($token);
-    echo '<br>';
-    print_r($result);
-    echo '</br>';
+    // $result = validate_user_token($token);
+    // echo '<br>';
+    // print_r($result);
+    // echo '</br>';

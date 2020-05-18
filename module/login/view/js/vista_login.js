@@ -5,13 +5,13 @@ $(document).ready(function(){
 
     $.ajax({//Este ayax pinta el menu
         url:amigable("?module=login&function=ver_usuario"), 
-        type:'GET',
+        type:'POST',
         dataType: 'json',
             
       }).done(function(data){
          
         if(data!="no"){
-            console.log("usuario encontrado");
+            console.log("USUARIO ENCONTRADO");
             console.log(data);
             console.log(data['type']);
             var tipo=data['type'];
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
       }).fail(function(){
       
-        console.log("FAIL");
+        console.log("FAIL VER EL TOKEN");
         pintar_menu();  //De momento me entra aqui porque me está fallando algo y no se el que, pero la funcionalidad si no estas logueado es la misma y el usuario no se entera
       });
 
