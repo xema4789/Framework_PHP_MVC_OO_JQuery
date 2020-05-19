@@ -12,5 +12,21 @@
         <name>pintar_prods_bd</name>
         <uri>pintar_prods_bd</uri>
     </function>
+    <function>
+        <name>delete</name>
+        <uri>delete</uri>
+    </function>
+    <function>
+        <name>back_up_carrito</name>
+        <uri>back_up_carrito</uri>
+    </function>
+    <function>
+        <name>pintar_carrito_final</name>
+        <uri>pintar_carrito_final</uri>
+    </function>
+    <function>
+        <name>finalizar_compra</name>
+        <uri>finalizar_compra</uri>
+    </function>
     
 </functions>

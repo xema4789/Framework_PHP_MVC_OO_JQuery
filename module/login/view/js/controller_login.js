@@ -30,7 +30,7 @@ $(document).ready(function(){
         
         $("#alta_login").submit(function(e){
             e.preventDefault();
-            var login_serialized = $("#alta_login").serialize();
+            // var login_serialized = $("#alta_login").serialize();
 
 
             user={
@@ -42,8 +42,7 @@ $(document).ready(function(){
 
 
             if(validate_login()){
-                console.log("serialize:");
-                console.log(login_serialized);
+             
                 
 
                 //Error aqui
@@ -52,15 +51,15 @@ $(document).ready(function(){
                     //     console.log(data);
                     if(data){	
                         alert("Login realizado correctamente");
-                        console.log("TOKEN JWT:");
-                        console.log(data);
+                        // console.log("TOKEN JWT:");
+                        // console.log(data);
                         localStorage.setItem('carrito',"");
                         localStorage.setItem('token_JWT',data);
                         
                         setTimeout(' window.location.href = "'+amigable("?module=home&function=list_home")+'";',1000);
                     }else{					
                         alert("Usuario o contraseña incorrectos");
-                        console.log(data);
+                        // console.log(data);
                         // document.getElementById('re_user').style.borderColor = "red";
                     }
                 });

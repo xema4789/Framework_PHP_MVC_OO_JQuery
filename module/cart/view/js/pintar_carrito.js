@@ -3,7 +3,6 @@ function ajax_promise(urlP, typeP, dataTypeP,arg1='no') {
     console.log("URL");
     console.log(urlP);
     return new Promise((resolve, reject) => {
-        console.log("HOLA???")
         $.ajax({
             url: urlP,
             type: typeP,
@@ -62,7 +61,7 @@ $(document).ready(function () {
 
 
             ajax_promise("?module=cart&function=pintar_productos",'POST','json',items).then(function (data) {
-                console.log("data:");
+                console.log("DATA DE AHORA:");
                 console.log(data);
     
                 if(data!="error"){
@@ -73,7 +72,7 @@ $(document).ready(function () {
     
                 for (row in data) {
                     $('<div></div>').attr({ 'class': "productos_carrito", 'id': data[row].Numero_habitacion }).appendTo('#contenedor_cesta').html(
-                        '<img src="' + data[row].imagen + '"id="' + data[row].Numero_habitacion + '" class="foto_cart" href="#" alt="No se puede cargar la imagen">' +
+                        '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+ data[row].imagen + '"id="' + data[row].Numero_habitacion + '" class="foto_cart" href="#" alt="No se puede cargar la imagen">' +
                         '<div>Ciudad: ' + data[row].Ciudad + '</div>' +
                         '<div>Tipo: ' + data[row].Tipo_habitacion + '</div>' +
                         'Cantidad:' +
@@ -157,10 +156,11 @@ $(document).ready(function () {
     });
 
 
-    function eliminar_producto_bd(id){
+    function eliminar_producto_bd(id){  //
         return new Promise((resolve,reject)=>{
-            ajax_promise("module/cart/controller/controller_cart.php?op=delete&id="+id,"GET",'json').then(function(){
-                console.log("Borrado");
+            ajax_promise("?module=cart&function=delete","POST",'json',id).then(function(data){
+                console.log("DATA DELETE");
+                console.log(data);
                 resolve("ok");
             });
         });   

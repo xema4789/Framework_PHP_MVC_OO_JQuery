@@ -1,8 +1,10 @@
-function ajax_promise(urlP, typeP, dataTypeP){
+function ajax_promise(urlP, typeP, dataTypeP, dataP='no'){
+    urlP=amigable(urlP);
     return new Promise((resolve, reject)=>{
         $.ajax({
             url:urlP,
             type:typeP,
+            data:{"okay":true,"arg1":dataP},
             dataType: dataTypeP,
                 
           }).done(function(data){
@@ -35,8 +37,8 @@ $(document).ready(function(){
     });
 
 
-    function add_to_carrito_backup(id){
-        ajax_promise("module/cart/controller/controller_cart.php?op=back_up_carrito&id="+id,'GET','json').then(function(data){
+    function add_to_carrito_backup(id){ //
+        ajax_promise("?module=cart&function=back_up_carrito",'POST','json',id).then(function(data){
             console.log("Dentro de la promise add to carrito backup");
             console.log(data);
         });
@@ -105,7 +107,12 @@ $(document).ready(function(){
     $(document).on("click","#btn_check",function(){
 
 
-        ajax_promise('module/login/controller/controller_login.php?&op=ver_usuario','GET','json').then(function(data){//Ver si esta logueado
+
+
+
+        //
+
+        ajax_promise("?module=login&function=ver_usuario",'POST','json').then(function(data){//Ver si esta logueado
             if(data!="no"){//Está logueado
                 check_out();
                 
@@ -121,8 +128,10 @@ $(document).ready(function(){
 
         
         });
-    function productos_bd(){
-        return new Promise((resolve, reject) => {ajax_promise("module/cart/controller/controller_cart.php?op=pintar_prods_bd",'GET','json').then(function(data){ 
+    function productos_bd(){//
+        return new Promise((resolve, reject) => {ajax_promise("?module=cart&function=pintar_prods_bd",'POST','json').then(function(data){ 
+            console.log("AQIUII");
+            console.log(data);
             resolve (data);
         });
     });
@@ -132,13 +141,14 @@ $(document).ready(function(){
         function check_out(){
             $('#carrito').empty();
             productos_bd().then(function(data){
+                
                 var items2 = [];
 
             for (row in data){
-                items2.push(data[row].Id)
+                items2.push(data[row].Id)   
             }
                 var items=localStorage.getItem('carrito');
-                ajax_promise("module/cart/controller/controller_cart.php?op=pintar_carrito_final&prods=" + items2, 'GET', 'json').then(function (data) {
+                ajax_promise("?module=cart&function=pintar_carrito_final", 'POST', 'json',items2).then(function (data) {
                 console.log(data);
                 var precio_total=0;
                 
@@ -159,7 +169,7 @@ $(document).ready(function(){
                         cantidades.push(data[row].cantidad);
                         ////
                         $('<div></div>').attr('class',"carrito_final_productos").appendTo('.carrito_final').html(
-                            '<img src="' + data[row].imagen + '" class="foto_cart" href="#" alt="No se puede cargar la imagen"><br>' +
+                            '<img src="/Programacion/Tema5_1.0/Tema5_1.0/Framework/'+data[row].imagen+'" class="foto_cart" href="#" alt="No se puede cargar la imagen"><br>' +
                             '<a>Tipo de habitación: '+data[row].Tipo+'</a><br>'+
                             '<a>Cantidad: '+data[row].cantidad+' </a><br>'+
                             '<a>Precio: '+data[row].precio+'</a><br>'+
@@ -181,10 +191,10 @@ $(document).ready(function(){
 
         $(document).on("click","#finalizar_compra",function(){
 
-            // var cantidad=1;
+            // var cantidad=1;  
             var datos={ids:ids,tipos:tipos,precios:precios,cantidades:cantidades};
       
-            ajax_promise("module/cart/controller/controller_cart.php?op=finalizar_compra&datos=" + JSON.stringify(datos), 'GET', 'json').then(function () {
+            ajax_promise("?module=cart&function=finalizar_compra", 'POST', 'json',JSON.stringify(datos)).then(function () {
                 alert("Compra realizada con éxito");
                 setTimeout(' window.location.href = "index.php?page=controller_home&op=list";',1000);
             });

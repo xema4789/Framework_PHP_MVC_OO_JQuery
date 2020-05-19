@@ -145,7 +145,7 @@ $(document).ready(function(){
 												'<li><a href="#" id="btn-va" name="btn-va">Valenciano</a></li>'+
 											'</ul>'+
 										'</li>'+
-										'<li><a href="index.php?page=controller_shop&op=list">Tienda</a></li>'+
+										'<li><a href="'+amigable("?module=shop&function=list_shop")+'">Tienda</a></li>'+
 										'<li><a><i class="fa fa-angle-down">Hotel</i></a> '+
 											'<ul class="submenu">'+
 												'<li><a href="index.php?page=controller_user&op=list">Administracion</a></li>'+
